@@ -19,17 +19,16 @@ def setup_package():
     setup(
         name="anomalearn",
         version="0.0.1a1",
-        description="A library aiding the development of time series anomaly detection methods using modular components.",
+        description="A modular and extensible end-to-end library for time series anomaly detection.",
         long_description=long_description(),
         long_description_content_type="text/markdown",
         author="Marco Petri",
         author_email="marco.petri@mail.polimi.it",
         license="Mozilla Public License 2.0",
-        packages=find_packages(exclude=["generator*", "tests*"]),
+        packages=find_packages(exclude=["tests*"]),
         keywords="time series anomaly detection development machine learning",
         python_requires=">=3.10",
         install_requires=[
-            "colorama>=0.4.4",
             "matplotlib>=3.5.1",
             "numba>=0.56.4",
             "numpy>=1.21.5",
@@ -37,11 +36,7 @@ def setup_package():
             "scikit-learn>=1.0.2",
             "scikit-optimize>=0.9.0",
             "scipy>=1.7.3",
-            "seaborn>=0.11.2",
-            "statsmodels>=0.13.0",
-            "tensorflow>=2.11.0",
-            "tqdm>=4.64.1",
-            "urllib3>=1.26.9"
+            "statsmodels>=0.13.0"
             ],
         classifiers=[
             "Development Status :: 2 - Pre-Alpha",
