@@ -7,7 +7,6 @@ import numpy as np
 import pandas as pd
 
 from .. import TSReader, rts_config
-from ... import MissingStrategy
 
 
 class ODINTSReader(TSReader):
@@ -58,12 +57,12 @@ class ODINTSReader(TSReader):
              pandas_args: dict | None = None,
              resample: bool = False,
              resampling_granularity: str = "1min",
-             missing_strategy: MissingStrategy = MissingStrategy.DROP,
+             missing_strategy: str = "drop",
              missing_fixed_value: float = 0.0,
              *args,
              **kwargs) -> ODINTSReader:
         # TODO: implement interpolation imputation
-        if missing_strategy not in [MissingStrategy.NOTHING, MissingStrategy.DROP, MissingStrategy.FIXED_VALUE]:
+        if missing_strategy not in ["nothing", "drop", "fixed_value"]:
             raise NotImplementedError("Interpolation still not implemented")
 
         super().read(path, file_format, verbose=False)
@@ -94,10 +93,10 @@ class ODINTSReader(TSReader):
             self._dataset.reset_index(inplace=True)
             self._dataset[rts_config["Univariate"]["index_column"]] = self._dataset[rts_config["Univariate"]["index_column"]].dt.strftime("%Y-%m-%d %H:%M:%S")
         
-        if missing_strategy == MissingStrategy.DROP:
+        if missing_strategy == "drop":
             self.__logger.info("dropping missing values")
             self._dataset.dropna(inplace=True)
-        elif missing_strategy == MissingStrategy.FIXED_VALUE:
+        elif missing_strategy == "fixed_value":
             self.__logger.info("placing fixed value for missing values")
             self._dataset.fillna(missing_fixed_value, inplace=True)
         
