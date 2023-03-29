@@ -1,0 +1,71 @@
+Version 2023-02-07:
+Moving average with window 2 of series of shape (50000, 50)
+	Time elapsed: 1.3030011653900146. With right cut.
+	Time elapsed: 1.4920074939727783. With left cut.
+Moving standard deviation with window 2 of series of shape (50000, 50)
+	Time elapsed: 2.7769882678985596. With right cut.
+	Time elapsed: 2.764122247695923. With left cut.
+
+Moving average with window 5 of series of shape (50000, 50)
+	Time elapsed: 1.3358898162841797. With right cut.
+	Time elapsed: 1.341059923171997. With left cut.
+Moving standard deviation with window 5 of series of shape (50000, 50)
+	Time elapsed: 2.8276422023773193. With right cut.
+	Time elapsed: 2.7826335430145264. With left cut.
+
+Moving average with window 10 of series of shape (50000, 50)
+	Time elapsed: 1.413320779800415. With right cut.
+	Time elapsed: 1.4453589916229248. With left cut.
+Moving standard deviation with window 10 of series of shape (50000, 50)
+	Time elapsed: 2.9966657161712646. With right cut.
+	Time elapsed: 3.00235915184021. With left cut.
+
+Moving average with window 100 of series of shape (50000, 50)
+	Time elapsed: 1.6088664531707764. With right cut.
+	Time elapsed: 1.6277470588684082. With left cut.
+Moving standard deviation with window 100 of series of shape (50000, 50)
+	Time elapsed: 3.701843500137329. With right cut.
+	Time elapsed: 3.5097968578338623. With left cut.
+
+Moving average with window 1000 of series of shape (50000, 50)
+	Time elapsed: 3.2141008377075195. With right cut.
+	Time elapsed: 3.279684066772461. With left cut.
+Moving standard deviation with window 1000 of series of shape (50000, 50)
+	Time elapsed: 9.05102014541626. With right cut.
+	Time elapsed: 9.134992361068726. With left cut.
+
+Version 2023-02-09 (numba version 1):
+Moving average with window 2 of series of shape (50000, 50)
+	Time elapsed: 0.011015176773071289. With right cut.
+	Time elapsed: 0.014002561569213867. With left cut.
+Moving standard deviation with window 2 of series of shape (50000, 50)
+	Time elapsed: 0.014002799987792969. With right cut.
+	Time elapsed: 0.015003681182861328. With left cut.
+
+Moving average with window 5 of series of shape (50000, 50)
+	Time elapsed: 0.014003753662109375. With right cut.
+	Time elapsed: 0.014003515243530273. With left cut.
+Moving standard deviation with window 5 of series of shape (50000, 50)
+	Time elapsed: 0.017004013061523438. With right cut.
+	Time elapsed: 0.017003774642944336. With left cut.
+
+Moving average with window 10 of series of shape (50000, 50)
+	Time elapsed: 0.015003442764282227. With right cut.
+	Time elapsed: 0.013002872467041016. With left cut.
+Moving standard deviation with window 10 of series of shape (50000, 50)
+	Time elapsed: 0.024006128311157227. With right cut.
+	Time elapsed: 0.023005008697509766. With left cut.
+
+Moving average with window 100 of series of shape (50000, 50)
+	Time elapsed: 0.06301426887512207. With right cut.
+	Time elapsed: 0.06301498413085938. With left cut.
+Moving standard deviation with window 100 of series of shape (50000, 50)
+	Time elapsed: 0.12102723121643066. With right cut.
+	Time elapsed: 0.1270298957824707. With left cut.
+
+Moving average with window 1000 of series of shape (50000, 50)
+	Time elapsed: 0.5071141719818115. With right cut.
+	Time elapsed: 0.4360988140106201. With left cut.
+Moving standard deviation with window 1000 of series of shape (50000, 50)
+	Time elapsed: 1.041236162185669. With right cut.
+	Time elapsed: 0.9182074069976807. With left cut.
