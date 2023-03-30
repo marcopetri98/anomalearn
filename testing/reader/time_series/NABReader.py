@@ -1,10 +1,11 @@
+from pathlib import Path
 import numpy as np
 from matplotlib import pyplot as plt, gridspec
 
 from anomalearn.reader.time_series import NABReader
 from anomalearn.visualizer import line_plot
 
-reader = NABReader("../data/anomaly_detection/nab")
+reader = NABReader(Path(__file__).parent / "../../../data/anomaly_detection/nab")
 
 for ds in reader:
     fig = plt.figure(figsize=(8, 8), tight_layout=True)

@@ -1,9 +1,10 @@
+from pathlib import Path
 from matplotlib import pyplot as plt, gridspec
 
 from anomalearn.reader.time_series import KitsuneReader
 from anomalearn.visualizer import line_plot
 
-reader = KitsuneReader("../data/anomaly_detection/kitsune")
+reader = KitsuneReader(Path(__file__).parent / "../../../data/anomaly_detection/kitsune")
 
 for ds in reader:
     fig = plt.figure(figsize=(8, 8), tight_layout=True)

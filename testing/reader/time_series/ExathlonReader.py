@@ -1,9 +1,10 @@
+from pathlib import Path
 from matplotlib import pyplot as plt, gridspec
 
 from anomalearn.reader.time_series import ExathlonReader
 from anomalearn.visualizer import line_plot
 
-reader = ExathlonReader("../data/anomaly_detection/exathlon", "train")
+reader = ExathlonReader(Path(__file__).parent / "../../../data/anomaly_detection/exathlon", "train")
 
 for ds in reader:
     fig = plt.figure(figsize=(8, 8), tight_layout=True)

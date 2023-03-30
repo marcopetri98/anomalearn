@@ -59,7 +59,7 @@ class GHLReader(IDatasetReader, TSBenchmarkReader):
 
         full_rename : bool, default=True
             If `full_rename` is `True` the channels are renamed with integers
-            going from 0 to N. Differently, the standard names are kept and the
+            going from 0 to N. Differently, the dataset names are kept and the
             standard names are only prepended.
         """
         if not isinstance(path, str) and not isinstance(path, int):
@@ -90,12 +90,19 @@ class GHLReader(IDatasetReader, TSBenchmarkReader):
         dataset = dataset[ordered_cols]
 
         self.__logger.info("renaming columns with standard names")
+        # build the list of columns without classes maintaining the order
+        cols = dataset.columns[1:].tolist()
+        for class_col in ["DANGER", "FAULT", "ATTACK"]:
+            if class_col in cols:
+                cols.remove(class_col)
         # build columns name mappings
         channels = {e: f"channel_{e if not full_rename else idx}"
-                    for idx, e in enumerate(dataset.columns[1:-3])
-                    if e not in ["DANGER", "FAULT", "ATTACK"]}
+                    for idx, e in enumerate(cols)}
         classes = {e: f"class_{e if not full_rename else idx}"
                    for idx, e in enumerate(["DANGER", "FAULT", "ATTACK"])}
+        
+        self.__logger.info(f"the renaming of the columns is {channels}")
+        self.__logger.info(f"the renaming of the classes is {classes}")
 
         # rename columns
         dataset.rename(columns={"Time": rts_config["Multivariate"]["index_column"]},

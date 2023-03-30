@@ -17,4 +17,3 @@ will be simply usable for all the time series.
 from .IDataMultipleReader import IDataMultipleReader
 from .IDataReader import IDataReader
 from .IDatasetReader import IDatasetReader
-from .MissingStrategy import MissingStrategy
