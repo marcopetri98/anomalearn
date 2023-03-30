@@ -1,6 +1,6 @@
 import numpy as np
 
-from anomalearn.utils import mov_avg, mov_std
+from anomalearn.utils.moving_functions import _mov_avg, _mov_std
 
 if __name__ == "__main__":
     method = None
@@ -9,8 +9,8 @@ if __name__ == "__main__":
         method = input("Which function do you want to diagnose in terms of parallelism? [avg/std] ")
     
         if method == "avg":
-            _ = mov_avg(np.random.rand(100, 3), 2)
-            mov_avg.parallel_diagnostics(level=4)
+            _ = _mov_avg(np.random.rand(100, 3), 2)
+            _mov_avg.parallel_diagnostics(level=4)
         elif method == "std":
-            _ = mov_std(np.random.rand(100, 3), 2)
-            mov_std.parallel_diagnostics(level=4)
+            _ = _mov_std(np.random.rand(100, 3), 2)
+            _mov_std.parallel_diagnostics(level=4)

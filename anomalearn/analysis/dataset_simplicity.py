@@ -8,7 +8,7 @@ from numba import jit, prange
 from sklearn.utils import check_array, check_X_y
 
 from ..exceptions import ClosedOpenRangeError
-from ..utils import mov_avg, mov_std
+from ..utils.moving_functions import _mov_avg as mov_avg, _mov_std as mov_std
 from ..utils.metrics import _true_positive_rate, _true_negative_rate
 
 

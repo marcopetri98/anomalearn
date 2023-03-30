@@ -1,7 +1,7 @@
 import numpy as np
 
 from anomalearn.analysis.dataset_simplicity import _analyse_constant_simplicity, _find_constant_score, _fast_execute_movement_simplicity, _find_best_constants, _fast_execute_mixed_score_simplicity
-from anomalearn.utils import mov_avg
+from anomalearn.utils.moving_functions import _mov_avg
 
 if __name__ == "__main__":
     method = None
@@ -35,7 +35,7 @@ if __name__ == "__main__":
             _ = _find_best_constants(dummy_uni, desc, asc, dummy_uni_labels)
             _find_best_constants.parallel_diagnostics(level=4)
         elif method == "movement":
-            _ = _fast_execute_movement_simplicity(dummy_series, dummy_labels, 1, [2, 3], mov_avg)
+            _ = _fast_execute_movement_simplicity(dummy_series, dummy_labels, 1, [2, 3], _mov_avg)
             print("_fast_execute_movement_simplicity is not parallel")
         elif method == "mixed":
             _ = _fast_execute_mixed_score_simplicity(dummy_series, dummy_labels, 1, [2, 3])

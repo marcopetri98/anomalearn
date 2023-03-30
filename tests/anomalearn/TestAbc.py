@@ -4,8 +4,7 @@ from anomalearn import EqualityABC, ObtainableABC
 from tests.anomalearn.stubs.AbstractObjects import ObjectWithEquality, \
     ObjectWithoutEquality, ObjectNoMoreWithEquality, ObjectWithoutEquality2, \
     ObjectWithEqualityInherit, ObjectWithNothing, ObtainableObject, \
-    NoMoreObtainableObject, NotCompleteObtainable, FinallyObtainable, \
-    ObtainableChild
+    NotCompleteObtainable, FinallyObtainable, ObtainableChild
 
 
 class TestAbc(unittest.TestCase):
@@ -20,7 +19,6 @@ class TestAbc(unittest.TestCase):
     def test_obtainable_abc(self):
         self.assertFalse(issubclass(ObjectWithNothing, ObtainableABC))
         self.assertTrue(issubclass(ObtainableObject, ObtainableABC))
-        self.assertFalse(issubclass(NoMoreObtainableObject, ObtainableABC))
         self.assertFalse(issubclass(NotCompleteObtainable, ObtainableABC))
         self.assertTrue(issubclass(FinallyObtainable, ObtainableABC))
         

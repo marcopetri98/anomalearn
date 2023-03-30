@@ -1,9 +1,10 @@
+from pathlib import Path
 import time
 
 from anomalearn.analysis import analyse_constant_simplicity
 from anomalearn.reader.time_series import SMDReader
 
-reader = SMDReader("../data/anomaly_detection/smd")
+reader = SMDReader(Path(__file__).parent / "../../data/anomaly_detection/smd")
 
 for i, series_df in enumerate(reader):
     labels = series_df["class"].values

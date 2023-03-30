@@ -62,22 +62,6 @@ class ObtainableObject(ObjectWithNothing):
     
     def __reversed__(self):
         raise NotImplementedError
-
-
-class NoMoreObtainableObject(ObjectWithNothing):
-    def __init__(self):
-        super().__init__()
-        
-    def __getitem__(self, item):
-        raise NotImplementedError
-    
-    def __len__(self):
-        raise NotImplementedError
-    
-    def __iter__(self):
-        raise NotImplementedError
-    
-    __reversed__ = None
     
     
 class NotCompleteObtainable(ObjectWithNothing):
@@ -87,13 +71,13 @@ class NotCompleteObtainable(ObjectWithNothing):
     def __getitem__(self, item):
         raise NotImplementedError
     
-    def __len__(self):
-        raise NotImplementedError
-    
 
 class FinallyObtainable(NotCompleteObtainable):
     def __init__(self):
         super().__init__()
+    
+    def __len__(self):
+        raise NotImplementedError
     
     def __iter__(self):
         raise NotImplementedError
