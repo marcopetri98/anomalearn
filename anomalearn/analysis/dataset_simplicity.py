@@ -784,6 +784,10 @@ def _fast_execute_mixed_score_simplicity(x,
             mixed_score = 1
         else:
             # scores themselves are between 0 and 1, mixed must be computed
+            const_series = x
+            if const_res[-1] != 0:
+                const_series = _diff_numpy(const_series, const_res[-1])
+            
             mov_avg_input = x
             if mov_avg_res[-2] != 0:
                 mov_avg_input = _diff_numpy(x, mov_avg_res[-2])
@@ -798,11 +802,13 @@ def _fast_execute_mixed_score_simplicity(x,
             for f in prange(x.shape[1]):
                 # process constant labels
                 if not math.isnan(const_res[1][f]):
-                    pos = np.argwhere(x[:, f] >= const_res[1][f])
+                    pos = np.argwhere(const_series[:, f] >= const_res[1][f])
+                    pos = pos + const_res[-1]
                     for e in pos:
                         pred[e[0]] = True
                 if not math.isnan(const_res[2][f]):
-                    pos = np.argwhere(x[:, f] <= const_res[2][f])
+                    pos = np.argwhere(const_series[:, f] <= const_res[2][f])
+                    pos = pos + const_res[-1]
                     for e in pos:
                         pred[e[0]] = True
                 
