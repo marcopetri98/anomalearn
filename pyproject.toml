@@ -1,2 +1,58 @@
+[tool.poetry]
+name = "anomalearn"
+version = "0.0.1"
+description = "A modular and extensible end-to-end library for time series anomaly detection"
+authors = ["Marco Petri <marco.petri@mail.polimi.it>"]
+license = "European Union Public Licence 1.2 (EUPL 1.2)"
+readme = "README.md"
+homepage = "https://marcopetri98.github.io/anomalearn"
+repository = "https://github.com/marcopetri98/anomalearn"
+documentation = "https://marcopetri98.github.io/anomalearn/docs"
+keywords = ["time series", "anomaly detection", "machine learning", "development"]
+classifiers = [
+	"Development Status :: 2 - Pre-Alpha",
+	"Intended Audience :: Developers",
+	"Intended Audience :: Science/Research",
+	"License :: OSI Approved :: European Union Public Licence 1.2 (EUPL 1.2)",
+	"Operating System :: OS Independent",
+	"Programming Language :: Python :: 3.10",
+	"Programming Language :: Python :: 3.11",
+	"Topic :: Scientific/Engineering :: Artificial Intelligence",
+	"Topic :: Software Development :: Libraries :: Python Modules",
+	"Typing :: Typed"
+]
+packages = [
+	{ include = "anomalearn" }
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+matplotlib = "^3.5.1"
+numba = "^0.56.4"
+numpy = "^1.21.5"
+pandas = "^1.4.1"
+scikit-learn = "^1.0.2"
+scikit-optimize = "^0.9.0"
+scipy = "^1.7.3"
+statsmodels = "^0.13.0"
+
+
+[tool.poetry.group.docs]
+optional = true
+
+
+[tool.poetry.group.docs.dependencies]
+sphinx = "^6.1.3"
+
+
+[tool.poetry.group.dev]
+optional = true
+
+
+[tool.poetry.group.dev.dependencies]
+
+
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
