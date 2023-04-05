@@ -51,14 +51,20 @@ class TestMinMaxScaler(unittest.TestCase):
             new_scaler = MinMaxScaler()
             new_scaler.fit(self.series_uni)
             new_scaler.load(tmp_dir)
+            new_scaler2 = MinMaxScaler.load_model(tmp_dir)
             self.assertIsNone(new_scaler.seen_data_min)
+            self.assertEqual(scaler, new_scaler)
+            self.assertEqual(scaler, new_scaler2)
             
             scaler.fit(self.series_uni)
             scaler.save(tmp_dir)
             
             new_scaler = MinMaxScaler()
             new_scaler.load(tmp_dir)
+            new_scaler2 = MinMaxScaler.load_model(tmp_dir)
             self.assertIsNotNone(new_scaler.seen_data_min)
+            self.assertEqual(scaler, new_scaler)
+            self.assertEqual(scaler, new_scaler2)
     
     def test_copy(self):
         scaler = MinMaxScaler()

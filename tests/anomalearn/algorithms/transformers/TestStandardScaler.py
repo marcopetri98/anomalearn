@@ -52,6 +52,7 @@ class TestStandardScaler(unittest.TestCase):
             new_scaler.fit(self.series_uni)
             new_scaler.load(tmp_dir)
             self.assertIsNone(new_scaler.seen_mean)
+            self.assertEqual(new_scaler, scaler)
             
             scaler.fit(self.series_uni)
             scaler.save(tmp_dir)
@@ -59,6 +60,7 @@ class TestStandardScaler(unittest.TestCase):
             new_scaler = StandardScaler()
             new_scaler.load(tmp_dir)
             self.assertIsNotNone(new_scaler.seen_mean)
+            self.assertEqual(new_scaler, scaler)
     
     def test_copy(self):
         scaler = StandardScaler()

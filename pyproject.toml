@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "anomalearn"
-version = "0.0.1"
+version = "0.0.2a0"
 description = "A modular and extensible end-to-end library for time series anomaly detection"
 authors = ["Marco Petri <marco.petri@mail.polimi.it>"]
 license = "European Union Public Licence 1.2 (EUPL 1.2)"
