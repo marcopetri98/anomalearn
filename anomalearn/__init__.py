@@ -10,4 +10,4 @@ new algorithms by abstracting those concepts with abstract classes, partially
 implemented.
 """
 
-from .abc import EqualityABC, ObtainableABC
+from .abc import EqualityABC, ObtainableABC, RepresentableABC, StringableABC, FullyRepresentableABC

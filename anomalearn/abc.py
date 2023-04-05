@@ -61,6 +61,41 @@ class EqualityABC(abc.ABC):
         return NotImplemented
 
 
+class RepresentableABC(abc.ABC):
+    """Abstract class for objects implementing __repr__."""
+    @abc.abstractmethod
+    def __repr__(self):
+        raise NotImplementedError
+
+    @classmethod
+    def __subclasshook__(cls, other):
+        if cls is RepresentableABC:
+            return _check_methods(other, "__repr__")
+        return NotImplemented
+    
+    
+class StringableABC(abc.ABC):
+    """Abstract class for objects implementing __str__."""
+    @abc.abstractmethod
+    def __str__(self):
+        raise NotImplementedError
+
+    @classmethod
+    def __subclasshook__(cls, other):
+        if cls is StringableABC:
+            return _check_methods(other, "__str__")
+        return NotImplemented
+    
+    
+class FullyRepresentableABC(RepresentableABC, StringableABC):
+    """Abstract class for objects implementing __str__ and __repr__."""
+    @classmethod
+    def __subclasshook__(cls, other):
+        if cls is FullyRepresentableABC:
+            return _check_methods(other, "__repr__", "__str__")
+        return NotImplemented
+
+
 class ObtainableABC(Reversible, Sized):
     """Abstract class for objects implementing __getitem__.
     """
