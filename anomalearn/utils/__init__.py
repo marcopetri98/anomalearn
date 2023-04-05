@@ -22,5 +22,6 @@ from .numpy import are_random_state_equal
 
 from .scikit import are_numpy_attr_equal
 from .scikit import are_normal_attr_equal
+from .scikit import are_random_state_attr_equal
 from .scikit import are_list_attr_equal
 from .scikit import are_tree_attr_equal

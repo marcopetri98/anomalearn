@@ -4,7 +4,7 @@ from typing import Any
 import numpy as np
 from sklearn.tree._tree import Tree
 
-from anomalearn.utils.numpy import are_random_state_equal
+from . import are_random_state_equal
 
 
 __module_logger = logging.getLogger(__name__)
