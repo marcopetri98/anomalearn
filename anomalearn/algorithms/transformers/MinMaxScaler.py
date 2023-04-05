@@ -115,7 +115,7 @@ class MinMaxScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
             return None
         
     def __repr__(self):
-        return f"MinMaxScaler(feature_range={self.feature_range},copy={self.copy_attribute},clip={self.clip})"
+        return f"MinMaxScaler(feature_range={self.feature_range}, copy={self.copy_attribute}, clip={self.clip})"
     
     def __str__(self):
         return "MinMaxScaler"
@@ -195,6 +195,8 @@ class MinMaxScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
         if self.seen_data_max is None:
             raise NotTrainedError()
             
+        x = np.array(x)
+        
         if x.shape[1] != self.seen_data_max.shape[0]:
             raise InvalidInputShape(("n_points", self.seen_data_max.shape[0]), x.shape)
         

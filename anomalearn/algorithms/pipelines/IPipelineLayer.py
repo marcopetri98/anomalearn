@@ -1,10 +1,12 @@
 from __future__ import annotations
 import abc
 
+
 from .. import ICopyable
+from ...abc import FullyRepresentableABC, EqualityABC
 
 
-class IPipelineLayer(ICopyable):
+class IPipelineLayer(ICopyable, FullyRepresentableABC, EqualityABC):
     """The interface exposed from a layer of the pipeline.
 
     A layer of a pipeline must be copiable, savable, loadable and must have

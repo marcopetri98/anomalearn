@@ -1,6 +1,8 @@
 from .BaseModel import BaseModel
 
 from .IClassifier import IClassifier
+from .IBoundaryClassifier import IBoundaryClassifier
+from .IProbabilisticClassifier import IProbabilisticClassifier
 from .ICluster import ICluster
 from .ICopyable import ICopyable
 from .IParametric import IParametric
