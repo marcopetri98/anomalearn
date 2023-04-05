@@ -1,3 +1,4 @@
+import imp
 from .arrays import get_rows_without_nan
 
 from .estimation import estimate_mean_covariance
@@ -17,5 +18,9 @@ from .metrics import binary_confusion_matrix
 from .moving_functions import mov_avg
 from .moving_functions import mov_std
 
+from .numpy import are_random_state_equal
+
 from .scikit import are_numpy_attr_equal
 from .scikit import are_normal_attr_equal
+from .scikit import are_list_attr_equal
+from .scikit import are_tree_attr_equal
