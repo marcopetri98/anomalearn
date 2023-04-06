@@ -41,4 +41,3 @@ class TestStationarityFunctions(unittest.TestCase):
         statistic, pvalue, critics = analyse_stationarity(self.series, "kpss", {"nlags": 4})
         statistic_, pvalue_, _, critics_ = kpss(self.series, nlags=4)
         self.assert_stationarity_test([statistic_, pvalue_, critics_], [statistic, pvalue, critics])
-        

@@ -82,7 +82,7 @@ uni_labels[52] = 1
 case_num = 1
 np.savetxt(str(this / f"mixed_case_{case_num}.csv"), uni_series, delimiter=",")
 np.savetxt(str(this / f"mixed_case_{case_num}_labels.csv"), uni_labels, delimiter=",")
-save_py_json({"mixed_score": 11/14}, this / f"mixed_case_{case_num}_result.json")
+save_py_json({"mixed_score": 11 / 14}, this / f"mixed_case_{case_num}_result.json")
 
 # case 2: case 0 but with two dimensions
 uni_series, uni_labels = reset_series_multi()
@@ -146,4 +146,4 @@ uni_labels[52] = 1
 case_num = 3
 np.savetxt(str(this / f"mixed_case_{case_num}.csv"), uni_series, delimiter=",")
 np.savetxt(str(this / f"mixed_case_{case_num}_labels.csv"), uni_labels, delimiter=",")
-save_py_json({"mixed_score": 11/14}, this / f"mixed_case_{case_num}_result.json")
+save_py_json({"mixed_score": 11 / 14}, this / f"mixed_case_{case_num}_result.json")

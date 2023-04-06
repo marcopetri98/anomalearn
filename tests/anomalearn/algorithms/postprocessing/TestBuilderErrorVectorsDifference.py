@@ -25,4 +25,3 @@ class TestBuilderErrorVectorsDifference(unittest.TestCase):
         self.assertTupleEqual(self.pred.shape, errors.shape)
         np.testing.assert_array_equal(self.true - self.pred, errors)
         np.testing.assert_array_equal(np.array([]), fake_out)
-        

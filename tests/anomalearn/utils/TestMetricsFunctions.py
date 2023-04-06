@@ -10,13 +10,13 @@ class TestMetricsFunctions(unittest.TestCase):
         self.assertEqual(1, tpr)
         
         tpr = true_positive_rate([0, 0, 1, 0, 1, 0, 1], [0, 0, 1, 0, 1, 0, 0])
-        self.assertEqual(2/3, tpr)
+        self.assertEqual(2 / 3, tpr)
         
         tpr = true_positive_rate([0, 0, 1, 0, 1, 0, 1], [0, 0, 1, 0, 0, 0, 1])
-        self.assertEqual(2/3, tpr)
+        self.assertEqual(2 / 3, tpr)
         
         tpr = true_positive_rate([0, 0, 1, 0, 1, 0, 1], [0, 0, 1, 0, 0, 0, 0])
-        self.assertEqual(1/3, tpr)
+        self.assertEqual(1 / 3, tpr)
         
         tpr = true_positive_rate([0, 0, 1, 0, 1, 0, 1], [0, 0, 0, 0, 0, 0, 0])
         self.assertEqual(0, tpr)
@@ -26,16 +26,16 @@ class TestMetricsFunctions(unittest.TestCase):
         self.assertEqual(1, tnr)
         
         tnr = true_negative_rate([0, 0, 1, 0, 1, 0, 1], [0, 0, 1, 0, 1, 1, 1])
-        self.assertEqual(3/4, tnr)
+        self.assertEqual(3 / 4, tnr)
         
         tnr = true_negative_rate([0, 0, 1, 0, 1, 0, 1], [0, 0, 1, 1, 1, 0, 1])
-        self.assertEqual(3/4, tnr)
+        self.assertEqual(3 / 4, tnr)
         
         tnr = true_negative_rate([0, 0, 1, 0, 1, 0, 1], [0, 0, 1, 1, 1, 1, 1])
-        self.assertEqual(2/4, tnr)
+        self.assertEqual(2 / 4, tnr)
         
         tnr = true_negative_rate([0, 0, 1, 0, 1, 0, 1], [0, 1, 1, 1, 1, 1, 1])
-        self.assertEqual(1/4, tnr)
+        self.assertEqual(1 / 4, tnr)
         
         tnr = true_negative_rate([0, 0, 1, 0, 1, 0, 1], [1, 1, 1, 1, 1, 1, 1])
         self.assertEqual(0, tnr)

@@ -3,8 +3,10 @@ import abc
 from anomalearn import ObtainableABC
 from anomalearn.abc import FullyRepresentableABC, RepresentableABC, StringableABC
 
+
 class ObjectWithNothing(abc.ABC):
     pass
+
 
 #################################################
 #                                               #
@@ -38,6 +40,7 @@ class ObjectWithEqualityInherit(ObjectWithoutEquality2):
     def __ne__(self, other):
         raise NotImplementedError
 
+
 #################################################
 #                                               #
 #                                               #
@@ -53,6 +56,7 @@ class ObjectWithStrDuckTyped(object):
     def __str__(self) -> str:
         return ""
 
+
 #################################################
 #                                               #
 #                                               #
@@ -67,6 +71,7 @@ class ObjectWithRepr(RepresentableABC):
 class ObjectWithReprDuckTyped(object):
     def __repr__(self) -> str:
         return ""
+
 
 #################################################
 #                                               #
@@ -85,6 +90,7 @@ class ObjectWithStrReprDuckTyped(object):
     
     def __repr__(self) -> str:
         return ""
+
 
 #################################################
 #                                               #

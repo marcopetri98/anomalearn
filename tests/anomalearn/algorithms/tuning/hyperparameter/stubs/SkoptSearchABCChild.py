@@ -49,7 +49,7 @@ class SkoptSearchABCChild(SkoptSearchABC):
         
         for fake_list in self.fake_values:
             score = self._skopt_objective(fake_list)
-            res = scipy.optimize.minimize(lambda x: x[0]*x[1]*x[2], np.array([10, 10, 10]))
+            res = scipy.optimize.minimize(lambda x: x[0] * x[1] * x[2], np.array([10, 10, 10]))
             
             self.x_iters.append(fake_list)
             self.func_vals.append(score)

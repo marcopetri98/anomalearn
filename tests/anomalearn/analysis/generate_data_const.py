@@ -113,7 +113,7 @@ uni_series[70] = -1000
 uni_labels[70] = 1
 np.savetxt(str(this / f"const_case_{case_num}.csv"), uni_series, delimiter=",")
 np.savetxt(str(this / f"const_case_{case_num}_labels.csv"), uni_labels, delimiter=",")
-save_py_json({"constant_score": 2/3, "diff_order": 0, "lower_bound": [-1000], "upper_bound": [1000]}, this / f"const_case_{case_num}_result.json")
+save_py_json({"constant_score": 2 / 3, "diff_order": 0, "lower_bound": [-1000], "upper_bound": [1000]}, this / f"const_case_{case_num}_result.json")
 
 # case 10: 0 < score < 1, diff 1, lower bound
 case_num = 10
@@ -147,7 +147,7 @@ uni_series[42] = 43
 uni_labels[40] = 1
 np.savetxt(str(this / f"const_case_{case_num}.csv"), uni_series, delimiter=",")
 np.savetxt(str(this / f"const_case_{case_num}_labels.csv"), uni_labels, delimiter=",")
-save_py_json({"constant_score": 2/3, "diff_order": 1, "lower_bound": [-1], "upper_bound": [4]}, this / f"const_case_{case_num}_result.json")
+save_py_json({"constant_score": 2 / 3, "diff_order": 1, "lower_bound": [-1], "upper_bound": [4]}, this / f"const_case_{case_num}_result.json")
 
 # case 13: case 0 but multivariate
 uni_series, uni_labels = reset_series_multi()

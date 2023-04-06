@@ -160,7 +160,7 @@ uni_labels[41] = 1
 case_num = 9
 np.savetxt(str(this / f"mov_std_case_{case_num}.csv"), uni_series, delimiter=",")
 np.savetxt(str(this / f"mov_std_case_{case_num}_labels.csv"), uni_labels, delimiter=",")
-save_py_json({"mov_std_score": 3/4,
+save_py_json({"mov_std_score": 3 / 4,
               "diff_order": 0,
               "lower_bound": [0],
               "upper_bound": [1],
@@ -192,7 +192,7 @@ uni_labels[70] = 1
 case_num = 11
 np.savetxt(str(this / f"mov_std_case_{case_num}.csv"), uni_series, delimiter=",")
 np.savetxt(str(this / f"mov_std_case_{case_num}_labels.csv"), uni_labels, delimiter=",")
-save_py_json({"mov_std_score": 2/3,
+save_py_json({"mov_std_score": 2 / 3,
               "diff_order": 1,
               "lower_bound": [None],
               "upper_bound": [1.5],
@@ -213,7 +213,7 @@ case_num = 12
 diff = np.diff(uni_series, 1, axis=0)
 np.savetxt(str(this / f"mov_std_case_{case_num}.csv"), uni_series, delimiter=",")
 np.savetxt(str(this / f"mov_std_case_{case_num}_labels.csv"), uni_labels, delimiter=",")
-save_py_json({"mov_std_score": 3/4,
+save_py_json({"mov_std_score": 3 / 4,
               "diff_order": 1,
               "lower_bound": [0],
               "upper_bound": [np.std([diff[7], diff[8]])],
@@ -354,7 +354,7 @@ uni_labels[70] = 1
 case_num = 20
 np.savetxt(str(this / f"mov_std_case_{case_num}.csv"), uni_series, delimiter=",")
 np.savetxt(str(this / f"mov_std_case_{case_num}_labels.csv"), uni_labels, delimiter=",")
-save_py_json({"mov_std_score": 2/3,
+save_py_json({"mov_std_score": 2 / 3,
               "diff_order": 0,
               "lower_bound": [None],
               "upper_bound": [np.std([uni_series[16], uni_series[17], uni_series[18]])],
@@ -372,7 +372,7 @@ uni_labels[70] = 1
 case_num = 21
 np.savetxt(str(this / f"mov_std_case_{case_num}.csv"), uni_series, delimiter=",")
 np.savetxt(str(this / f"mov_std_case_{case_num}_labels.csv"), uni_labels, delimiter=",")
-save_py_json({"mov_std_score": 3/4,
+save_py_json({"mov_std_score": 3 / 4,
               "diff_order": 0,
               "lower_bound": [0],
               "upper_bound": [np.std([uni_series[16], uni_series[17], uni_series[18]])],
@@ -410,7 +410,7 @@ diff = np.diff(uni_series, 1, axis=0)
 case_num = 23
 np.savetxt(str(this / f"mov_std_case_{case_num}.csv"), uni_series, delimiter=",")
 np.savetxt(str(this / f"mov_std_case_{case_num}_labels.csv"), uni_labels, delimiter=",")
-save_py_json({"mov_std_score": 4/5,
+save_py_json({"mov_std_score": 4 / 5,
               "diff_order": 1,
               "lower_bound": [None],
               "upper_bound": [np.std([diff[7], diff[8], diff[9]])],
@@ -435,7 +435,7 @@ diff = np.diff(uni_series, 1, axis=0)
 case_num = 24
 np.savetxt(str(this / f"mov_std_case_{case_num}.csv"), uni_series, delimiter=",")
 np.savetxt(str(this / f"mov_std_case_{case_num}_labels.csv"), uni_labels, delimiter=",")
-save_py_json({"mov_std_score": 5/6,
+save_py_json({"mov_std_score": 5 / 6,
               "diff_order": 1,
               "lower_bound": [0],
               "upper_bound": [min(np.std([diff[7], diff[8], diff[9]]), np.std([diff[10], diff[11], diff[12]]))],
