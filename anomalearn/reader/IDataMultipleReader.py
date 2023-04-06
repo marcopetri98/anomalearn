@@ -108,4 +108,3 @@ class IDataMultipleReader(ABC):
             If the datasets have not been read.
         """
         pass
-    

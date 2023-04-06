@@ -103,6 +103,7 @@ def pie_plot(wedges,
                pctdistance=percentage_dst)
         ax.set_title(title)
 
+
 # FIXME: too similar to pie_plot, evaluate its removal
 def pie_class_distribution(classes,
                            labels: list[str] = None,

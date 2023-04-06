@@ -198,7 +198,7 @@ def are_tree_attr_equal(estimator1, estimator2, attributes: list[str]) -> bool:
     
     To be equal they must be both None or all of their fields must be the same.
     This function checks whether both are instances of the class defined in
-    `sklearn.tree._tree` and are identical, i.e., their attributes contain the 
+    `sklearn.tree._tree` and are identical, i.e., their attributes contain the
     same values.
     
     Parameters

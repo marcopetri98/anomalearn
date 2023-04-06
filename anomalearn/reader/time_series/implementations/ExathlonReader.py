@@ -29,8 +29,8 @@ class ExathlonReader(IDatasetReader, TSBenchmarkReader):
         self.__check_parameters()
 
         def _exathlon_file_order(el):
-            first_num = int(el.split("_")[0])*1e10
-            second_num = int(el.split("_")[1])*1e8
+            first_num = int(el.split("_")[0]) * 1e10
+            second_num = int(el.split("_")[1]) * 1e8
             third_num = int(el.split("_")[2])
             fourth_num = int(el.split("_")[3])
             return first_num + second_num + third_num + fourth_num

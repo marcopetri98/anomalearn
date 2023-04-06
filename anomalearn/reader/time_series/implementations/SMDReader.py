@@ -28,7 +28,7 @@ class SMDReader(IDatasetReader, TSBenchmarkReader):
         self._machines = [e.name.split(".")[0]
                           for e in self._train_set.glob("*.txt")
                           if e.is_file()]
-        self._machines.sort(key=lambda elem: int(elem.split("-")[1])*10 + int(elem.split("-")[2]))
+        self._machines.sort(key=lambda elem: int(elem.split("-")[1]) * 10 + int(elem.split("-")[2]))
 
         self.__check_parameters()
 

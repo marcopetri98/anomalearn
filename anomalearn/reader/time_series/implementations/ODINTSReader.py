@@ -192,4 +192,3 @@ class ODINTSReader(TSReader):
                     dataset_cp.loc[idx, self._DAY_COL] = idx.to_pydatetime().weekday()
         
         return dataset_cp
-    
