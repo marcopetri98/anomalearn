@@ -122,7 +122,7 @@ class ExathlonReader(IDatasetReader, TSBenchmarkReader):
         elif not isinstance(full_rename, bool):
             raise TypeError("full_rename must be boolean")
         elif isinstance(path, str) and not any([path in e for e in self._files_paths]):
-            raise ValueError(f"path must be a valid name of a series")
+            raise ValueError("path must be a valid name of a series")
 
         # load the time series selected by the user
         if isinstance(path, str):
@@ -173,7 +173,7 @@ class ExathlonReader(IDatasetReader, TSBenchmarkReader):
                 end_idx = dataset["t"].tolist().index(end)
                 target[start_idx:end_idx + 1] = 1
 
-        self.__logger.info(f"renaming columns with standard names")
+        self.__logger.info("renaming columns with standard names")
         # build columns name mappings
         channels = {e: f"channel_{e if not full_rename else idx}"
                     for idx, e in enumerate(dataset.columns[1:])}

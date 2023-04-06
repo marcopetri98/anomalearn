@@ -53,7 +53,7 @@ class BuilderVectorsSlidingWindow(IShapeChanger, AbstractPipelineSavableLayer):
         return f"ErrorVectorsSlidingWindow(sliding_window={repr(self._sliding_window)})"
     
     def __str__(self):
-        return f"ErrorVectorsSlidingWindow"
+        return "ErrorVectorsSlidingWindow"
         
     def __eq__(self, other):
         if not isinstance(other, BuilderVectorsSlidingWindow):

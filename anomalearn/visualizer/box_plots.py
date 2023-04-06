@@ -116,7 +116,7 @@ def box_plot(x,
 
     # implementation
     if ax is None:
-        fig = plt.figure(figsize=fig_size)
+        _ = plt.figure(figsize=fig_size)
 
     # exploit identical interface between plt and ax to draw
     dwg = ax if ax is not None else plt

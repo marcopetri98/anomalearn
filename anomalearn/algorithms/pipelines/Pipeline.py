@@ -181,7 +181,7 @@ class Pipeline(IPipeline):
         try:
             self._elements.insert(index, final_model_tuple)
             self._layer_num += 1
-        except IndexError as e:
+        except IndexError:
             raise IndexError(f"The index is out of range. Pipeline has len={len(self)}")
 
     def append_layer(self, layer_spec: Tuple[str, IPipelineLayer, bool] | Tuple[str, IPipelineLayer] | Tuple[IPipelineLayer, bool] | IPipelineLayer) -> None:

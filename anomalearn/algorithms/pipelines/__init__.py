@@ -4,3 +4,6 @@ from .AbstractPipelineSavableLayer import AbstractPipelineSavableLayer
 
 from .IPipeline import IPipeline
 from .Pipeline import Pipeline
+
+__all__ = ["IPipelineLayer", "AbstractPipelineBaseLayer", "AbstractPipelineSavableLayer",
+           "IPipeline", "Pipeline"]

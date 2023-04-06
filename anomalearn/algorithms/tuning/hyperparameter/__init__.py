@@ -9,3 +9,8 @@ from .GaussianProcessesSearch import GaussianProcessesSearch
 from .ForestSearch import ForestSearch
 from .GBRTSearch import GBRTSearch
 from .TimeSeriesGridSearch import TimeSeriesGridSearch
+
+__all__ = ["IHyperparameterSearch", "IHyperparameterSearchResults",
+           "HyperparameterSearch", "HyperparameterSearchResults",
+           "SkoptSearchABC", "GaussianProcessesSearch", "ForestSearch",
+           "GBRTSearch", "TimeSeriesGridSearch"]

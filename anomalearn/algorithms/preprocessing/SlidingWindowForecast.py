@@ -63,7 +63,7 @@ class SlidingWindowForecast(IShapeChanger, AbstractPipelineSavableLayer):
         return f"SlidingWindowForecast(window={self.window}, stride={self.stride}, forecast={self.forecast})"
     
     def __str__(self):
-        return f"SlidingWindowForecast"
+        return "SlidingWindowForecast"
     
     def __eq__(self, other):
         if not isinstance(other, SlidingWindowForecast):

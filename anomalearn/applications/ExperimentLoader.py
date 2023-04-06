@@ -1,6 +1,6 @@
 import logging
 import warnings
-from collections.abc import Sequence, Iterable
+from collections.abc import Sequence
 from copy import copy
 from numbers import Number
 from typing import Iterator

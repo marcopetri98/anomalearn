@@ -29,3 +29,5 @@ others work or collaborate if an error or imprecision is found.
 
 from .IExperimentLoader import IExperimentLoader
 from .ExperimentLoader import ExperimentLoader
+
+__all__ = ["IExperimentLoader", "ExperimentLoader"]

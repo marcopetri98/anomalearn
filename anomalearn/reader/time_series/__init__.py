@@ -16,3 +16,8 @@ from .implementations.ODINTSReader import ODINTSReader
 from .implementations.SMDReader import SMDReader
 from .implementations.UCRReader import UCRReader
 from .implementations.YahooS5Reader import YahooS5Reader
+
+__all__ = ["rts_config", "TSReader", "TSBenchmarkReader", "TSMultipleReader",
+           "ExathlonReader", "GHLReader", "KitsuneReader", "MGABReader",
+           "NABReader", "NASAReader", "ODINTSReader", "SMDReader", "UCRReader",
+           "YahooS5Reader"]

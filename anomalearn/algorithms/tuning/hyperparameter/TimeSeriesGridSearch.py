@@ -9,6 +9,7 @@ from . import HyperparameterSearch
 from .. import ICrossValidation
 
 
+# TODO: rename to grid search, it is not limited to time series
 class TimeSeriesGridSearch(HyperparameterSearch):
     """Gird search over for time series datasets and models.
     """

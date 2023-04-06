@@ -217,7 +217,7 @@ def scatter_plot(x,
         
     # implementation
     if ax is None:
-        fig = plt.figure(figsize=fig_size)
+        _ = plt.figure(figsize=fig_size)
         
     dwg = ax if ax is not None else plt
     if not isinstance(x, list):

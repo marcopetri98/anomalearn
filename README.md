@@ -56,7 +56,7 @@ Currently, the library is shipped only to the
 
 ```sh
 # install from PyPI
-pip install anomalearn
+pip install anomalearn --pre
 ```
 
 [pypi-url]: https://pypi.org

@@ -89,7 +89,7 @@ def bar_plot(x_pos,
     
     # implementation
     if ax is None:
-        fig = plt.figure(figsize=fig_size, tight_layout=True)
+        _ = plt.figure(figsize=fig_size, tight_layout=True)
         
         plt.bar(x_pos,
                 bars_height,

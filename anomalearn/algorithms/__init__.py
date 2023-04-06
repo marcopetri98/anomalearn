@@ -16,3 +16,8 @@ from .ISavable import ISavable
 from .SavableModel import SavableModel
 
 from .algo_functions import load_estimator, instantiate_estimator
+
+__all__ = ["BaseModel", "IClassifier", "IBoundaryClassifier", "IProbabilisticClassifier",
+           "ICluster", "ICopyable", "IParametric", "IMultipleParametric",
+           "IPredictor", "IRegressor", "IShapeChanger", "ITransformer",
+           "ISavable", "SavableModel", "load_estimator", "instantiate_estimator"]

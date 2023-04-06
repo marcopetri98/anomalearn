@@ -1,4 +1,3 @@
-import imp
 from .arrays import get_rows_without_nan
 
 from .estimation import estimate_mean_covariance
@@ -25,3 +24,10 @@ from .scikit import are_normal_attr_equal
 from .scikit import are_random_state_attr_equal
 from .scikit import are_list_attr_equal
 from .scikit import are_tree_attr_equal
+
+__all__ = ["get_rows_without_nan", "estimate_mean_covariance", "find_or_create_dir",
+           "load_py_json", "save_py_json", "all_indices", "concat_list_array",
+           "true_positive_rate", "true_negative_rate", "binary_confusion_matrix",
+           "mov_avg", "mov_std", "are_random_state_equal", "are_numpy_attr_equal",
+           "are_normal_attr_equal", "are_random_state_attr_equal", "are_list_attr_equal",
+           "are_tree_attr_equal"]

@@ -83,7 +83,7 @@ def pie_plot(wedges,
     
     # implementation
     if ax is None:
-        fig = plt.figure(figsize=fig_size, tight_layout=True)
+        _ = plt.figure(figsize=fig_size, tight_layout=True)
         
         plt.pie(wedges,
                 labels=labels,
