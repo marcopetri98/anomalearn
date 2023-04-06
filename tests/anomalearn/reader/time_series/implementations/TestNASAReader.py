@@ -34,10 +34,10 @@ class TestNASAReader(unittest.TestCase):
                                   self.dataset_length)
 
     def test_read(self):
-        obj1 = self.reader.read("A-1").get_dataframe().values
-        obj2 = self.reader.read("D-9").get_dataframe().values
-        obj3 = self.reader.read("E-13").get_dataframe().values
-        obj4 = self.reader.read("G-1").get_dataframe().values
+        obj1 = self.reader.read("A-1").get_dataframe().to_numpy()
+        obj2 = self.reader.read("D-9").get_dataframe().to_numpy()
+        obj3 = self.reader.read("E-13").get_dataframe().to_numpy()
+        obj4 = self.reader.read("G-1").get_dataframe().to_numpy()
 
         assert_not_equal_numpy(self, obj1, obj2, obj3, obj4)
         self.assertRaises(ValueError, self.reader.read, "channel doesn't exist")

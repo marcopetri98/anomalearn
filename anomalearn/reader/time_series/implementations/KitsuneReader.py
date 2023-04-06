@@ -74,10 +74,10 @@ class KitsuneReader(IDatasetReader, TSBenchmarkReader):
             raw_labels = pd.read_csv(Path(dataset_path) / (dataset_name + "_labels.csv"),
                                      header=None,
                                      dtype=int)
-            labels = raw_labels[raw_labels.columns[0]].values
+            labels = raw_labels[raw_labels.columns[0]].to_numpy()
         else:
             raw_labels = pd.read_csv(Path(dataset_path) / (dataset_name + "_labels.csv"))
-            labels = raw_labels["x"].values
+            labels = raw_labels["x"].to_numpy()
             
         self.__logger.info("renaming columns with standard names")
         # rename columns with standard names

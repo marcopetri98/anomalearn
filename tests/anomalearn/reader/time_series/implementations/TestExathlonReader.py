@@ -34,10 +34,10 @@ class TestExathlonReader(unittest.TestCase):
                                   self.dataset_length)
 
     def test_read(self):
-        obj1 = self.reader.read("1_0_500000_18").get_dataframe().values
-        obj2 = self.reader.read("4_5_1000000_90").get_dataframe().values
-        obj3 = self.reader.read("7_0_100000_57").get_dataframe().values
-        obj4 = self.reader.read("10_4_1000000_79").get_dataframe().values
+        obj1 = self.reader.read("1_0_500000_18").get_dataframe().to_numpy()
+        obj2 = self.reader.read("4_5_1000000_90").get_dataframe().to_numpy()
+        obj3 = self.reader.read("7_0_100000_57").get_dataframe().to_numpy()
+        obj4 = self.reader.read("10_4_1000000_79").get_dataframe().to_numpy()
 
         assert_not_equal_numpy(self, obj1, obj2, obj3, obj4)
         self.assertRaises(ValueError, self.reader.read, "not a time series name")

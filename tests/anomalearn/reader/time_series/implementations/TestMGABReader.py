@@ -34,10 +34,10 @@ class TestMGABReader(unittest.TestCase):
                                   self.dataset_length)
 
     def test_read(self):
-        obj1 = self.reader.read(self.benchmark_folder / "1.csv").get_dataframe().values
-        obj2 = self.reader.read(self.benchmark_folder / "3.csv").get_dataframe().values
-        obj3 = self.reader.read(self.benchmark_folder / "5.csv").get_dataframe().values
-        obj4 = self.reader.read(self.benchmark_folder / "7.csv").get_dataframe().values
+        obj1 = self.reader.read(self.benchmark_folder / "1.csv").get_dataframe().to_numpy()
+        obj2 = self.reader.read(self.benchmark_folder / "3.csv").get_dataframe().to_numpy()
+        obj3 = self.reader.read(self.benchmark_folder / "5.csv").get_dataframe().to_numpy()
+        obj4 = self.reader.read(self.benchmark_folder / "7.csv").get_dataframe().to_numpy()
 
         assert_not_equal_numpy(self, obj1, obj2, obj3, obj4)
         self.assertRaises(ValueError, self.reader.read, "no_path")

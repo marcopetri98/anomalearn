@@ -221,8 +221,8 @@ class TestExperimentLoader(unittest.TestCase):
         def numpy_assert_train_test(real, got, train_pr: float):
             got_train, got_test = got[0], got[1]
             real_train, real_test = get_train_test(real, train_pr)
-            np.testing.assert_array_equal(real_train.values, got_train.values)
-            np.testing.assert_array_equal(real_test.values, got_test.values)
+            np.testing.assert_array_equal(real_train.to_numpy(), got_train.to_numpy())
+            np.testing.assert_array_equal(real_test.to_numpy(), got_test.to_numpy())
             
         # check usage of default split for dataset without column is_training
         yahoo = YahooS5Reader(self.benchmark_folder / "yahoo_s5")
@@ -263,8 +263,8 @@ class TestExperimentLoader(unittest.TestCase):
         real_smd = smd[0]
         train, test = real_smd[real_smd[rts_config["DEFAULT"]["is_training"]] == 1], real_smd[real_smd[rts_config["DEFAULT"]["is_training"]] == 0]
         got_train, got_test = exp1.get_series(0)
-        np.testing.assert_array_equal(train.values, got_train.values)
-        np.testing.assert_array_equal(test.values, got_test.values)
+        np.testing.assert_array_equal(train.to_numpy(), got_train.to_numpy())
+        np.testing.assert_array_equal(test.to_numpy(), got_test.to_numpy())
 
     def test_get_train_test_split(self):
         mgab = MGABReader(self.benchmark_folder / "mgab")
@@ -318,8 +318,8 @@ class TestExperimentLoader(unittest.TestCase):
 
             for i, (train, test) in enumerate(exp1.series_iterator()):
                 train_df, test_df = exp1.get_series(i)
-                np.testing.assert_array_equal(train.values, train_df.values)
-                np.testing.assert_array_equal(test.values, test_df.values)
+                np.testing.assert_array_equal(train.to_numpy(), train_df.to_numpy())
+                np.testing.assert_array_equal(test.to_numpy(), test_df.to_numpy())
 
     def test_set_train_test_split(self):
         yahoo = YahooS5Reader(self.benchmark_folder / "yahoo_s5")

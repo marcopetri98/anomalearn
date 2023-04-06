@@ -34,10 +34,10 @@ class TestNABReader(unittest.TestCase):
                                   self.dataset_length)
 
     def test_read(self):
-        obj1 = self.reader.read("art_daily_no_noise").get_dataframe().values
-        obj2 = self.reader.read("exchange-2_cpc_results").get_dataframe().values
-        obj3 = self.reader.read("cpu_utilization_asg_misconfiguration").get_dataframe().values
-        obj4 = self.reader.read("Twitter_volume_CRM").get_dataframe().values
+        obj1 = self.reader.read("art_daily_no_noise").get_dataframe().to_numpy()
+        obj2 = self.reader.read("exchange-2_cpc_results").get_dataframe().to_numpy()
+        obj3 = self.reader.read("cpu_utilization_asg_misconfiguration").get_dataframe().to_numpy()
+        obj4 = self.reader.read("Twitter_volume_CRM").get_dataframe().to_numpy()
 
         assert_not_equal_numpy(self, obj1, obj2, obj3, obj4)
         self.assertRaises(ValueError, self.reader.read, "series doesn't exist")

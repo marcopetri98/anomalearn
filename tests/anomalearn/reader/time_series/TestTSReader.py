@@ -25,13 +25,13 @@ class TestTSReader(unittest.TestCase):
             df.to_html(dir_path / "series.html", index=False)
             
             df_csv = reader.read(dir_path / "series.csv", file_format="csv", verbose=False).get_dataframe()
-            np.testing.assert_array_equal(self.series, df_csv.values)
+            np.testing.assert_array_equal(self.series, df_csv.to_numpy())
             
             df_json = reader.read(dir_path / "series.json", file_format="json", verbose=False, pandas_args={"orient": "columns"}).get_dataframe()
-            np.testing.assert_array_equal(self.series, df_json.values)
+            np.testing.assert_array_equal(self.series, df_json.to_numpy())
             
             df_xml = reader.read(dir_path / "series.xml", file_format="xml", verbose=False, pandas_args={"parser": "etree"}).get_dataframe()
-            np.testing.assert_array_equal(self.series, df_xml.values)
+            np.testing.assert_array_equal(self.series, df_xml.to_numpy())
             
             self.assertRaises(NotImplementedError, reader.read, dir_path / "series.html", file_format="html", verbose=False)
     

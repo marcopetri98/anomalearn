@@ -254,8 +254,8 @@ class TestDatasetSimplicityFunctions(unittest.TestCase):
         reader = SMDReader(str(standard_path))
         big_series = reader.read("machine-1-1", verbose=False).get_dataframe()
         values = big_series[sorted(set(big_series.columns).difference(["class", "timestamp", "is_training", "interpretation"]),
-                                   key=lambda x: int(x.split("_")[-1]))].values
-        labels = big_series["class"].values
+                                   key=lambda x: int(x.split("_")[-1]))].to_numpy()
+        labels = big_series["class"].to_numpy()
         values = np.ascontiguousarray(values, dtype=values.dtype)
         labels = np.ascontiguousarray(labels, dtype=labels.dtype)
 

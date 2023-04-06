@@ -34,10 +34,10 @@ class TestUCRReader(unittest.TestCase):
                                   self.dataset_length)
 
     def test_read(self):
-        obj1 = self.reader.read(self.benchmark_folder / "001_UCR_Anomaly_DISTORTED1sddb40_35000_52000_52620.txt").get_dataframe().values
-        obj2 = self.reader.read(self.benchmark_folder / "002_UCR_Anomaly_DISTORTED2sddb40_35000_56600_56900.txt").get_dataframe().values
-        obj3 = self.reader.read(self.benchmark_folder / "003_UCR_Anomaly_DISTORTED3sddb40_35000_46600_46900.txt").get_dataframe().values
-        obj4 = self.reader.read(self.benchmark_folder / "004_UCR_Anomaly_DISTORTEDBIDMC1_2500_5400_5600.txt").get_dataframe().values
+        obj1 = self.reader.read(self.benchmark_folder / "001_UCR_Anomaly_DISTORTED1sddb40_35000_52000_52620.txt").get_dataframe().to_numpy()
+        obj2 = self.reader.read(self.benchmark_folder / "002_UCR_Anomaly_DISTORTED2sddb40_35000_56600_56900.txt").get_dataframe().to_numpy()
+        obj3 = self.reader.read(self.benchmark_folder / "003_UCR_Anomaly_DISTORTED3sddb40_35000_46600_46900.txt").get_dataframe().to_numpy()
+        obj4 = self.reader.read(self.benchmark_folder / "004_UCR_Anomaly_DISTORTEDBIDMC1_2500_5400_5600.txt").get_dataframe().to_numpy()
 
         assert_not_equal_numpy(self, obj1, obj2, obj3, obj4)
         self.assertRaises(ValueError, self.reader.read, "no_path")

@@ -41,17 +41,17 @@ class TestTSMultipleReader(unittest.TestCase):
             df2.to_html(dir_path / "series2.html", index=False)
             
             reader.read_multiple([dir_path / "series1.csv", dir_path / "series2.csv"], files_format="csv", verbose=False)
-            ser1, ser2 = reader.select_dataframe(0).get_dataframe().values, reader.select_dataframe(1).get_dataframe().values
+            ser1, ser2 = reader.select_dataframe(0).get_dataframe().to_numpy(), reader.select_dataframe(1).get_dataframe().to_numpy()
             np.testing.assert_array_equal(self.series1, ser1)
             np.testing.assert_array_equal(self.series2, ser2)
             
             reader.read_multiple([dir_path / "series1.json", dir_path / "series2.json"], files_format="json", verbose=False, pandas_args={"orient": "columns"})
-            ser1, ser2 = reader.select_dataframe(0).get_dataframe().values, reader.select_dataframe(1).get_dataframe().values
+            ser1, ser2 = reader.select_dataframe(0).get_dataframe().to_numpy(), reader.select_dataframe(1).get_dataframe().to_numpy()
             np.testing.assert_array_equal(self.series1, ser1)
             np.testing.assert_array_equal(self.series2, ser2)
             
             reader.read_multiple([dir_path / "series1.xml", dir_path / "series2.xml"], files_format="xml", verbose=False, pandas_args={"parser": "etree"})
-            ser1, ser2 = reader.select_dataframe(0).get_dataframe().values, reader.select_dataframe(1).get_dataframe().values
+            ser1, ser2 = reader.select_dataframe(0).get_dataframe().to_numpy(), reader.select_dataframe(1).get_dataframe().to_numpy()
             np.testing.assert_array_equal(self.series1, ser1)
             np.testing.assert_array_equal(self.series2, ser2)
             

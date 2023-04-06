@@ -34,10 +34,10 @@ class TestKitsuneReader(unittest.TestCase):
                                   self.dataset_length)
 
     def test_read(self):
-        obj1 = self.reader.read("active_wiretap").get_dataframe().values
-        obj2 = self.reader.read("mirai").get_dataframe().values
-        obj3 = self.reader.read("os_scan").get_dataframe().values
-        obj4 = self.reader.read("video_injection").get_dataframe().values
+        obj1 = self.reader.read("active_wiretap").get_dataframe().to_numpy()
+        obj2 = self.reader.read("mirai").get_dataframe().to_numpy()
+        obj3 = self.reader.read("os_scan").get_dataframe().to_numpy()
+        obj4 = self.reader.read("video_injection").get_dataframe().to_numpy()
 
         assert_not_equal_numpy(self, obj1, obj2, obj3, obj4)
         self.assertRaises(ValueError, self.reader.read, "not a time series name")

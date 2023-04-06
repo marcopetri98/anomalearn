@@ -81,7 +81,7 @@ class SMDReader(IDatasetReader, TSBenchmarkReader):
         testing_set = pd.read_csv(self._test_set / (path + ".txt"),
                                   header=None)
         test_labels = pd.read_csv(self._test_gt / (path + ".txt"),
-                                  header=None)[0].values
+                                  header=None)[0].to_numpy()
 
         self.__logger.info("renaming columns with standard names")
         # retrieve number of columns and mapping to new columns' names

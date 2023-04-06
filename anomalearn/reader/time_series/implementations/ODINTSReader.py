@@ -74,7 +74,7 @@ class ODINTSReader(TSReader):
         # add anomaly labels to original dataset and drop useless columns
         self._dataset.insert(len(self._dataset.columns),
                              rts_config["Univariate"]["target_column"],
-                             dataset_cp[rts_config["Univariate"]["target_column"]].values)
+                             dataset_cp[rts_config["Univariate"]["target_column"]].to_numpy())
         self._dataset.rename(columns={
                                 self.timestamp_col: rts_config["Univariate"]["index_column"],
                                 self.univariate_col: rts_config["Univariate"]["value_column"]
@@ -119,13 +119,13 @@ class ODINTSReader(TSReader):
         new_dataset = self._unmodified_dataset.copy()
         new_dataset.insert(len(new_dataset.columns),
                            rts_config["Univariate"]["target_column"],
-                           enhanced_dataset[rts_config["Univariate"]["target_column"]].values)
+                           enhanced_dataset[rts_config["Univariate"]["target_column"]].to_numpy())
         new_dataset.insert(len(new_dataset.columns),
                            self._ANOMALY_TYPE,
-                           enhanced_dataset[self._ANOMALY_TYPE].values)
+                           enhanced_dataset[self._ANOMALY_TYPE].to_numpy())
         new_dataset.insert(len(new_dataset.columns),
                            self._DAY_COL,
-                           enhanced_dataset[self._DAY_COL].values)
+                           enhanced_dataset[self._DAY_COL].to_numpy())
         new_dataset = new_dataset.rename(columns={
             self.timestamp_col: rts_config["Univariate"]["index_column"],
             self.univariate_col: rts_config["Univariate"]["value_column"]})
