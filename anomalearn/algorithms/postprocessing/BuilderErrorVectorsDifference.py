@@ -14,8 +14,6 @@ class BuilderErrorVectorsDifference(IShapeChanger, AbstractPipelineBaseLayer):
     This class computes the error vector as the difference between the ground
     truth and the prediction, namely, `gt - pred`.
     """
-    def __init__(self):
-        super().__init__()
         
     def __repr__(self):
         return "BuilderErrorVectorsDifference()"

@@ -188,7 +188,7 @@ class ODINTSReader(TSReader):
             dataset_cp.loc[start:end, rts_config["Univariate"]["target_column"]] = 1
             if complete:
                 dataset_cp.loc[start:end, self._ANOMALY_TYPE] = anomaly_type_dict[start]
-                for idx, row in dataset_cp.loc[start:end].iterrows():
+                for idx, _ in dataset_cp.loc[start:end].iterrows():
                     dataset_cp.loc[idx, self._DAY_COL] = idx.to_pydatetime().weekday()
         
         return dataset_cp

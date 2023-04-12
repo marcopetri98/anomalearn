@@ -310,7 +310,7 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
     def get_output_shape(self) -> tuple:
         return tuple(["n"])
         
-    def fit(self, x, *args, y=None, **kwargs) -> None:
+    def fit(self, x, y=None, *args, **kwargs) -> None:
         self._isolation_forest.fit(x, y)
     
     def classify(self, x, *args, **kwargs) -> np.ndarray:

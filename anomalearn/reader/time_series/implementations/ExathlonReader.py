@@ -40,7 +40,7 @@ class ExathlonReader(IDatasetReader, TSBenchmarkReader):
         self._disturbed.sort(key=_exathlon_file_order)
 
         self._files_paths = []
-        for root, dirs, files in os.walk(self._benchmark_location):
+        for root, _, files in os.walk(self._benchmark_location):
             for name in files:
                 if name != "ground_truth.csv":
                     self._files_paths.append(os.path.normpath(os.path.join(root, name)))
@@ -151,7 +151,7 @@ class ExathlonReader(IDatasetReader, TSBenchmarkReader):
         target = np.zeros(dataset.shape[0])
         if path in self._disturbed_paths:
             gt: pd.DataFrame = self._gt.loc[self._gt["trace_name"] == trace_name]
-            for index, row in gt.iterrows():
+            for _, row in gt.iterrows():
                 if np.isnan(row["extended_effect_end"]):
                     end = int(row["root_cause_end"])
                 else:

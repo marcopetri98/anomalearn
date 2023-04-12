@@ -116,7 +116,7 @@ def _true_positive_rate(y_true,
     tpr : float
         Same as `true_positive_rate`.
     """
-    tn, fp, fn, tp = _binary_confusion_matrix(y_true, y_pred)
+    _, _, fn, tp = _binary_confusion_matrix(y_true, y_pred)
     return tp / (tp + fn)
 
 
@@ -138,7 +138,7 @@ def _true_negative_rate(y_true,
     tnr : float
         Same as `true_negative_rate`.
     """
-    tn, fp, fn, tp = _binary_confusion_matrix(y_true, y_pred)
+    tn, fp, _, _ = _binary_confusion_matrix(y_true, y_pred)
     return tn / (tn + fp)
 
 

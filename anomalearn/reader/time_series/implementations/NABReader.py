@@ -39,11 +39,13 @@ class NABReader(IDatasetReader, TSBenchmarkReader):
 
         labels_path = self._benchmark_path / "labels"
         windows_path = (labels_path / "combined_windows.json").resolve()
-        with open(windows_path) as file:
+        with open(windows_path, encoding="utf-8") as file:
             self._combined_windows = json.load(file)
 
         self._combined_windows = {key.split("/")[1].split(".")[0]: self._combined_windows[key]
                                   for key in self._combined_windows}
+        
+        self.__check_parameters()
 
     def __len__(self):
         return len(self._datasets_names)
@@ -129,7 +131,7 @@ class NABReader(IDatasetReader, TSBenchmarkReader):
 
         num_dirs = 0
         num_files = 0
-        for root, dirs, files in os.walk(data_path):
+        for _, dirs, files in os.walk(data_path):
             num_dirs += len(dirs)
             num_files += len(files)
 

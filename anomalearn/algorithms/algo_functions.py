@@ -26,7 +26,7 @@ def _find_class_in_lib(class_name: str) -> Any:
     this_file = Path(__file__)
     desired_package = None
     for package in this_file.parent.glob("**/__init__.py"):
-        with open(package, "r") as f:
+        with open(package, "r", encoding="utf-8") as f:
             source = f.read()
         
         if class_name in source:

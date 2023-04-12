@@ -3,10 +3,11 @@ from __future__ import annotations
 from pathlib import Path
 
 from . import ISavable, BaseModel
+from .. import FullyRepresentableABC, EqualityABC
 from ..utils import save_py_json, find_or_create_dir, load_py_json
 
 
-class SavableModel(ISavable, BaseModel):
+class SavableModel(ISavable, FullyRepresentableABC, EqualityABC, BaseModel):
     """Object representing a base model that can be saved.
     
     If an object can be saved, there are either parameters, hyperparameters or
@@ -15,9 +16,6 @@ class SavableModel(ISavable, BaseModel):
     """
     __json_file = "savable_model.json"
     __json_signature = "signature.json"
-
-    def __init__(self):
-        super().__init__()
         
     def __repr__(self):
         return "SavableModel()"

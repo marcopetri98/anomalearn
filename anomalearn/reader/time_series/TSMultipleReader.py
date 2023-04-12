@@ -69,7 +69,7 @@ class TSMultipleReader(TSReader, IDataMultipleReader):
         self._dataset = self._all_dataframes[pos]
         return self
     
-    def get_all_dataframes(self) -> list[pd.DataFrame]:
+    def get_all_dataframes(self, *args, **kwargs) -> list[pd.DataFrame]:
         check_not_default_attributes(self, {"_all_dataframes": None})
         return [e.copy(deep=True) for e in self._all_dataframes]
     

@@ -106,7 +106,7 @@ class SMDReader(IDatasetReader, TSBenchmarkReader):
 
         self.__logger.info("extracting anomalies interpretation")
         # reading the interpretation file
-        with open(self._interpretation / (path + ".txt"), "r") as f:
+        with open(self._interpretation / (path + ".txt"), "r", encoding="utf-8") as f:
             for line in f:
                 interval, channels = line.split(":")
                 start, end = interval.split("-")

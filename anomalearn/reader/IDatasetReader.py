@@ -8,4 +8,3 @@ class IDatasetReader(IDataReader, ObtainableABC):
     A dataset reader should implement this class if it is to be considered a
     data reader.
     """
-    pass

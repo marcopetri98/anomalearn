@@ -44,8 +44,6 @@ class YahooS5Reader(IDatasetReader, TSBenchmarkReader):
         elif not 0 <= item < len(self):
             raise IndexError(f"there are only {len(self)} series in the dataset")
         
-        item = item
-        
         if item <= 66:
             benchmark = "A1"
             num = item

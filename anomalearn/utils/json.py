@@ -22,7 +22,7 @@ def save_py_json(obj_to_save,
     """
     json_string = json.JSONEncoder().encode(obj_to_save)
     
-    with open(path, mode="w") as file_:
+    with open(path, mode="w", encoding="utf-8") as file_:
         json.dump(json_string, file_)
 
 
@@ -41,7 +41,7 @@ def load_py_json(path: PathLike | str) -> Any | None:
         not exist.
     """
     if exists(path):
-        with open(path) as file_:
+        with open(path, encoding="utf-8") as file_:
             json_string = json.load(file_)
         
         return json.JSONDecoder().decode(json_string)

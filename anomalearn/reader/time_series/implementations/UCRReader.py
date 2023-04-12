@@ -67,7 +67,7 @@ class UCRReader(IDatasetReader, TSBenchmarkReader):
 
         self.__logger.info(f"reading dataset from {str(path)}")
         data = []
-        with open(path, "r") as f:
+        with open(path, "r", encoding="utf-8") as f:
             contents = f.read()
             is_multiline = contents.count('\n') != 1
 

@@ -151,8 +151,8 @@ class ExperimentLoader(IExperimentLoader):
                 return split[0], split[1]
             else:
                 return None
-        except IndexError:
-            raise TypeError("splits must be tuple of length two")
+        except IndexError as ex:
+            raise TypeError("splits must be tuple of length two") from ex
         
     @staticmethod
     def __fix_input_series(reader: IDatasetReader,
@@ -195,8 +195,8 @@ class ExperimentLoader(IExperimentLoader):
                 return [e if e >= 0 else len(reader) - e for e in indices]
             else:
                 return None
-        except TypeError:
-            raise TypeError("series to be used must be iterables")
+        except TypeError as ex:
+            raise TypeError("series to be used must be iterables") from ex
 
     def __fix_set_insert_input(self, value: IDatasetReader | tuple[IDatasetReader,
                                                                    Sequence[float] | None,
@@ -319,8 +319,8 @@ class ExperimentLoader(IExperimentLoader):
         for reader in self._readers:
             if self.__are_readers_equal(reader, item):
                 return True
-        else:
-            return False
+        
+        return False
 
     def __getitem__(self, item: int):
         item = self.__check_index(item)
@@ -357,8 +357,8 @@ class ExperimentLoader(IExperimentLoader):
         for i in range(start, stop):
             if self.__are_readers_equal(self._readers[i], value):
                 return i
-        else:
-            raise ValueError(f"loader does not contain a reader like {str(value)}")
+        
+        raise ValueError(f"loader does not contain a reader like {str(value)}")
 
     def count(self, value: IDatasetReader | type) -> int:
         return sum([1 for e in self._readers if self.__are_readers_equal(e, value)])

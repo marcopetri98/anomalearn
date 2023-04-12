@@ -53,7 +53,7 @@ class IDataMultipleReader(ABC):
         NotImplementedError
             If the file format is not supported.
         """
-        pass
+        raise NotImplementedError
     
     @abc.abstractmethod
     def get_all_dataframes(self, *args, **kwargs) -> list[pd.DataFrame]:
@@ -77,7 +77,7 @@ class IDataMultipleReader(ABC):
         ValueError
             If the datasets have not been read.
         """
-        pass
+        raise NotImplementedError
     
     @abc.abstractmethod
     def get_ith_dataframe(self, pos: int, *args, **kwargs) -> pd.DataFrame:
@@ -107,4 +107,4 @@ class IDataMultipleReader(ABC):
         ValueError
             If the datasets have not been read.
         """
-        pass
+        raise NotImplementedError

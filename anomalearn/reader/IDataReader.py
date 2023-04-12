@@ -52,7 +52,7 @@ class IDataReader(ABC):
         NotImplementedError
             If the file format is not supported.
         """
-        pass
+        raise NotImplementedError
     
     @abc.abstractmethod
     def get_dataframe(self, *args, **kwargs) -> pd.DataFrame:
@@ -76,4 +76,4 @@ class IDataReader(ABC):
         ValueError
             If the dataset has not been read.
         """
-        pass
+        raise NotImplementedError

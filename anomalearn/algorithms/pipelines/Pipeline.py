@@ -131,7 +131,8 @@ class Pipeline(IPipeline):
         return [e[2] for e in self._elements]
     
     def allowed_interfaces(self) -> list:
-        return [ITransformer, IShapeChanger, ICluster, IClassifier, IRegressor, IPredictor, IParametric]
+        return [ITransformer, IShapeChanger, ICluster, IClassifier, IRegressor,
+                IPredictor, IParametric]
     
     def set_name(self, layer: int | str, name: str) -> None:
         if not isinstance(layer, int) and not isinstance(layer, str):
@@ -181,8 +182,8 @@ class Pipeline(IPipeline):
         try:
             self._elements.insert(index, final_model_tuple)
             self._layer_num += 1
-        except IndexError:
-            raise IndexError(f"The index is out of range. Pipeline has len={len(self)}")
+        except IndexError as ex:
+            raise IndexError(f"The index is out of range. Pipeline has len={len(self)}") from ex
 
     def append_layer(self, layer_spec: Tuple[str, IPipelineLayer, bool] | Tuple[str, IPipelineLayer] | Tuple[IPipelineLayer, bool] | IPipelineLayer) -> None:
         self.insert_layer(len(self._elements), layer_spec)
@@ -451,7 +452,7 @@ class Pipeline(IPipeline):
         estimator_classes : list, default=None
             It is the list of external classes not present in the library that
             may be loaded or instantiated by the pipeline at some point.
-
+            
         args
             Not used, present to allow multiple inheritance and signature change.
 
@@ -556,7 +557,7 @@ class Pipeline(IPipeline):
         -------
         None
         """
-        for name, obj, train in self._elements:
+        for name, obj, _ in self._elements:
             if name in hyperparameters.keys():
                 obj.set_hyperparameters(hyperparameters[name])
         
@@ -613,7 +614,7 @@ class Pipeline(IPipeline):
         
         curr_x = x
         curr_y = y
-        for name, obj, train in self._elements:
+        for name, obj, _ in self._elements:
             curr_x, curr_y = self._execute_layer(name, obj, curr_x, curr_y)
             
         return curr_x, curr_y
@@ -658,9 +659,7 @@ class Pipeline(IPipeline):
     def _execute_layer(self, layer_name: str,
                        layer: IPipelineLayer,
                        x: np.ndarray,
-                       y: np.ndarray | None,
-                       *args,
-                       **kwargs) -> Tuple[np.ndarray, np.ndarray | None]:
+                       y: np.ndarray | None) -> Tuple[np.ndarray, np.ndarray | None]:
         """Execute a layer.
         
         Parameters
@@ -676,12 +675,6 @@ class Pipeline(IPipeline):
         
         y : ndarray
             The current `y` to be used.
-        
-        args
-            Not used, present to allow multiple inheritance and signature change.
-
-        kwargs
-            Not used, present to allow multiple inheritance and signature change.
 
         Returns
         -------
@@ -748,8 +741,8 @@ class Pipeline(IPipeline):
                         new_x = layer.regress(new_x)
                     elif isinstance(layer, IPredictor):
                         new_x = layer.predict(new_x)
-        except InvalidInputShape as e:
-            new_msg = f"The input of layer {layer_name} received wrong input shape." + e.message
-            raise InvalidInputShape(e.expected_shape, e.shape, new_msg)
+        except InvalidInputShape as ex:
+            new_msg = f"The input of layer {layer_name} received wrong input shape." + ex.message
+            raise InvalidInputShape(ex.expected_shape, ex.shape, new_msg) from ex
             
         return new_x, new_y

@@ -1,9 +1,6 @@
 class BaseModel(object):
     """Object representing a general model"""
 
-    def __init__(self):
-        super().__init__()
-
     def get_hyperparameters(self, *args, **kwargs) -> dict:
         """Gets all the hyperparameters of the model and their allowed values.
 
@@ -48,7 +45,7 @@ class BaseModel(object):
         -------
         None
         """
-        pass
+        return
 
     def set_params(self, **params) -> None:
         """Modify the parameters of the object.

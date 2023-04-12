@@ -54,6 +54,6 @@ class TSReader(IDataReader):
         
         return self
     
-    def get_dataframe(self) -> pd.DataFrame:
+    def get_dataframe(self, *args, **kwargs) -> pd.DataFrame:
         check_not_default_attributes(self, {"_dataset": None})
         return self._dataset.copy(deep=True)

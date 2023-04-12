@@ -1,9 +1,19 @@
 # anomalearn: time series anomaly detection library
 
-## When will the code be fully released?
+![PyPI](https://img.shields.io/pypi/v/anomalearn)
+![PyPI - Status](https://img.shields.io/pypi/status/anomalearn)
+![PyPI - Format](https://img.shields.io/pypi/format/anomalearn)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/anomalearn)
+![PyPI - License](https://img.shields.io/pypi/l/anomalearn)
+![Maintenance](https://img.shields.io/maintenance/yes/2023)
+[![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/pylint-dev/pylint)
 
-ASAP since it is part of a thesis work whose dissertation is planned
-for 4th May 2023.
+## Status
+
+The current version of the library (first version) is a pre-release because
+other content is planned to be added, i.e., the library is currently on
+development. However, we feel that people can start to use it and contribute to
+it. Please refer to the documentation for contribution and use.
 
 ## What is it?
 
@@ -117,7 +127,9 @@ This work started with Marco Petri's thesis work. The work initially aimed to
 develop new anomaly detection methods for time series to reach new
 state-of-the-art performances. However, given the scarcity of tools specifically
 aimed for time series anomaly detection, the thesis developed anomalearn and a
-way to evaluate the simplicity of a dataset.
+way to evaluate the simplicity of a dataset. The very first version of the
+library (v0.0.2a1) is the one presented and described on the thesis. From that
+point on, the library will receive updates outside the sole scope of the thesis.
 
 ## Discussion and development
 

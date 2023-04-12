@@ -22,7 +22,9 @@ class ICrossValidation(abc.ABC):
     @abc.abstractmethod
     def split(self, x,
               y=None,
-              groups=None) -> Iterator[tuple[np.ndarray, np.ndarray]]:
+              groups=None,
+              *args,
+              **kwargs) -> Iterator[tuple[np.ndarray, np.ndarray]]:
         """Generate indices to split data into train and test.
         
         Parameters
@@ -37,6 +39,12 @@ class ICrossValidation(abc.ABC):
         groups : array-like of shape (n_samples,), default=None
             Group labels for the samples used while splitting the dataset into
             train/test set.
+
+        args
+            Not used, present to allow multiple inheritance and signature change.
+            
+        kwargs
+            Not used, present to allow multiple inheritance and signature change.
 
         Returns
         -------
