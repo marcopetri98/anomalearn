@@ -121,7 +121,7 @@ class ExathlonReader(IDatasetReader, TSBenchmarkReader):
             raise ValueError(f"there are {len(self)} series with mode {self._mode}")
         elif not isinstance(full_rename, bool):
             raise TypeError("full_rename must be boolean")
-        elif isinstance(path, str) and not any([path in e for e in self._files_paths]):
+        elif isinstance(path, str) and not any(path in e for e in self._files_paths):
             raise ValueError("path must be a valid name of a series")
 
         # load the time series selected by the user

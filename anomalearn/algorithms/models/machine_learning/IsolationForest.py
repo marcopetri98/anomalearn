@@ -199,13 +199,10 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
                              "seen_features_in"]
         list_properties = ["estimators_features", "estimators_samples"]
         random_states = ["random_state"]
-        if not are_numpy_attr_equal(self, other, numpy_properties):
-            return False
-        if not are_normal_attr_equal(self, other, normal_properties):
-            return False
-        if not are_list_attr_equal(self, other, list_properties):
-            return False
-        if not are_random_state_attr_equal(self, other, random_states):
+        if not are_numpy_attr_equal(self, other, numpy_properties) or \
+                not are_normal_attr_equal(self, other, normal_properties) or \
+                not are_list_attr_equal(self, other, list_properties) or \
+                not are_random_state_attr_equal(self, other, random_states):
             return False
 
         # check that the contained extra tree regressors are identical
@@ -222,13 +219,10 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
                 return False
             
             if xtr1 is not None:
-                if not are_normal_attr_equal(xtr1, xtr2, xtr_normal):
-                    return False
-                if not are_numpy_attr_equal(xtr1, xtr2, xtr_numpy):
-                    return False
-                if not are_random_state_attr_equal(xtr1, xtr2, xtr_random_state):
-                    return False
-                if not are_tree_attr_equal(xtr1, xtr2, xtr_tree):
+                if not are_normal_attr_equal(xtr1, xtr2, xtr_normal) or \
+                        not are_numpy_attr_equal(xtr1, xtr2, xtr_numpy) or \
+                        not are_random_state_attr_equal(xtr1, xtr2, xtr_random_state) or \
+                        not are_tree_attr_equal(xtr1, xtr2, xtr_tree):
                     return False
             
             return True

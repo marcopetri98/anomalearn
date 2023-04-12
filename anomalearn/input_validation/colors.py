@@ -21,7 +21,4 @@ def is_matplotlib_color(color) -> bool:
                 return False
         return True
     else:
-        if is_color_like(color):
-            return True
-        else:
-            return False
+        return is_color_like(color)

@@ -38,7 +38,7 @@ class TimeSeriesGridSearch(HyperparameterSearch):
                           **kwargs) -> None:
         # Input validation
         for parameter in self.parameter_space:
-            if not (isinstance(parameter, Categorical) or isinstance(parameter, Integer)):
+            if not isinstance(parameter, (Categorical, Integer)):
                 raise ValueError("Cannot run grid search out of discrete values")
         
         self.__logger.info("Building the parameters grid")
@@ -46,7 +46,7 @@ class TimeSeriesGridSearch(HyperparameterSearch):
         space = dict()
         for parameter in self.parameter_space:
             if isinstance(parameter, Categorical):
-                values = [category for category in parameter.categories]
+                values = list(parameter.categories)
             else:
                 values = range(parameter.low, parameter.high + 1, 1)
             

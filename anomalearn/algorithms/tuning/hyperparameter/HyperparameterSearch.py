@@ -373,8 +373,7 @@ class HyperparameterSearch(IHyperparameterSearch, ABC):
             The results of the search with as first row the names of the
             parameters of the model.
         """
-        keys = [key
-                for key in self._search_history.keys()]
+        keys = list(self._search_history.keys())
         tries = [[self._search_history[key][i]
                   for key in self._search_history.keys()]
                  for i in range(len(self._search_history[self._SCORE]))]

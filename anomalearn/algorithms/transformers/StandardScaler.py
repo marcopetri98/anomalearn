@@ -111,20 +111,21 @@ class StandardScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
         
         numpy_properties = ["seen_scale", "seen_mean", "seen_var", "seen_features_names_in"]
         normal_properties = ["copy_attribute", "with_mean", "with_std", "seen_features_in"]
-        if not are_numpy_attr_equal(self, other, numpy_properties):
-            return False
-        if not are_normal_attr_equal(self, other, normal_properties):
+        if not are_numpy_attr_equal(self, other, numpy_properties) or \
+                not are_normal_attr_equal(self, other, normal_properties):
             return False
 
         if (self.seen_samples_in is None) != (self.seen_samples_in is None):
             return False
+        elif self.seen_samples_in is not None and not isinstance(self.seen_samples_in, other.seen_samples_in.__class__):
+            return False
         
-        if isinstance(self.seen_samples_in, np.ndarray):
-            if self.seen_samples_in is not None and not np.array_equal(self.seen_samples_in, other.seen_samples_in):
-                return False
-        elif isinstance(self.seen_samples_in, Number):
-            if self.seen_samples_in is not None and self.seen_samples_in != other.seen_samples_in:
-                return False
+        if isinstance(self.seen_samples_in, np.ndarray) and isinstance(other.seen_samples_in, np.ndarray) and \
+                not np.array_equal(self.seen_samples_in, other.seen_samples_in):
+            return False
+        elif isinstance(self.seen_samples_in, Number) and isinstance(other.seen_samples_in, Number) and \
+                self.seen_samples_in != other.seen_samples_in:
+            return False
         
         return True
     

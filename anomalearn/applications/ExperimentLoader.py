@@ -361,7 +361,7 @@ class ExperimentLoader(IExperimentLoader):
         raise ValueError(f"loader does not contain a reader like {str(value)}")
 
     def count(self, value: IDatasetReader | type) -> int:
-        return sum([1 for e in self._readers if self.__are_readers_equal(e, value)])
+        return sum(1 for e in self._readers if self.__are_readers_equal(e, value))
 
     def insert(self,
                index: int,
@@ -409,11 +409,11 @@ class ExperimentLoader(IExperimentLoader):
                 if self._series[i] is None:
                     reader_i = i
                     series = reader[index - seen]
-                    break
                 else:
                     reader_i = i
                     series = reader[self._series[i][index - seen]]
-                    break
+                
+                break
         else:
             raise IndexError("the time series can't be found")
         

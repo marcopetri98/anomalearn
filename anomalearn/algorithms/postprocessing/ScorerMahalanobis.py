@@ -66,13 +66,17 @@ class ScorerMahalanobis(IShapeChanger, IParametric, AbstractPipelineSavableLayer
             return False
         
         # if the mean is None, the fit has not been called and all are None
-        if self._mean is None and other._mean is None and self._cov is None and other._cov is None and self._inv_cov is None and other._inv_cov is None:
+        if self._mean is None and other._mean is None and self._cov is None and \
+                other._cov is None and self._inv_cov is None and other._inv_cov is None:
             return True
-        elif self._mean is None and other._mean is not None or self._mean is not None and other._mean is None:
+        elif self._mean is None and other._mean is not None or \
+                self._mean is not None and other._mean is None:
             return False
-        elif self._cov is None and other._cov is not None or self._cov is not None and other._cov is None:
+        elif self._cov is None and other._cov is not None or \
+                self._cov is not None and other._cov is None:
             return False
-        elif self._inv_cov is None and other._inv_cov is not None or self._inv_cov is not None and other._inv_cov is None:
+        elif self._inv_cov is None and other._inv_cov is not None or \
+                self._inv_cov is not None and other._inv_cov is None:
             return False
         else:
             mean_eq = np.array_equal(self._mean, other._mean, equal_nan=True)

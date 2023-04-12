@@ -385,7 +385,7 @@ class Pipeline(IPipeline):
         return not self.__eq__(other)
         
     def identical(self, other, degree: int = 2) -> bool:
-        if degree != 1 and degree != 2 and degree != 3:
+        if degree not in (1, 2, 3):
             raise ValueError("degree must be either 1, 2 or 3")
         
         if degree == 1:
@@ -393,8 +393,9 @@ class Pipeline(IPipeline):
         else:
             if not self.__eq__(other):
                 return False
-        
-            return self.pipeline_train == other.pipeline_train and (degree != 3 or self.pipeline_names == other.pipeline_names)
+            
+            return self.pipeline_train == other.pipeline_train and \
+                   (degree != 3 or self.pipeline_names == other.pipeline_names)
         
     def copy(self) -> Pipeline:
         elements_copy = []

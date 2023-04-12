@@ -1,4 +1,4 @@
-class BaseModel(object):
+class BaseModel:
     """Object representing a general model"""
 
     def get_hyperparameters(self, *args, **kwargs) -> dict:
@@ -65,8 +65,8 @@ class BaseModel(object):
                                  "Please, read either the signature or the "
                                  "docs for that class." %
                                  (key, self.__class__.__name__))
-            else:
-                self.__dict__[key] = value
+            
+            self.__dict__[key] = value
 
     def get_params(self, deep=True) -> dict:
         """Gets all the parameters (public attributes) of the model.

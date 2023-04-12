@@ -1,6 +1,5 @@
 import importlib
 import logging
-import os
 from pathlib import Path
 from typing import Any
 
@@ -33,23 +32,10 @@ def _find_class_in_lib(class_name: str) -> Any:
             desired_package = package.parent
     
     desired_package_path = []
-    this_file_path = []
     if desired_package is not None:
         for part in reversed(desired_package.parts):
             desired_package_path.insert(0, part)
             if part == "anomalearn":
-                break
-        
-        for part in reversed(this_file.parent.parts):
-            this_file_path.insert(0, part)
-            if part == "anomalearn":
-                break
-        
-        max_shared_path = 0
-        for des, this in zip(desired_package_path, this_file_path):
-            if des == this:
-                max_shared_path += 1
-            else:
                 break
         
         from_part = ""
@@ -101,11 +87,14 @@ def load_estimator(path: str,
     estimator_classes = estimator_classes if estimator_classes is not None else []
 
     __module_logger.debug(f"path={str(path_obj)}")
-    __module_logger.debug(f"os.listdir(path)={os.listdir(str(path_obj))}")
     if not path_obj.is_dir():
         raise ValueError("The given path is not a directory.")
-    elif not {"savable_model.json", "signature.json"}.issubset(os.listdir(str(path_obj))):
-        raise ValueError("The directory is not a directory of an anomalearn estimator.")
+
+    dir_contents = [e.name for e in path_obj.iterdir()]
+    __module_logger.debug(f"os.listdir(path)={dir_contents}")
+    if not {"savable_model.json", "signature.json"}.issubset(dir_contents):
+        raise ValueError("The directory is not a directory of an anomalearn "
+                         "estimator.")
     
     signature_json = load_py_json(str(path_obj / "signature.json"))
     signature = signature_json["signature"]
@@ -123,7 +112,8 @@ def load_estimator(path: str,
             estimator = klass.load_model(path)
     
     if estimator is None:
-        raise ValueError(f"The folder {path} does not contain an anomalearn valid estimator.")
+        raise ValueError(f"The folder {path} does not contain an anomalearn valid"
+                         "estimator.")
     
     return estimator
 
@@ -174,6 +164,7 @@ def instantiate_estimator(estimator_class_name: str,
             estimator = klass()
 
     if estimator is None:
-        raise ValueError(f"The folder {estimator_class_name} isn't an anomalearn valid estimator.")
+        raise ValueError(f"The folder {estimator_class_name} isn't an anomalearn"
+                         "valid estimator.")
 
     return estimator

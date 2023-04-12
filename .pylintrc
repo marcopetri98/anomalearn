@@ -142,7 +142,7 @@ bad-names=foo,
 bad-names-rgxs=
 
 # Naming style matching correct class attribute names.
-class-attribute-naming-style=any
+class-attribute-naming-style=snake_case
 
 # Regular expression matching correct class attribute names. Overrides class-
 # attribute-naming-style. If left empty, class attribute names will be checked
@@ -188,6 +188,9 @@ function-naming-style=snake_case
 good-names=i,
            j,
            k,
+           x,
+           y,
+           C,
            ex,
            Run,
            _
@@ -215,7 +218,7 @@ method-naming-style=snake_case
 #method-rgx=
 
 # Naming style matching correct module names.
-module-naming-style=snake_case
+# module-naming-style=snake_case
 
 # Regular expression matching correct module names. Overrides module-naming-
 # style. If left empty, module names will be checked with the set naming style.
@@ -337,7 +340,7 @@ indent-after-paren=4
 indent-string='    '
 
 # Maximum number of characters on a single line.
-max-line-length=100
+max-line-length=120
 
 # Maximum number of lines in a module.
 max-module-lines=1000
@@ -432,7 +435,14 @@ disable=raw-checker-failed,
         trailing-whitespace,
         logging-fstring-interpolation,
         relative-beyond-top-level,
-        too-many-arguments
+        too-many-arguments,
+        too-few-public-methods,
+        too-many-ancestors,
+        too-many-public-methods,
+        no-else-return,
+        no-else-raise,
+        too-many-locals,
+        too-many-boolean-expressions
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option

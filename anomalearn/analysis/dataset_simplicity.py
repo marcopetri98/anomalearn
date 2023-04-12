@@ -208,7 +208,7 @@ def _get_windows_to_try(window_range: tuple[int, int] | slice | list[int] = (2, 
     if isinstance(window_range, list):
         return window_range
     elif isinstance(window_range, slice):
-        return [w for w in range(window_range.start, window_range.stop, window_range.step)]
+        return list(range(window_range.start, window_range.stop, window_range.step))
     else:
         windows = []
         i = window_range[0]
@@ -800,6 +800,7 @@ def _fast_execute_mixed_score_simplicity(x,
             
             pred = np.full(y.shape, False, dtype=np.bool_)
             for f in prange(x.shape[1]):
+                # TODO: avoid code duplication
                 # process constant labels
                 if not math.isnan(const_res[1][f]):
                     pos = np.argwhere(const_series[:, f] >= const_res[1][f])

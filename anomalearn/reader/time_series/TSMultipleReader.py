@@ -28,7 +28,7 @@ class TSMultipleReader(TSReader, IDataMultipleReader):
                       pandas_args: dict | None = None,
                       *args,
                       **kwargs) -> TSMultipleReader:
-        self._all_dataframes = list()
+        self._all_dataframes = []
         for idx, path in enumerate(paths):
             self.__logger.info(f"reading from {idx}th path {path}")
             self.read(path=path,
