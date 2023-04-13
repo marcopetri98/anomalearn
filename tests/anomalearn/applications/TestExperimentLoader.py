@@ -36,7 +36,7 @@ class TestExperimentLoader(unittest.TestCase):
         self.assertRaises(ValueError, ExperimentLoader, [YahooS5Reader(self.benchmark_folder / "yahoo_s5")], [(0, 0, 1)])
         self.assertRaises(ValueError, ExperimentLoader, [YahooS5Reader(self.benchmark_folder / "yahoo_s5"), MGABReader(self.benchmark_folder / "mgab")],
                           [None, (0, 0, 1)])
-        self.assertRaises(ValueError, ExperimentLoader, [YahooS5Reader(self.benchmark_folder / "yahoo_s5")], default_split=(1, 1)),
+        self.assertRaises(ValueError, ExperimentLoader, [YahooS5Reader(self.benchmark_folder / "yahoo_s5")], default_split=(1, 1))
         self.assertRaises(ValueError, ExperimentLoader, [YahooS5Reader(self.benchmark_folder / "yahoo_s5"), MGABReader(self.benchmark_folder / "mgab")],
                           default_split=(1, 1))
         self.assertRaises(ValueError, ExperimentLoader, [YahooS5Reader(self.benchmark_folder / "yahoo_s5")], series_to_use=[[0, 10, 2000]])

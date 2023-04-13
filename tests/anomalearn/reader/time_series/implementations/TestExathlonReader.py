@@ -24,7 +24,7 @@ class TestExathlonReader(unittest.TestCase):
         self.assertEqual(self.dataset_length, len(self.reader))
 
     def test_get_item(self):
-        tmp_path = Path(__file__).parent / (str(Path(__file__).name).split(".")[0] + "_temp_.txt")
+        tmp_path = Path(__file__).parent / (str(Path(__file__).name).split(".", maxsplit=1)[0] + "_temp_.txt")
         assert_get_item_behaviour(self,
                                   tmp_path,
                                   self.series_logger,

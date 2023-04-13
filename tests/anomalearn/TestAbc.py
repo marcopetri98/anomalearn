@@ -29,6 +29,7 @@ class TestAbc(unittest.TestCase):
         _ = iter(obtainable)
         _ = reversed(obtainable)
         
+        # check that the iterator returns objects in the same order as getitem
         for idx, val in enumerate(obtainable):
             self.assertEqual(obtainable[idx], val)
             

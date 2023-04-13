@@ -67,9 +67,9 @@ class TestDatasetSimplicityFunctions(unittest.TestCase):
         # case 11: 0 < score < 1, diff 1, upper bound
         # case 12: 0 < score < 1, diff 1, both bounds
         test_data = Path(__file__).parent / "test_data" / "constant_simplicity"
-        cases = sorted([e for e in test_data.glob("const_case_*[0-9].csv")], key=key_order)
-        cases_labels = sorted([e for e in test_data.glob("const_case_*[0-9]_labels.csv")], key=key_order)
-        cases_results = sorted([e for e in test_data.glob("const_case_*[0-9]_result.json")], key=key_order)
+        cases = sorted(list(e for e in test_data.glob("const_case_*[0-9].csv")), key=key_order)
+        cases_labels = sorted(list(e for e in test_data.glob("const_case_*[0-9]_labels.csv")), key=key_order)
+        cases_results = sorted(list(e for e in test_data.glob("const_case_*[0-9]_result.json")), key=key_order)
         for case, label, result in zip(cases, cases_labels, cases_results):
             print(f"Reading {case.name}, {label.name}, {result.name}")
             series = np.genfromtxt(case, delimiter=",")
@@ -79,7 +79,7 @@ class TestDatasetSimplicityFunctions(unittest.TestCase):
             if series.ndim == 1:
                 series = series.reshape((-1, 1))
 
-            print(f"Asserting the results...", end="\n\n")
+            print("Asserting the results...", end="\n\n")
             results = analyse_constant_simplicity(series, labels, diff=3)
             self.assert_constant_results(results, exp_results)
     
@@ -111,9 +111,9 @@ class TestDatasetSimplicityFunctions(unittest.TestCase):
         # case 23: 0 < score < 1, diff 1, upper bound, window >2
         # case 24: 0 < score < 1, diff 1, both bounds, window >2
         test_data = Path(__file__).parent / "test_data" / "mov_avg_simplicity"
-        cases = sorted([e for e in test_data.glob("mov_avg_case_*[0-9].csv")], key=key_order)
-        cases_labels = sorted([e for e in test_data.glob("mov_avg_case_*[0-9]_labels.csv")], key=key_order)
-        cases_results = sorted([e for e in test_data.glob("mov_avg_case_*[0-9]_result.json")], key=key_order)
+        cases = sorted(list(e for e in test_data.glob("mov_avg_case_*[0-9].csv")), key=key_order)
+        cases_labels = sorted(list(e for e in test_data.glob("mov_avg_case_*[0-9]_labels.csv")), key=key_order)
+        cases_results = sorted(list(e for e in test_data.glob("mov_avg_case_*[0-9]_result.json")), key=key_order)
         for case, label, result in zip(cases, cases_labels, cases_results):
             print(f"Reading {case.name}, {label.name}, {result.name}")
             series = np.genfromtxt(case, delimiter=",")
@@ -123,7 +123,7 @@ class TestDatasetSimplicityFunctions(unittest.TestCase):
             if series.ndim == 1:
                 series = series.reshape((-1, 1))
 
-            print(f"Asserting the results...", end="\n\n")
+            print("Asserting the results...", end="\n\n")
             results = analyse_mov_avg_simplicity(series, labels, window_range=(2, 100), diff=3)
             self.assert_movement_results(results, exp_results, "mov_avg_score")
     
@@ -155,9 +155,9 @@ class TestDatasetSimplicityFunctions(unittest.TestCase):
         # case 23: 0 < score < 1, diff 1, upper bound, window >2
         # case 24: 0 < score < 1, diff 1, both bounds, window >2
         test_data = Path(__file__).parent / "test_data" / "mov_std_simplicity"
-        cases = sorted([e for e in test_data.glob("mov_std_case_*[0-9].csv")], key=key_order)
-        cases_labels = sorted([e for e in test_data.glob("mov_std_case_*[0-9]_labels.csv")], key=key_order)
-        cases_results = sorted([e for e in test_data.glob("mov_std_case_*[0-9]_result.json")], key=key_order)
+        cases = sorted(list(e for e in test_data.glob("mov_std_case_*[0-9].csv")), key=key_order)
+        cases_labels = sorted(list(e for e in test_data.glob("mov_std_case_*[0-9]_labels.csv")), key=key_order)
+        cases_results = sorted(list(e for e in test_data.glob("mov_std_case_*[0-9]_result.json")), key=key_order)
         for case, label, result in zip(cases, cases_labels, cases_results):
             print(f"Reading {case.name}, {label.name}, {result.name}")
             series = np.genfromtxt(case, delimiter=",")
@@ -167,7 +167,7 @@ class TestDatasetSimplicityFunctions(unittest.TestCase):
             if series.ndim == 1:
                 series = series.reshape((-1, 1))
 
-            print(f"Asserting the results...", end="\n\n")
+            print("Asserting the results...", end="\n\n")
             results = analyse_mov_std_simplicity(series, labels, window_range=(2, 100), diff=3)
             self.assert_movement_results(results, exp_results, "mov_std_score")
 
@@ -175,19 +175,19 @@ class TestDatasetSimplicityFunctions(unittest.TestCase):
         # tests that all cases of constant, moving average and moving standard
         # deviation cases are correctly computed
         test_data = Path(__file__).parent / "test_data" / "constant_simplicity"
-        cases = sorted([e for e in test_data.glob("const_case_*[0-9].csv")], key=key_order)
-        cases_labels = sorted([e for e in test_data.glob("const_case_*[0-9]_labels.csv")], key=key_order)
-        cases_results = sorted([e for e in test_data.glob("const_case_*[0-9]_result.json")], key=key_order)
+        cases = sorted(list(e for e in test_data.glob("const_case_*[0-9].csv")), key=key_order)
+        cases_labels = sorted(list(e for e in test_data.glob("const_case_*[0-9]_labels.csv")), key=key_order)
+        cases_results = sorted(list(e for e in test_data.glob("const_case_*[0-9]_result.json")), key=key_order)
         
         test_data = Path(__file__).parent / "test_data" / "mov_avg_simplicity"
-        cases += sorted([e for e in test_data.glob("mov_avg_case_*[0-9].csv")], key=key_order)
-        cases_labels += sorted([e for e in test_data.glob("mov_avg_case_*[0-9]_labels.csv")], key=key_order)
-        cases_results += sorted([e for e in test_data.glob("mov_avg_case_*[0-9]_result.json")], key=key_order)
+        cases += sorted(list(e for e in test_data.glob("mov_avg_case_*[0-9].csv")), key=key_order)
+        cases_labels += sorted(list(e for e in test_data.glob("mov_avg_case_*[0-9]_labels.csv")), key=key_order)
+        cases_results += sorted(list(e for e in test_data.glob("mov_avg_case_*[0-9]_result.json")), key=key_order)
         
         test_data = Path(__file__).parent / "test_data" / "mov_std_simplicity"
-        cases += sorted([e for e in test_data.glob("mov_std_case_*[0-9].csv")], key=key_order)
-        cases_labels += sorted([e for e in test_data.glob("mov_std_case_*[0-9]_labels.csv")], key=key_order)
-        cases_results += sorted([e for e in test_data.glob("mov_std_case_*[0-9]_result.json")], key=key_order)
+        cases += sorted(list(e for e in test_data.glob("mov_std_case_*[0-9].csv")), key=key_order)
+        cases_labels += sorted(list(e for e in test_data.glob("mov_std_case_*[0-9]_labels.csv")), key=key_order)
+        cases_results += sorted(list(e for e in test_data.glob("mov_std_case_*[0-9]_result.json")), key=key_order)
         
         for case, label, result in zip(cases, cases_labels, cases_results):
             print(f"Reading {case.name}, {label.name}, {result.name}")
@@ -198,32 +198,32 @@ class TestDatasetSimplicityFunctions(unittest.TestCase):
             if series.ndim == 1:
                 series = series.reshape((-1, 1))
 
-            print(f"Asserting the results...")
+            print("Asserting the results...")
             results = analyse_mixed_simplicity(series, labels, window_range=(2, 100), diff=3)
             self.assertSetEqual({"mixed_score", "const_result", "mov_avg_result", "mov_std_result"}, set(results.keys()))
             if str(case.name).startswith("const"):
-                print(f"Asserting the constant results...")
+                print("Asserting the constant results...")
                 self.assert_constant_results(results["const_result"], exp_results)
                 self.assertGreaterEqual(results["mixed_score"], results["const_result"]["constant_score"])
             if str(case.name).startswith("mov_avg"):
-                print(f"Asserting the moving average results...")
+                print("Asserting the moving average results...")
                 self.assert_movement_results(results["mov_avg_result"], exp_results, "mov_avg_score")
                 self.assertGreaterEqual(results["mixed_score"], results["mov_avg_result"]["mov_avg_score"])
             if str(case.name).startswith("mov_std"):
-                print(f"Asserting the moving standard deviation results...")
+                print("Asserting the moving standard deviation results...")
                 self.assert_movement_results(results["mov_std_result"], exp_results, "mov_std_score")
                 self.assertGreaterEqual(results["mixed_score"], results["mov_std_result"]["mov_std_score"])
                 
             # check that 0 score cases are 0 for mixed score if all are 0,
             # that is cases 0 and their extension to multivariate
             if results["const_result"]["constant_score"] == 0 and results["mov_avg_result"]["mov_avg_score"] == 0 and results["mov_std_result"]["mov_std_score"] == 0:
-                print(f"Asserting that the mixed score is 0...")
+                print("Asserting that the mixed score is 0...")
                 self.assertEqual(0, results["mixed_score"])
                 
             # check that 1 score cases are 1 for mixed score if all at least
             # one is 1, that is cases with expected score 1
             if results["const_result"]["constant_score"] == 1 or results["mov_avg_result"]["mov_avg_score"] == 1 or results["mov_std_result"]["mov_std_score"] == 1:
-                print(f"Asserting that the mixed score is 1...")
+                print("Asserting that the mixed score is 1...")
                 self.assertEqual(1, results["mixed_score"])
                 
             print("\n")
@@ -231,9 +231,9 @@ class TestDatasetSimplicityFunctions(unittest.TestCase):
         # check that in a mixed case in which single scores fall in (0,1) and
         # no one is either 0 or 1 the mixed score is correct
         test_data = Path(__file__).parent / "test_data" / "mixed_simplicity"
-        cases = sorted([e for e in test_data.glob("mixed_case_*[0-9].csv")], key=key_order)
-        cases_labels = sorted([e for e in test_data.glob("mixed_case_*[0-9]_labels.csv")], key=key_order)
-        cases_results = sorted([e for e in test_data.glob("mixed_case_*[0-9]_result.json")], key=key_order)
+        cases = sorted(list(e for e in test_data.glob("mixed_case_*[0-9].csv")), key=key_order)
+        cases_labels = sorted(list(e for e in test_data.glob("mixed_case_*[0-9]_labels.csv")), key=key_order)
+        cases_results = sorted(list(e for e in test_data.glob("mixed_case_*[0-9]_result.json")), key=key_order)
         for case, label, result in zip(cases, cases_labels, cases_results):
             print(f"Reading {case.name}, {label.name}, {result.name}")
             series = np.genfromtxt(case, delimiter=",")
@@ -243,7 +243,7 @@ class TestDatasetSimplicityFunctions(unittest.TestCase):
             if series.ndim == 1:
                 series = series.reshape((-1, 1))
 
-            print(f"Asserting the results...")
+            print("Asserting the results...")
             results = analyse_mixed_simplicity(series, labels, window_range=(2, 100), diff=3)
             self.assertEqual(exp_results["mixed_score"], results["mixed_score"])
 

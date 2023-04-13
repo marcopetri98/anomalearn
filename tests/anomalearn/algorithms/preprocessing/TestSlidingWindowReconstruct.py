@@ -19,7 +19,7 @@ class TestSlidingWindowReconstruct(unittest.TestCase):
         hyper = shape_changer1.get_hyperparameters()
 
         self.assertEqual(2, len(hyper))
-        for key, value in hyper.items():
+        for value in hyper.values():
             self.assertIsInstance(value, dict)
             self.assertEqual(2, len(value))
             self.assertIn("value", value)

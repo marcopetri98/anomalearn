@@ -11,8 +11,3 @@ class TestRangeError(unittest.TestCase):
             raise RangeError(False, -np.inf, np.inf, False, np.inf)
         except RangeError as e:
             self.assertIsInstance(e, RangeError)
-        
-        try:
-            raise RangeError(False, -np.inf, np.inf, False, np.inf)
-        except Exception as e:
-            self.assertIsInstance(e, Exception)

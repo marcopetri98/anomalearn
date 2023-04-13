@@ -90,7 +90,7 @@ class TestIntegrationBuilderVectorsSlidingWindow(unittest.TestCase):
                                                   forecast=forecast)
             error_vectors = BuilderVectorsSlidingWindow(sliding_window=shape_changer)
             
-            new_x, new_y = shape_changer.shape_change(series)
+            _, new_y = shape_changer.shape_change(series)
             new_y_hat = new_y * -1
             vectors_y_hat, vectors_y = error_vectors.shape_change(new_y_hat, new_y)
             
@@ -113,7 +113,7 @@ class TestIntegrationBuilderVectorsSlidingWindow(unittest.TestCase):
                                                      stride=stride)
             error_vectors = BuilderVectorsSlidingWindow(sliding_window=shape_changer)
             
-            new_x, new_y = shape_changer.shape_change(series)
+            _, new_y = shape_changer.shape_change(series)
             new_y_hat = new_y * -1
             vectors_y_hat, vectors_y = error_vectors.shape_change(new_y_hat, new_y)
             

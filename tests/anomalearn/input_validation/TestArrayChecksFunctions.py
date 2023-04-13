@@ -1,7 +1,6 @@
 import unittest
 
 import numpy as np
-from sklearn.utils import check_array
 
 from anomalearn.input_validation import check_array_general, check_array_1d, \
     check_x_y_smaller_1d

@@ -54,7 +54,7 @@ def assert_get_item_behaviour(tester: TestCase,
 
     output = output_path.read_text()
     read_files = re.findall(".*" + split_string + ".*\n", output)
-    filenames = set([e.split(split_string)[1] for e in read_files])
+    filenames = {e.split(split_string)[1] for e in read_files}
     tester.assertEqual(benchmark_length, len(filenames))
     for filename in filenames:
         filename_path = Path(filename).parent.resolve()

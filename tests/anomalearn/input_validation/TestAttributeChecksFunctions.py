@@ -4,7 +4,7 @@ from anomalearn.input_validation import is_var_of_type, check_attributes_exist, 
     check_not_default_attributes, check_argument_types
 
 
-class CustomObject(object):
+class CustomObject:
     def __init__(self):
         super().__init__()
         

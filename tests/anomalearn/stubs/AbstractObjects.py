@@ -52,7 +52,7 @@ class ObjectWithStr(StringableABC):
     pass
 
 
-class ObjectWithStrDuckTyped(object):
+class ObjectWithStrDuckTyped:
     def __str__(self) -> str:
         return ""
 
@@ -68,7 +68,7 @@ class ObjectWithRepr(RepresentableABC):
     pass
 
 
-class ObjectWithReprDuckTyped(object):
+class ObjectWithReprDuckTyped:
     def __repr__(self) -> str:
         return ""
 
@@ -84,7 +84,7 @@ class ObjectWithStrRepr(FullyRepresentableABC):
     pass
 
 
-class ObjectWithStrReprDuckTyped(object):
+class ObjectWithStrReprDuckTyped:
     def __str__(self) -> str:
         return ""
     

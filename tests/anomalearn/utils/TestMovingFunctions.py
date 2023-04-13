@@ -16,8 +16,7 @@ def get_windows(series: np.ndarray, window: int, mode: str) -> list[list]:
     else:
         right = window // 2
         left = right - 1 if window % 2 == 0 else right
-    left = left
-    right = right
+    
     windows = []
     for i in range(series.shape[0]):
         first = i - left if i - left >= 0 else 0

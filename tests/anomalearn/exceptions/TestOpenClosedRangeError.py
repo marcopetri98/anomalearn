@@ -18,8 +18,3 @@ class TestOpenClosedRangeError(unittest.TestCase):
             raise OpenClosedRangeError(0, 50, np.inf)
         except RangeError as e:
             self.assertIsInstance(e, RangeError)
-        
-        try:
-            raise OpenClosedRangeError(0, 50, np.inf)
-        except Exception as e:
-            self.assertIsInstance(e, Exception)

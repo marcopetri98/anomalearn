@@ -18,8 +18,3 @@ class TestOpenRangeError(unittest.TestCase):
             raise OpenRangeError(-np.inf, np.inf, np.inf)
         except RangeError as e:
             self.assertIsInstance(e, RangeError)
-        
-        try:
-            raise OpenRangeError(-np.inf, np.inf, np.inf)
-        except Exception as e:
-            self.assertIsInstance(e, Exception)

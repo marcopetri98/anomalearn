@@ -10,7 +10,7 @@ from tests.anomalearn.algorithms.tuning.hyperparameter.stubs.HyperparameterSearc
     HyperparameterSearchChild
 
 
-class RandomScoreHolder(object):
+class RandomScoreHolder:
     def __init__(self, rng,
                  series,
                  labels,

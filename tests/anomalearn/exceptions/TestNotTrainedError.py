@@ -9,8 +9,3 @@ class TestNotTrainedError(unittest.TestCase):
             raise NotTrainedError()
         except NotTrainedError as e:
             self.assertIsInstance(e, NotTrainedError)
-        
-        try:
-            raise NotTrainedError()
-        except Exception as e:
-            self.assertIsInstance(e, Exception)

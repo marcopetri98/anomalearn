@@ -74,7 +74,7 @@ class TestScorerMahalanobis(unittest.TestCase):
         scorer = ScorerMahalanobis()
         
         for input_ in [self.points, self.vectors]:
-            mean, cov, inv_cov = estimate_mean_covariance(input_)
+            mean, _, inv_cov = estimate_mean_covariance(input_)
             scorer.fit(input_)
             
             exp_scores = np.array([mahalanobis(e, mean, inv_cov) for e in input_])
@@ -109,7 +109,7 @@ class TestScorerMahalanobis(unittest.TestCase):
             new_scorer.load(tmp_dir)
             self.assertEqual(scorer, new_scorer)
 
-        path = Path(__file__).parent / (str(Path(__file__).name).split(".")[0] + "_temp_.txt")
+        path = Path(__file__).parent / (str(Path(__file__).name).split(".", maxsplit=1)[0] + "_temp_.txt")
         path.touch()
         self.assertRaises(ValueError, scorer.save, str(path))
         path.unlink()
