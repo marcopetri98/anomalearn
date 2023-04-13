@@ -7,26 +7,26 @@ import numpy as np
 __module_logger = logging.getLogger(__name__)
 
 
-def all_indices(list_: Iterable, arg) -> list[int]:
-    """Finds all indices of `arg` in `list_`, if any.
+def all_indices(sequence: Iterable, arg) -> list[int]:
+    """Finds all indices of `arg` in `sequence`, if any.
     
     Parameters
     ----------
-    list_ : Iterable
+    sequence : Iterable
         It is a list in which we want to find occurrences of `arg`.
         
     arg : object
-        It is the object we are looking for in `list_`.
+        It is the object we are looking for in `sequence`.
 
     Returns
     -------
     indices : list of int
-        It is the list containing all the indices of `list_` containing `arg`.
-        If `arg` is not present in `list_`, an empty list will be returned.
+        It is the list containing all the indices of `sequence` containing `arg`.
+        If `arg` is not present in `sequence`, an empty list will be returned.
     """
-    __module_logger.debug(f"list_={list_}")
+    __module_logger.debug(f"sequence={sequence}")
     indices = [idx
-               for idx, elem in enumerate(list_) if elem == arg]
+               for idx, elem in enumerate(sequence) if elem == arg]
     return indices
 
 

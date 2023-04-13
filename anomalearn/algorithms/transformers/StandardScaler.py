@@ -35,6 +35,13 @@ class StandardScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
         
     @property
     def copy_attribute(self):
+        """Get the `copy` from `scikit` wrapped object.
+        
+        Returns
+        -------
+        copy
+            The value of `copy`.
+        """
         return self._standard_scaler.copy
     
     @copy_attribute.setter
@@ -43,6 +50,13 @@ class StandardScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
         
     @property
     def with_mean(self):
+        """Get the `with_mean` from `scikit` wrapped object.
+        
+        Returns
+        -------
+        with_mean
+            The value of `with_mean`.
+        """
         return self._standard_scaler.with_mean
     
     @with_mean.setter
@@ -51,6 +65,13 @@ class StandardScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
         
     @property
     def with_std(self):
+        """Get the `with_std` from `scikit` wrapped object.
+        
+        Returns
+        -------
+        with_std
+            The value of `with_std`.
+        """
         return self._standard_scaler.with_std
     
     @with_std.setter
@@ -59,6 +80,13 @@ class StandardScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
         
     @property
     def seen_scale(self):
+        """Get the `scale_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        scale_
+            The value of `scale_` if present, None otherwise.
+        """
         try:
             return self._standard_scaler.scale_
         except AttributeError:
@@ -66,6 +94,13 @@ class StandardScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
         
     @property
     def seen_mean(self):
+        """Get the `mean_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        mean_
+            The value of `mean_` if present, None otherwise.
+        """
         try:
             return self._standard_scaler.mean_
         except AttributeError:
@@ -73,6 +108,13 @@ class StandardScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
         
     @property
     def seen_var(self):
+        """Get the `var_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        var_
+            The value of `var_` if present, None otherwise.
+        """
         try:
             return self._standard_scaler.var_
         except AttributeError:
@@ -80,6 +122,13 @@ class StandardScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
     
     @property
     def seen_features_in(self):
+        """Get the `n_features_in_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        n_features_in_
+            The value of `n_features_in_` if present, None otherwise.
+        """
         try:
             return self._standard_scaler.n_features_in_
         except AttributeError:
@@ -87,6 +136,13 @@ class StandardScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
     
     @property
     def seen_samples_in(self):
+        """Get the `n_samples_seen_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        n_samples_seen_
+            The value of `n_samples_seen_` if present, None otherwise.
+        """
         try:
             return self._standard_scaler.n_samples_seen_
         except AttributeError:
@@ -94,6 +150,13 @@ class StandardScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
     
     @property
     def seen_features_names_in(self):
+        """Get the `feature_names_in_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        feature_names_in_
+            The value of `feature_names_in_` if present, None otherwise.
+        """
         try:
             return self._standard_scaler.feature_names_in_
         except AttributeError:

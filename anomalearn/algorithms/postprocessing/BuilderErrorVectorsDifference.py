@@ -66,9 +66,9 @@ class BuilderErrorVectorsDifference(IShapeChanger, AbstractPipelineBaseLayer):
         """
         check_array(x, force_all_finite="allow-nan")
         check_array(y, force_all_finite="allow-nan")
-        gt = np.ma.array(y, mask=np.isnan(y), dtype=np.double)
+        ground_truth = np.ma.array(y, mask=np.isnan(y), dtype=np.double)
         pred = np.ma.array(x, mask=np.isnan(x), dtype=np.double)
         
-        errors = gt - pred
+        errors = ground_truth - pred
         
         return errors.filled(np.nan), np.array([])

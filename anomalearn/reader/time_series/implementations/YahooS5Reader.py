@@ -16,14 +16,14 @@ class YahooS5Reader(IDatasetReader, TSBenchmarkReader):
     The class is used to read and access time series contained in the yahoo S5
     benchmark for anomaly detection.
     """
-    _ALL_BENCHMARKS = ["A1", "A2", "A3", "A4"]
-    _MAX_INT = {
+    _all_benchmarks = ["A1", "A2", "A3", "A4"]
+    _max_int = {
         "A1": 67,
         "A2": 100,
         "A3": 100,
         "A4": 100
     }
-    _PREFIX = {
+    _prefix = {
         "A1": "real_",
         "A2": "synthetic_",
         "A3": "A3Benchmark-TS",
@@ -49,7 +49,7 @@ class YahooS5Reader(IDatasetReader, TSBenchmarkReader):
             num = item
         else:
             benchmark = "A" + str(int((item - 67) / 100) + 2)
-            num = ((item - 67) % 100)
+            num = (item - 67) % 100
             
         return self.read(num, benchmark=benchmark, verbose=False).get_dataframe()
         
@@ -84,23 +84,23 @@ class YahooS5Reader(IDatasetReader, TSBenchmarkReader):
         if not isinstance(path, int) and not os.path.isfile(path):
             raise TypeError("path must be a valid path or an int")
         elif benchmark is None:
-            raise TypeError(f"benchmark must be one of {self._ALL_BENCHMARKS}")
+            raise TypeError(f"benchmark must be one of {self._all_benchmarks}")
         
-        if isinstance(path, int) and benchmark not in self._ALL_BENCHMARKS:
-            raise ValueError(f"benchmark must be one of {self._ALL_BENCHMARKS}")
-        elif isinstance(path, int) and not 0 <= path < self._MAX_INT[benchmark]:
-            raise ValueError(f"for benchmark {benchmark} there are only {self._MAX_INT[benchmark]} series")
+        if isinstance(path, int) and benchmark not in self._all_benchmarks:
+            raise ValueError(f"benchmark must be one of {self._all_benchmarks}")
+        elif isinstance(path, int) and not 0 <= path < self._max_int[benchmark]:
+            raise ValueError(f"for benchmark {benchmark} there are only {self._max_int[benchmark]} series")
         
         if isinstance(path, int):
-            path = self._benchmark_path / (benchmark + "Benchmark") / (self._PREFIX[benchmark] + str(path + 1) + ".csv")
+            path = self._benchmark_path / (benchmark + "Benchmark") / (self._prefix[benchmark] + str(path + 1) + ".csv")
         super().read(path=path,
                      file_format="csv",
                      pandas_args=pandas_args,
                      verbose=False)
         
-        self.__logger.info("Renaming columns with standard names [%s, %s]",
-                           rts_config["Univariate"]["index_column"],
-                           rts_config["Univariate"]["value_column"])
+        self.__logger.info("Renaming columns with standard names "
+                           f"[{rts_config['Univariate']['index_column']}, "
+                           f"{rts_config['Univariate']['value_column']}]")
             
         match benchmark:
             case "A1" | "A2":

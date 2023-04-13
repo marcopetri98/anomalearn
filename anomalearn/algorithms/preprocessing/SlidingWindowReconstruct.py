@@ -44,6 +44,13 @@ class SlidingWindowReconstruct(IShapeChanger, AbstractPipelineSavableLayer):
         
     @property
     def points_seen(self):
+        """Gets the number of points seen in the last call to `shape_change`.
+        
+        Returns
+        -------
+        points_seen
+            The number of points seen in the last call to `shape_change`.
+        """
         return self._points_seen
 
     def get_hyperparameters(self, *args, **kwargs) -> dict:

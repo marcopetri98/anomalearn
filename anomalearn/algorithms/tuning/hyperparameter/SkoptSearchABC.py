@@ -13,9 +13,18 @@ from .. import ICrossValidation
 
 
 class SkoptSearchABC(HyperparameterSearch):
-    """HyperparameterSearch is a class used to search the hyperparameters.
+    """SkoptSearchABC is a class used to wrap `skopt` tuners.
+    
+    The abstract class inherits from `HyperparameterSearch` extending its
+    functionalities to implement the checkpointing both for the anomalearn's
+    objects and for `skopt` functions. It enables the used to use checkpoints
+    by simply passing a boolean value and a saving folder instead of being
+    obliged to use manually the checkpoint saver.
+    
+    The implementations of this abstract class only need to implement the call
+    of the `skopt` function as everything else is already implemented.
     """
-    __INVALID_SKOPT_KWARGS = ["func", "dimensions", "x0", "y0"]
+    __invalid_skopt_kwargs = ["func", "dimensions", "x0", "y0"]
     
     def __init__(self, parameter_space: list[Categorical | Integer | Real],
                  saving_folder: str | os.PathLike,
@@ -93,7 +102,7 @@ class SkoptSearchABC(HyperparameterSearch):
         skopt_kwargs = dict()
         if "skopt_kwargs" in kwargs:
             skopt_kwargs = kwargs["skopt_kwargs"]
-            for invalid_kw in self.__INVALID_SKOPT_KWARGS:
+            for invalid_kw in self.__invalid_skopt_kwargs:
                 if invalid_kw in skopt_kwargs:
                     self.__logger.info(f"keyword '{invalid_kw}' from "
                                        "skopt_kwargs has been removed since it "

@@ -142,12 +142,12 @@ class IExperimentLoader(MutableSequence, EqualityABC):
         raise NotImplementedError
     
     @abc.abstractmethod
-    def series_iterator(self, reversed_: bool = False) -> Iterator[tuple[pd.DataFrame, pd.DataFrame]]:
+    def series_iterator(self, reverse: bool = False) -> Iterator[tuple[pd.DataFrame, pd.DataFrame]]:
         """Returns an iterator which iterates over the series of the experiment.
         
         Parameters
         ----------
-        reversed_ : bool, default=False
+        reverse : bool, default=False
             Whether the iterator should iterate on series in reverse order.
         
         Returns

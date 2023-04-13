@@ -119,7 +119,7 @@ argument-naming-style=snake_case
 # Regular expression matching correct argument names. Overrides argument-
 # naming-style. If left empty, argument names will be checked with the set
 # naming style.
-#argument-rgx=
+argument-rgx=^[a-z](_?[a-z0-9]+)*$
 
 # Naming style matching correct attribute names.
 attr-naming-style=snake_case
@@ -127,7 +127,7 @@ attr-naming-style=snake_case
 # Regular expression matching correct attribute names. Overrides attr-naming-
 # style. If left empty, attribute names will be checked with the set naming
 # style.
-#attr-rgx=
+attr-rgx=^(_|__)?[a-z](_?[a-z0-9]+)*$
 
 # Bad variable names which should always be refused, separated by a comma.
 bad-names=foo,
@@ -147,7 +147,7 @@ class-attribute-naming-style=snake_case
 # Regular expression matching correct class attribute names. Overrides class-
 # attribute-naming-style. If left empty, class attribute names will be checked
 # with the set naming style.
-#class-attribute-rgx=
+class-attribute-rgx=^(_|__)?[a-z](_?[a-z0-9]+)*$
 
 # Naming style matching correct class constant names.
 class-const-naming-style=UPPER_CASE
@@ -155,7 +155,7 @@ class-const-naming-style=UPPER_CASE
 # Regular expression matching correct class constant names. Overrides class-
 # const-naming-style. If left empty, class constant names will be checked with
 # the set naming style.
-#class-const-rgx=
+# class-const-rgx=_?[A-Z]+$
 
 # Naming style matching correct class names.
 class-naming-style=PascalCase
@@ -190,9 +190,11 @@ good-names=i,
            k,
            x,
            y,
+           f,
            C,
            ex,
            Run,
+           ax,
            _
 
 # Good variable names regexes, separated by a comma. If names match any regex,
@@ -218,7 +220,7 @@ method-naming-style=snake_case
 #method-rgx=
 
 # Naming style matching correct module names.
-# module-naming-style=snake_case
+module-naming-style=any
 
 # Regular expression matching correct module names. Overrides module-naming-
 # style. If left empty, module names will be checked with the set naming style.
@@ -251,7 +253,7 @@ variable-naming-style=snake_case
 # Regular expression matching correct variable names. Overrides variable-
 # naming-style. If left empty, variable names will be checked with the set
 # naming style.
-#variable-rgx=
+variable-rgx=^(_|__)?[a-z](_?[a-z0-9]+)*_?$
 
 
 [CLASSES]
@@ -397,7 +399,7 @@ preferred-modules=
 
 # The type of string formatting that logging methods do. `old` means using %
 # formatting, `new` is for `{}` formatting.
-logging-format-style=old
+logging-format-style=new
 
 # Logging modules to check that the string format arguments are in logging
 # function parameter format.
@@ -442,7 +444,9 @@ disable=raw-checker-failed,
         no-else-return,
         no-else-raise,
         too-many-locals,
-        too-many-boolean-expressions
+        too-many-boolean-expressions,
+        # if the user assigns a value multiple times to a variable, it is his/her fault, it is not an API error
+        keyword-arg-before-vararg
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option

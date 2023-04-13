@@ -61,10 +61,10 @@ class BaseModel:
         """
         for key, value in params.items():
             if key not in self.__dict__:
-                raise ValueError("Parameter '%s' does not exist in class '%s'. "
-                                 "Please, read either the signature or the "
-                                 "docs for that class." %
-                                 (key, self.__class__.__name__))
+                raise ValueError(f"Parameter '{key}' does not exist in class "
+                                 f"'{self.__class__.__name__}'. Please, read "
+                                 "either the signature or the docs for that "
+                                 "class.")
             
             self.__dict__[key] = value
 

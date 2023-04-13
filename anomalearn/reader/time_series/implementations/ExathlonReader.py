@@ -17,7 +17,7 @@ class ExathlonReader(IDatasetReader, TSBenchmarkReader):
     The reader automatically provides an easy-to-use API to read the normal and
     abnormal series (undisturbed and disturbed traces respectively).
     """
-    _ALL_MODES = ["train", "test", "all"]
+    _all_modes = ["train", "test", "all"]
 
     def __init__(self, benchmark_location: str | os.PathLike,
                  mode: str = "all"):
@@ -197,7 +197,7 @@ class ExathlonReader(IDatasetReader, TSBenchmarkReader):
         self.__logger.debug(f"benchmark contents are {contents}")
 
         if not isinstance(self._mode, str):
-            raise TypeError(f"mode must be one of {self._ALL_MODES}")
+            raise TypeError(f"mode must be one of {self._all_modes}")
 
         if len(contents) < 11:
             raise ValueError("benchmark_location must contain the 10 apps' "

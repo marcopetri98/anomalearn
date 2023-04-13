@@ -47,6 +47,13 @@ class BuilderVectorsSlidingWindow(IShapeChanger, AbstractPipelineSavableLayer):
 
     @property
     def sliding_window(self):
+        """Gets the reference to the sliding window object used in preprocessing.
+        
+        Returns
+        -------
+        sliding_window_object
+            The reference to the sliding window object used in preprocessing.
+        """
         return self._sliding_window
 
     def __repr__(self):

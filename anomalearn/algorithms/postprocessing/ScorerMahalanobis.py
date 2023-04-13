@@ -45,14 +45,37 @@ class ScorerMahalanobis(IShapeChanger, IParametric, AbstractPipelineSavableLayer
         
     @property
     def mean(self):
+        """Gets the computed mean.
+        
+        Returns
+        -------
+        mean
+            The computed mean or None if not yet computed.
+        """
         return self._mean
         
     @property
     def cov(self):
+        """Gets the computed covariance matrix or standard deviation.
+        
+        Returns
+        -------
+        cov_or_std
+            The computed covariance matrix or standard deviation, or None if
+            not yet computed.
+        """
         return self._cov
         
     @property
     def inv_cov(self):
+        """Gets the computed inverse of the covariance matrix or standard deviation.
+        
+        Returns
+        -------
+        inv_cov_or_std
+            The computed inverse of the covariance matrix or standard deviation,
+            or None if not yet computed.
+        """
         return self._inv_cov
         
     def __repr__(self):

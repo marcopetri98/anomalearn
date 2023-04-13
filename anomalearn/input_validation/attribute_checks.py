@@ -47,13 +47,13 @@ def check_attributes_exist(estimator,
     """
     if isinstance(attributes, str):
         if attributes not in estimator.__dict__.keys():
-            raise ValueError("%s does not have attribute %s" %
-                             (estimator.__class__, attributes))
+            raise ValueError(f"{estimator.__class__} does not have attribute "
+                             f"{attributes}")
     else:
         for attribute in attributes:
             if attribute not in estimator.__dict__.keys():
-                raise ValueError("%s does not have attribute %s" %
-                                 (estimator.__class__, attribute))
+                raise ValueError(f"{estimator.__class__} does not have "
+                                 f"attribute {attribute}")
 
 
 def check_not_default_attributes(estimator,
@@ -163,8 +163,6 @@ def check_argument_types(arguments: list,
         
         if wrong_type:
             if names is not None:
-                raise TypeError("{} must be of type {}".format(names[i],
-                                                               expected_types[i]))
+                raise TypeError(f"{names[i]} must be of type {expected_types[i]}")
             else:
-                raise TypeError("{} should be of type {}".format(arg,
-                                                                 expected_types[i]))
+                raise TypeError(f"{arg} should be of type {expected_types[i]}")

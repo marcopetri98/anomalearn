@@ -8,6 +8,9 @@ from . import SkoptSearchABC
 
 
 class GaussianProcessesSearch(SkoptSearchABC):
+    """Wrapper for the `gp_minimize` search of `skopt`.
+    """
+    
     def __init__(self, parameter_space: list[Categorical | Integer | Real],
                  saving_folder: str | os.PathLike,
                  saving_filename: str):

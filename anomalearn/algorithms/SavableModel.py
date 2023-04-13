@@ -61,6 +61,24 @@ class SavableModel(ISavable, FullyRepresentableABC, EqualityABC, BaseModel):
     def load_model(cls, path: str,
                    *args,
                    **kwargs) -> SavableModel:
+        """Loads the saved object from a folder.
+        
+        Parameters
+        ----------
+        path : str
+            It is the path of the directory in which the object has been saved.
+
+        args
+            Not used, present to allow multiple inheritance and signature change.
+
+        kwargs
+            Not used, present to allow multiple inheritance and signature change.
+
+        Returns
+        -------
+        model
+            The instance of the saved object.
+        """
         obj = SavableModel()
         obj.load(path)
         return obj

@@ -66,10 +66,10 @@ class BuilderErrorVectorsNorm(IShapeChanger, AbstractPipelineBaseLayer):
         """
         check_array(x, force_all_finite="allow-nan")
         check_array(y, force_all_finite="allow-nan")
-        gt = np.ma.array(y, mask=np.isnan(y), dtype=np.double)
+        ground_truth = np.ma.array(y, mask=np.isnan(y), dtype=np.double)
         pred = np.ma.array(x, mask=np.isnan(x), dtype=np.double)
 
-        errors = gt - pred
+        errors = ground_truth - pred
         errors = np.square(errors)
         errors = np.sum(errors, axis=1)
         errors = np.sqrt(errors).reshape((-1, 1))

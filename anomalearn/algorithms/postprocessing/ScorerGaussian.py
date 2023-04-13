@@ -44,10 +44,25 @@ class ScorerGaussian(IShapeChanger, IParametric, AbstractPipelineSavableLayer):
         
     @property
     def mean(self):
+        """Gets the computed mean.
+        
+        Returns
+        -------
+        mean
+            The computed mean or None if not yet computed.
+        """
         return self._mean
         
     @property
     def cov(self):
+        """Gets the computed covariance matrix or standard deviation.
+        
+        Returns
+        -------
+        cov_or_std
+            The computed covariance matrix or standard deviation, or None if
+            not yet computed.
+        """
         return self._cov
         
     def __repr__(self):

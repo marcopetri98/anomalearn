@@ -26,6 +26,13 @@ class ThresholdMaxOnNormal(IParametric, ITransformer, AbstractPipelineSavableLay
         
     @property
     def threshold(self):
+        """Gets the computed threshold.
+        
+        Returns
+        -------
+        threshold
+            The computed threshold or None if not yet computed.
+        """
         return self._threshold
         
     def __repr__(self):

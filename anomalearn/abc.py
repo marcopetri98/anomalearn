@@ -110,8 +110,8 @@ class ObtainableABC(Reversible, Sized):
     def __iter__(self):
         i = 0
         while i < len(self):
-            v = self[i]
-            yield v
+            value = self[i]
+            yield value
             i += 1
     
     def __reversed__(self):

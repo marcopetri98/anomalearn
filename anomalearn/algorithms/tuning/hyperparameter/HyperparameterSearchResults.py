@@ -60,9 +60,9 @@ class HyperparameterSearchResults(IHyperparameterSearchResults):
                     first = False
                 else:
                     text = ""
-                    for i in range(len(config)):
+                    for i, config_value in enumerate(config):
                         text += str(tries[0][i])
-                        text += ": " + str(config[i]) + ", "
+                        text += ": " + str(config_value) + ", "
                     print(text)
     
     def _get_descending_score_tries(self) -> list:

@@ -442,8 +442,8 @@ class ExperimentLoader(IExperimentLoader):
         else:
             return series
 
-    def series_iterator(self, reversed_: bool = False) -> Iterator[tuple[pd.DataFrame, pd.DataFrame]]:
-        if reversed_:
+    def series_iterator(self, reverse: bool = False) -> Iterator[tuple[pd.DataFrame, pd.DataFrame]]:
+        if reverse:
             indices = reversed(range(self.num_series))
         else:
             indices = range(self.num_series)

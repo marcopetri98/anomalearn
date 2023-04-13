@@ -37,9 +37,9 @@ class HyperparameterSearch(IHyperparameterSearch, ABC):
         It is the filename of the file where to save the results of the search.
         No extension should be inserted.
     """
-    _DURATION = "Duration"
-    _SCORE = "Score"
-    _HISTORY = "_history.checkpoint"
+    _duration = "Duration"
+    _score = "Score"
+    _history = "_history.checkpoint"
     
     def __init__(self, parameter_space: list,
                  saving_folder: str | os.PathLike,
@@ -54,10 +54,10 @@ class HyperparameterSearch(IHyperparameterSearch, ABC):
         self._search_history = None
     
     def _load_history(self):
-        self._search_history = load_py_json(self.save_folder / (self.save_filename + self._HISTORY))
+        self._search_history = load_py_json(self.save_folder / (self.save_filename + self._history))
     
     def _save_history(self):
-        save_py_json(self._search_history, self.save_folder / (self.save_filename + self._HISTORY))
+        save_py_json(self._search_history, self.save_folder / (self.save_filename + self._history))
     
     def search(self, x,
                y,
@@ -105,7 +105,7 @@ class HyperparameterSearch(IHyperparameterSearch, ABC):
             self.__logger.info("Loading history from checkpoints")
             self._load_history()
         else:
-            if (self.save_folder / (self.save_filename + self._HISTORY)).exists():
+            if (self.save_folder / (self.save_filename + self._history)).exists():
                 response = input("There is an history file, do you want to "
                                  "overwrite it (you will lose it)? [y/n]: ")
                 if response.lower() == "n" or response.lower() == "no":
@@ -319,17 +319,17 @@ class HyperparameterSearch(IHyperparameterSearch, ABC):
                 params[key] = list(item)
         
         if self._search_history is None:
-            self._search_history = {self._SCORE: [score],
-                                    self._DURATION: [duration]}
+            self._search_history = {self._score: [score],
+                                    self._duration: [duration]}
             
             for key, value in params.items():
                 self._search_history[key] = [value]
         else:
-            self._search_history[self._SCORE].append(score)
-            self._search_history[self._DURATION].append(duration)
+            self._search_history[self._score].append(score)
+            self._search_history[self._duration].append(duration)
             
             common_keys = set(self._search_history.keys()).intersection(set(params.keys()))
-            only_history_keys = set(self._search_history.keys()).difference(set(params.keys())).difference({self._SCORE, self._DURATION})
+            only_history_keys = set(self._search_history.keys()).difference(set(params.keys())).difference({self._score, self._duration})
             only_params_keys = set(params.keys()).difference(set(self._search_history.keys()))
             
             for key in common_keys:
@@ -339,7 +339,7 @@ class HyperparameterSearch(IHyperparameterSearch, ABC):
                 self._search_history[key].append(None)
             
             for key in only_params_keys:
-                self._search_history[key] = [None] * len(self._search_history[self._SCORE])
+                self._search_history[key] = [None] * len(self._search_history[self._score])
                 self._search_history[key][-1] = params[key]
     
     def _build_input_dict(self, *args) -> dict:
@@ -356,12 +356,12 @@ class HyperparameterSearch(IHyperparameterSearch, ABC):
             Dictionary with parameter names as keys and their values as values.
         """
         params = dict()
-        for i in range(len(args)):
+        for i, value in enumerate(args):
             param_name = self.parameter_space[i].name
             if param_name is None:
                 param_name = f"parameter_{i}"
                 
-            params[param_name] = args[i]
+            params[param_name] = value
         return params
     
     def _create_result_history(self) -> list:
@@ -376,7 +376,7 @@ class HyperparameterSearch(IHyperparameterSearch, ABC):
         keys = list(self._search_history.keys())
         tries = [[self._search_history[key][i]
                   for key in self._search_history.keys()]
-                 for i in range(len(self._search_history[self._SCORE]))]
+                 for i in range(len(self._search_history[self._score]))]
         final_history = [keys]
         
         for try_ in tries:

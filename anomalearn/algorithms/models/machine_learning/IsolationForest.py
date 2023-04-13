@@ -48,6 +48,13 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
         
     @property
     def n_estimators(self):
+        """Get the `n_estimators` from `scikit` wrapped object.
+        
+        Returns
+        -------
+        n_estimators
+            The value of `n_estimators`.
+        """
         return self._isolation_forest.n_estimators
     
     @n_estimators.setter
@@ -56,6 +63,13 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
         
     @property
     def max_samples(self):
+        """Get the `max_samples` from `scikit` wrapped object.
+        
+        Returns
+        -------
+        max_samples
+            The value of `max_samples`.
+        """
         return self._isolation_forest.max_samples
     
     @max_samples.setter
@@ -64,6 +78,13 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
         
     @property
     def contamination(self):
+        """Get the `contamination` from `scikit` wrapped object.
+        
+        Returns
+        -------
+        contamination
+            The value of `contamination`.
+        """
         return self._isolation_forest.contamination
     
     @contamination.setter
@@ -72,6 +93,13 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
         
     @property
     def max_features(self):
+        """Get the `max_features` from `scikit` wrapped object.
+        
+        Returns
+        -------
+        max_features
+            The value of `max_features`.
+        """
         return self._isolation_forest.max_features
     
     @max_features.setter
@@ -80,6 +108,13 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
         
     @property
     def bootstrap(self):
+        """Get the `bootstrap` from `scikit` wrapped object.
+        
+        Returns
+        -------
+        bootstrap
+            The value of `bootstrap`.
+        """
         return self._isolation_forest.bootstrap
     
     @bootstrap.setter
@@ -88,6 +123,13 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
         
     @property
     def n_jobs(self):
+        """Get the `n_jobs` from `scikit` wrapped object.
+        
+        Returns
+        -------
+        n_jobs
+            The value of `n_jobs`.
+        """
         return self._isolation_forest.n_jobs
     
     @n_jobs.setter
@@ -96,6 +138,13 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
         
     @property
     def random_state(self):
+        """Get the `random_state` from `scikit` wrapped object.
+        
+        Returns
+        -------
+        random_state
+            The value of `random_state`.
+        """
         return self._isolation_forest.random_state
     
     @random_state.setter
@@ -104,6 +153,13 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
         
     @property
     def verbose(self):
+        """Get the `verbose` from `scikit` wrapped object.
+        
+        Returns
+        -------
+        verbose
+            The value of `verbose`.
+        """
         return self._isolation_forest.verbose
     
     @verbose.setter
@@ -112,6 +168,13 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
         
     @property
     def warm_start(self):
+        """Get the `warm_start` from `scikit` wrapped object.
+        
+        Returns
+        -------
+        warm_start
+            The value of `warm_start`.
+        """
         return self._isolation_forest.warm_start
     
     @warm_start.setter
@@ -120,6 +183,13 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
         
     @property
     def base_estimator(self):
+        """Get the `base_estimator_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        base_estimator_
+            The value of `base_estimator_` if present, None otherwise.
+        """
         try:
             return self._isolation_forest.base_estimator_
         except AttributeError:
@@ -127,6 +197,13 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
         
     @property
     def estimators(self):
+        """Get the `estimators_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        estimators_
+            The value of `estimators_` if present, None otherwise.
+        """
         try:
             return self._isolation_forest.estimators_
         except AttributeError:
@@ -134,6 +211,13 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
         
     @property
     def estimators_features(self):
+        """Get the `estimators_features_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        estimators_features_
+            The value of `estimators_features_` if present, None otherwise.
+        """
         try:
             return self._isolation_forest.estimators_features_
         except AttributeError:
@@ -141,6 +225,13 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
         
     @property
     def estimators_samples(self):
+        """Get the `estimators_samples_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        estimators_samples_
+            The value of `estimators_samples_` if present, None otherwise.
+        """
         try:
             return self._isolation_forest.estimators_samples_
         except AttributeError:
@@ -148,6 +239,13 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
         
     @property
     def seen_max_samples(self):
+        """Get the `max_samples_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        max_samples_
+            The value of `max_samples_` if present, None otherwise.
+        """
         try:
             return self._isolation_forest.max_samples_
         except AttributeError:
@@ -155,6 +253,13 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
         
     @property
     def offset(self):
+        """Get the `offset_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        offset_
+            The value of `offset_` if present, None otherwise.
+        """
         try:
             return self._isolation_forest.offset_
         except AttributeError:
@@ -162,6 +267,13 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
         
     @property
     def seen_features_in(self):
+        """Get the `n_features_in_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        n_features_in_
+            The value of `n_features_in_` if present, None otherwise.
+        """
         try:
             return self._isolation_forest.n_features_in_
         except AttributeError:
@@ -169,6 +281,13 @@ class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, Abstract
         
     @property
     def seen_feature_names_in(self):
+        """Get the `feature_names_in_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        feature_names_in_
+            The value of `feature_names_in_` if present, None otherwise.
+        """
         try:
             return self._isolation_forest.feature_names_in_
         except AttributeError:

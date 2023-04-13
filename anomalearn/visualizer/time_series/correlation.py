@@ -54,7 +54,7 @@ def plot_correlation_functions(func_values: dict,
         
         lags = values.shape[0] - 1
         _ = plt.figure(figsize=fig_size)
-        plt.title("{} function".format(name))
+        plt.title(f"{name} function")
         plt.ylim(-1, 1)
         plt.plot([0, lags], [0, 0], linewidth=0.5)
         plt.vlines(range(lags + 1), [0] * (lags + 1), values)

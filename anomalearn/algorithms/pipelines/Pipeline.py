@@ -97,8 +97,8 @@ class Pipeline(IPipeline):
         # manage optional strings and bools
         self._layer_num = 0
         self._elements = []
-        for e in elements:
-            self.append_layer(e)
+        for elem in elements:
+            self.append_layer(elem)
             
         if len(self.pipeline_names) != len(set(self.pipeline_names)):
             raise ValueError("there are layers with the same name. Each layer "
@@ -117,18 +117,46 @@ class Pipeline(IPipeline):
         
     @property
     def pipeline_spec(self):
+        """Get a shallow copy of the list of names, elements and train flags.
+        
+        Returns
+        -------
+        list_of_elements
+            The list of tuples composing the sequence of the pipeline.
+        """
         return self._elements.copy()
     
     @property
     def pipeline_names(self):
+        """Get the list of names of pipeline layers.
+        
+        Returns
+        -------
+        list_of_names
+            The list of layers' names.
+        """
         return [e[0] for e in self._elements]
     
     @property
     def pipeline_layers(self):
+        """Get a shallow copy of the list of layer objects.
+        
+        Returns
+        -------
+        list_of_layers
+            The list of layer objects in the pipeline.
+        """
         return [e[1] for e in self._elements]
     
     @property
     def pipeline_train(self):
+        """Get the list of train flags of pipeline layers.
+        
+        Returns
+        -------
+        list_of_train_flag
+            The list of layers' train flag.
+        """
         return [e[2] for e in self._elements]
     
     def allowed_interfaces(self) -> list:
@@ -279,7 +307,7 @@ class Pipeline(IPipeline):
                 members = vars(obj)
                 for m_name, m_value in members.items():
                     if m_value is referenced_obj:
-                        if name not in referencing_members.keys():
+                        if name not in referencing_members:
                             referencing_members[name] = [m_name]
                         else:
                             referencing_members[name].append(m_name)
@@ -292,8 +320,8 @@ class Pipeline(IPipeline):
     def __repr__(self):
         representation = "Pipeline(["
         
-        for i, e in enumerate(self._elements):
-            representation += f"({e[0]}, {repr(e[1])}, {e[2]})"
+        for i, elem in enumerate(self._elements):
+            representation += f"({elem[0]}, {repr(elem[1])}, {elem[2]})"
             
             if i != len(self._elements) - 1:
                 representation += ",\n          "
@@ -389,9 +417,9 @@ class Pipeline(IPipeline):
             raise ValueError("degree must be either 1, 2 or 3")
         
         if degree == 1:
-            return self.__eq__(other)
+            return self == other
         else:
-            if not self.__eq__(other):
+            if self != other:
                 return False
             
             return self.pipeline_train == other.pipeline_train and \
@@ -534,8 +562,8 @@ class Pipeline(IPipeline):
             `get_hyperparameters` on the layer.
         """
         hyperparameters = dict()
-        for e in self._elements:
-            hyperparameters[e[0]] = e[1].get_hyperparameters()
+        for elem in self._elements:
+            hyperparameters[elem[0]] = elem[1].get_hyperparameters()
         return hyperparameters
     
     def set_hyperparameters(self, hyperparameters: dict, *args, **kwargs) -> None:

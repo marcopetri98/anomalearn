@@ -71,8 +71,8 @@ def check_array_general(x,
             raise ValueError(array_name + " doesn't have the specified shape")
         
         if minimum_samples is not None:
-            for i in range(len(np_arr.shape)):
-                if np_arr.shape[i] < minimum_samples[i]:
+            for i, dim in enumerate(np_arr.shape):
+                if dim < minimum_samples[i]:
                     raise ValueError(array_name + " have too few elements "
                                                   " at dimension " + str(i))
 

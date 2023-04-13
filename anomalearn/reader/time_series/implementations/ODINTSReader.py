@@ -31,8 +31,8 @@ class ODINTSReader(TSReader):
         It is the column of the anomalies file stating the end of an anomaly
         window.
     """
-    _DAY_COL = "day_of_the_week"
-    _ANOMALY_TYPE = "anomaly_type"
+    _day_col = "day_of_the_week"
+    _anomaly_type = "anomaly_type"
     
     def __init__(self, anomalies_path: str,
                  timestamp_col: str,
@@ -121,19 +121,19 @@ class ODINTSReader(TSReader):
                            rts_config["Univariate"]["target_column"],
                            enhanced_dataset[rts_config["Univariate"]["target_column"]].to_numpy())
         new_dataset.insert(len(new_dataset.columns),
-                           self._ANOMALY_TYPE,
-                           enhanced_dataset[self._ANOMALY_TYPE].to_numpy())
+                           self._anomaly_type,
+                           enhanced_dataset[self._anomaly_type].to_numpy())
         new_dataset.insert(len(new_dataset.columns),
-                           self._DAY_COL,
-                           enhanced_dataset[self._DAY_COL].to_numpy())
+                           self._day_col,
+                           enhanced_dataset[self._day_col].to_numpy())
         new_dataset = new_dataset.rename(columns={
             self.timestamp_col: rts_config["Univariate"]["index_column"],
             self.univariate_col: rts_config["Univariate"]["value_column"]})
         new_dataset = new_dataset.drop(columns=new_dataset.columns.difference([rts_config["Univariate"]["index_column"],
                                                                                rts_config["Univariate"]["value_column"],
                                                                                rts_config["Univariate"]["target_column"],
-                                                                               self._ANOMALY_TYPE,
-                                                                               self._DAY_COL]))
+                                                                               self._anomaly_type,
+                                                                               self._day_col]))
         
         return new_dataset
     
@@ -168,8 +168,8 @@ class ODINTSReader(TSReader):
         dataset_cp.insert(len(dataset_cp.columns), rts_config["Univariate"]["target_column"], anomalies)
         
         if complete:
-            dataset_cp.insert(len(dataset_cp.columns), self._DAY_COL, day)
-            dataset_cp.insert(len(dataset_cp.columns), self._ANOMALY_TYPE, anomaly_type)
+            dataset_cp.insert(len(dataset_cp.columns), self._day_col, day)
+            dataset_cp.insert(len(dataset_cp.columns), self._anomaly_type, anomaly_type)
 
         self.__logger.info("computing anomaly intervals from file")
         # get the anomaly intervals
@@ -187,8 +187,8 @@ class ODINTSReader(TSReader):
         for start, end in anomaly_intervals:
             dataset_cp.loc[start:end, rts_config["Univariate"]["target_column"]] = 1
             if complete:
-                dataset_cp.loc[start:end, self._ANOMALY_TYPE] = anomaly_type_dict[start]
+                dataset_cp.loc[start:end, self._anomaly_type] = anomaly_type_dict[start]
                 for idx, _ in dataset_cp.loc[start:end].iterrows():
-                    dataset_cp.loc[idx, self._DAY_COL] = idx.to_pydatetime().weekday()
+                    dataset_cp.loc[idx, self._day_col] = idx.to_pydatetime().weekday()
         
         return dataset_cp

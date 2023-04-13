@@ -36,6 +36,13 @@ class MinMaxScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
     
     @property
     def feature_range(self):
+        """Get the `feature_range` from `scikit` wrapped object.
+        
+        Returns
+        -------
+        feature_range
+            The value of `feature_range`.
+        """
         return self._min_max_scaler.feature_range
     
     @feature_range.setter
@@ -44,6 +51,13 @@ class MinMaxScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
         
     @property
     def copy_attribute(self):
+        """Get the `copy` from `scikit` wrapped object.
+        
+        Returns
+        -------
+        copy
+            The value of `copy`.
+        """
         return self._min_max_scaler.copy
     
     @copy_attribute.setter
@@ -52,6 +66,13 @@ class MinMaxScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
         
     @property
     def clip(self):
+        """Get the `clip` from `scikit` wrapped object.
+        
+        Returns
+        -------
+        clip
+            The value of `clip`.
+        """
         return self._min_max_scaler.clip
     
     @clip.setter
@@ -60,6 +81,13 @@ class MinMaxScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
     
     @property
     def scale_adjustment(self):
+        """Get the `scale_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        scale_
+            The value of `scale_` if present, None otherwise.
+        """
         try:
             return self._min_max_scaler.scale_
         except AttributeError:
@@ -67,6 +95,13 @@ class MinMaxScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
     
     @property
     def min_adjustment(self):
+        """Get the `min_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        min_
+            The value of `min_` if present, None otherwise.
+        """
         try:
             return self._min_max_scaler.min_
         except AttributeError:
@@ -74,20 +109,41 @@ class MinMaxScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
         
     @property
     def seen_data_min(self):
+        """Get the `data_min_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        data_min_
+            The value of `data_min_` if present, None otherwise.
+        """
         try:
-            return self._min_max_scaler.data_max_
+            return self._min_max_scaler.data_min_
         except AttributeError:
             return None
         
     @property
     def seen_data_max(self):
+        """Get the `data_max_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        data_max_
+            The value of `data_max_` if present, None otherwise.
+        """
         try:
-            return self._min_max_scaler.data_min_
+            return self._min_max_scaler.data_max_
         except AttributeError:
             return None
     
     @property
     def seen_data_range(self):
+        """Get the `data_range_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        data_range_
+            The value of `data_range_` if present, None otherwise.
+        """
         try:
             return self._min_max_scaler.data_range_
         except AttributeError:
@@ -95,6 +151,13 @@ class MinMaxScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
     
     @property
     def seen_features_in(self):
+        """Get the `n_features_in_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        n_features_in_
+            The value of `n_features_in_` if present, None otherwise.
+        """
         try:
             return self._min_max_scaler.n_features_in_
         except AttributeError:
@@ -102,6 +165,13 @@ class MinMaxScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
     
     @property
     def seen_samples_in(self):
+        """Get the `n_samples_seen_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        n_samples_seen_
+            The value of `n_samples_seen_` if present, None otherwise.
+        """
         try:
             return self._min_max_scaler.n_samples_seen_
         except AttributeError:
@@ -109,6 +179,13 @@ class MinMaxScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):
     
     @property
     def seen_features_names_in(self):
+        """Get the `feature_names_in_` from `scikit` wrapped object if present.
+        
+        Returns
+        -------
+        feature_names_in_
+            The value of `feature_names_in_` if present, None otherwise.
+        """
         try:
             return self._min_max_scaler.feature_names_in_
         except AttributeError:

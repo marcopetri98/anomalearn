@@ -11,7 +11,7 @@ from ...input_validation.attribute_checks import check_not_default_attributes
 
 class TSReader(IDataReader):
     """A reader of time series datasets."""
-    ACCEPTED_FORMATS = ["csv", "json", "xml"]
+    accepted_formats = ["csv", "json", "xml"]
     
     def __init__(self):
         super().__init__()
@@ -48,7 +48,7 @@ class TSReader(IDataReader):
             case _:
                 raise NotImplementedError("The dataset format is not supported,"
                                           " the accepted formats are "
-                                          f"{self.ACCEPTED_FORMATS}")
+                                          f"{self.accepted_formats}")
         
         self.__logger.info(f"dataset read from {path}")
         

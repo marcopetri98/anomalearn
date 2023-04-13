@@ -17,7 +17,7 @@ class KitsuneReader(IDatasetReader, TSBenchmarkReader):
     The reader reads the csv files with the raw data and the labels. The reader
     combines them in the standard format.
     """
-    _DATASETS = ["active_wiretap", "arp_mitm", "fuzzing", "mirai", "os_scan",
+    _datasets = ["active_wiretap", "arp_mitm", "fuzzing", "mirai", "os_scan",
                  "ssdp_flood", "ssl_renegotiation", "syn_dos", "video_injection"]
     
     def __init__(self, benchmark_location: str | os.PathLike):
@@ -57,12 +57,12 @@ class KitsuneReader(IDatasetReader, TSBenchmarkReader):
         """
         if not isinstance(path, str) and not isinstance(path, int):
             raise TypeError("path must be a string or an int")
-        elif not isinstance(path, int) and path not in self._DATASETS:
-            raise ValueError(f"path must be one of {self._DATASETS}")
+        elif not isinstance(path, int) and path not in self._datasets:
+            raise ValueError(f"path must be one of {self._datasets}")
         elif not isinstance(path, str) and not 0 <= path < len(self):
             raise ValueError(f"there are only {len(self)} datasets")
         
-        dataset_name = path if isinstance(path, str) else self._DATASETS[path]
+        dataset_name = path if isinstance(path, str) else self._datasets[path]
         dataset_path = (self._benchmark_path / dataset_name).resolve()
 
         self.__logger.info(f"reading dataset from {Path(dataset_path) / (dataset_name + '_dataset.csv')}")
