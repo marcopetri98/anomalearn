@@ -7,7 +7,7 @@ import numpy as np
 
 from anomalearn.algorithms import ITransformer, IShapeChanger, ICluster, \
     IParametric, IClassifier, IPredictor, IRegressor
-from anomalearn.algorithms.pipelines import Pipeline
+from anomalearn.algorithms.pipelines import Pipeline, IPipeline
 from anomalearn.algorithms.postprocessing import BuilderVectorsSlidingWindow, \
     BuilderErrorVectorsDifference, ScorerMahalanobis, ThresholdMaxOnNormal
 from anomalearn.algorithms.preprocessing import SlidingWindowReconstruct
@@ -105,7 +105,7 @@ class TestIntegrationPipeline(unittest.TestCase):
         
     def test_allowed_interfaces(self):
         pipeline = Pipeline([])
-        self.assertSetEqual({ITransformer, IShapeChanger, IParametric, ICluster, IClassifier, IRegressor, IPredictor},
+        self.assertSetEqual({ITransformer, IShapeChanger, IPipeline, IParametric, ICluster, IClassifier, IRegressor, IPredictor},
                             set(pipeline.allowed_interfaces()))
         
     def test_summary(self):

@@ -85,6 +85,8 @@ class Pipeline(IPipeline):
     __json_references = "pipeline_layers_references.json"
     __to_load_str = "to_load"
     __to_create_str = "to_create"
+    _allowed_processing = [ITransformer, IShapeChanger]
+    _allowed_models = [ICluster, IClassifier, IRegressor, IPredictor]
     
     def __init__(self, elements: list[Tuple[str, IPipelineLayer, bool] | Tuple[str, IPipelineLayer] | Tuple[IPipelineLayer, bool] | IPipelineLayer] = None):
         super().__init__()
@@ -106,10 +108,9 @@ class Pipeline(IPipeline):
         for name, obj, train in self._elements:
             if not isinstance(name, str):
                 raise TypeError("the first element of the tuples must be a str")
-            elif not is_var_of_type(obj, [ITransformer, IShapeChanger, IParametric, IPredictor]):
-                raise TypeError("the second element of the tuples must be one "
-                                "of ITransformer, IShapeChanger, IParametric or"
-                                " IPredictor")
+            elif not is_var_of_type(obj, self.allowed_interfaces()):
+                raise TypeError("the second element of the tuples must be at least one "
+                                f"of {list(e.__name__ for e in self.allowed_interfaces())}")
             elif not isinstance(train, bool):
                 raise TypeError("the last (third) element of the tuples must be"
                                 " a bool")
@@ -131,8 +132,7 @@ class Pipeline(IPipeline):
         return [e[2] for e in self._elements]
     
     def allowed_interfaces(self) -> list:
-        return [ITransformer, IShapeChanger, ICluster, IClassifier, IRegressor,
-                IPredictor, IParametric]
+        return self._allowed_processing + self._allowed_models + [IParametric, IPipeline]
     
     def set_name(self, layer: int | str, name: str) -> None:
         if not isinstance(layer, int) and not isinstance(layer, str):
@@ -693,57 +693,99 @@ class Pipeline(IPipeline):
             if isinstance(layer, IPipeline):
                 new_x, new_y = layer.process(new_x, y=new_y)
             else:
-                num_of_preprocess = 0
-                for interface in [ITransformer, IShapeChanger]:
-                    if isinstance(layer, interface):
-                        num_of_preprocess += 1
-                
-                klass = None
-                if num_of_preprocess > 1:
-                    klass = layer.get_pipeline_class()
-                
-                    if klass is not None:
-                        if klass is ITransformer:
-                            new_x = layer.transform(new_x)
-                        elif klass is IShapeChanger:
-                            new_x, new_y = layer.shape_change(new_x, new_y)
-                    
-                if klass is None:
-                    if isinstance(layer, ITransformer):
-                        new_x = layer.transform(new_x)
-                    elif isinstance(layer, IShapeChanger):
-                        new_x, new_y = layer.shape_change(new_x, new_y)
-                        
-                num_of_models = 0
-                for interface in [ICluster, IClassifier, IRegressor, IPredictor]:
-                    if isinstance(layer, interface):
-                        num_of_models += 1
-            
-                klass = None
-                if num_of_models > 1:
-                    klass = layer.get_pipeline_class()
-                    
-                    if klass is not None:
-                        if klass is ICluster:
-                            new_x = layer.cluster(new_x)
-                        elif klass is IClassifier:
-                            new_x = layer.classify(new_x)
-                        elif klass is IRegressor:
-                            new_x = layer.regress(new_x)
-                        elif klass is IPredictor:
-                            new_x = layer.predict(new_x)
-            
-                if klass is None:
-                    if isinstance(layer, ICluster):
-                        new_x = layer.cluster(new_x)
-                    elif isinstance(layer, IClassifier):
-                        new_x = layer.classify(new_x)
-                    elif isinstance(layer, IRegressor):
-                        new_x = layer.regress(new_x)
-                    elif isinstance(layer, IPredictor):
-                        new_x = layer.predict(new_x)
+                # call any processing operation on the object, if the object
+                # is both a processing and a model, it will be considered a
+                # model which needs some preprocessing operation
+                new_x, new_y = self._call_processing(layer, new_x, new_y)
+
+                # if it is a model, call the model main functionality
+                new_x = self._call_model(layer, new_x)
         except InvalidInputShape as ex:
             new_msg = f"The input of layer {layer_name} received wrong input shape." + ex.message
             raise InvalidInputShape(ex.expected_shape, ex.shape, new_msg) from ex
             
         return new_x, new_y
+    
+    def _call_processing(self, layer: IPipelineLayer,
+                         x: np.ndarray,
+                         y: np.ndarray | None) -> tuple[np.ndarray, np.ndarray]:
+        """Call the processing operation, if any.
+        
+        Parameters
+        ----------
+        layer : IPipelineLayer
+            The layer object to execute.
+        
+        x : ndarray
+            The current `x` to be used.
+        
+        y : ndarray
+            The current `y` to be used.
+
+        Returns
+        -------
+        new_x : ndarray
+            It is the result of the processing operations of the layer to the
+            input `x`.
+        
+        new_y : ndarray or None
+            It is the result of the processing operations of the layer to the
+            input `y` or the input `y` itself if the layer does not change `y`.
+        """
+        # count number of pre- or post- processing interfaces
+        num_of_process = 0
+        for interface in self._allowed_processing:
+            if isinstance(layer, interface):
+                num_of_process += 1
+
+        # execute the specified pre- or post- processing function
+        klass = None
+        if num_of_process > 1:
+            klass = layer.get_pipeline_class()
+        
+        if klass is ITransformer or (klass is None and isinstance(layer, ITransformer)):
+            return layer.transform(x), y
+        elif klass is IShapeChanger or (klass is None and isinstance(layer, IShapeChanger)):
+            return layer.shape_change(x, y)
+        else:
+            return x, y
+    
+    def _call_model(self, layer: IPipelineLayer,
+                    x: np.ndarray) -> np.ndarray:
+        """Call the model operation, if any.
+        
+        Parameters
+        ----------
+        layer : IPipelineLayer
+            The layer object to execute.
+        
+        x : ndarray
+            The current `x` to be used.
+
+        Returns
+        -------
+        new_x : ndarray
+            It is the result of the processing operations of the layer to the
+            input `x`.
+        """
+        # count number of model interfaces
+        num_of_models = 0
+        for interface in self._allowed_models:
+            if isinstance(layer, interface):
+                num_of_models += 1
+
+        # execute the specified model operation
+        klass = None
+        if num_of_models > 1:
+            klass = layer.get_pipeline_class()
+
+        if klass is ICluster or (klass is None and isinstance(layer, ICluster)):
+            return layer.cluster(x)
+        elif klass is IClassifier or (klass is None and isinstance(layer, IClassifier)):
+            return layer.classify(x)
+        elif klass is IRegressor or (klass is None and isinstance(layer, IRegressor)):
+            return layer.regress(x)
+        elif klass is IPredictor or (klass is None and isinstance(layer, IPredictor)):
+            return layer.predict(x)
+        else:
+            return x
