@@ -4,9 +4,9 @@ import logging
 
 import pandas as pd
 
-from . import TSReader
-from .. import IDataMultipleReader
 from ...input_validation import check_not_default_attributes
+from .. import IDataMultipleReader
+from . import TSReader
 
 
 class TSMultipleReader(TSReader, IDataMultipleReader):

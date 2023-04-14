@@ -1,8 +1,8 @@
-import unittest
 from tempfile import TemporaryDirectory
+import unittest
 
-import numpy as np
 from sklearn.ensemble import IsolationForest as sklearnIsolationForest
+import numpy as np
 
 from anomalearn.algorithms.models.machine_learning import IsolationForest
 

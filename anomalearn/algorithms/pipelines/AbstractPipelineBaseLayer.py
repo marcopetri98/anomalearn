@@ -1,5 +1,5 @@
-from . import IPipelineLayer
 from .. import BaseModel
+from . import IPipelineLayer
 
 
 class AbstractPipelineBaseLayer(IPipelineLayer, BaseModel):

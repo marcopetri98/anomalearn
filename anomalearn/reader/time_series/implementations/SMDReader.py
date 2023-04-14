@@ -6,8 +6,8 @@ import os
 import numpy as np
 import pandas as pd
 
-from .. import TSBenchmarkReader, rts_config
 from ... import IDatasetReader
+from .. import TSBenchmarkReader, rts_config
 
 
 class SMDReader(IDatasetReader, TSBenchmarkReader):

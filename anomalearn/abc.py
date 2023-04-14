@@ -1,6 +1,7 @@
+from collections.abc import Reversible, Sized
 import abc
 import logging
-from collections.abc import Reversible, Sized
+
 
 __module_logger = logging.getLogger(__name__)
 

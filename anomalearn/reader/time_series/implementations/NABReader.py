@@ -7,8 +7,8 @@ import os
 
 import numpy as np
 
-from .. import TSBenchmarkReader, rts_config
 from ... import IDatasetReader
+from .. import TSBenchmarkReader, rts_config
 
 
 class NABReader(IDatasetReader, TSBenchmarkReader):

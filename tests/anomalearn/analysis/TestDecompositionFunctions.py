@@ -1,7 +1,7 @@
 import unittest
 
-import numpy as np
 from statsmodels.tsa.seasonal import STL, seasonal_decompose
+import numpy as np
 
 from anomalearn.analysis import decompose_time_series
 

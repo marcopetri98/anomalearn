@@ -1,8 +1,9 @@
 from __future__ import annotations
+
 from typing import Tuple
 
-import numpy as np
 from sklearn.utils import check_array
+import numpy as np
 
 from .. import IShapeChanger
 from ..pipelines import AbstractPipelineBaseLayer

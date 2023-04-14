@@ -5,8 +5,8 @@ import os.path
 
 import pandas as pd
 
-from .. import IDataReader
 from ...input_validation.attribute_checks import check_not_default_attributes
+from .. import IDataReader
 
 
 class TSReader(IDataReader):

@@ -1,19 +1,20 @@
+from abc import ABC
+from pathlib import Path
+from typing import Callable
 import abc
 import logging
 import os
 import time
-from abc import ABC
-from pathlib import Path
-from typing import Callable
 
-import numpy as np
 from sklearn.model_selection import KFold
 from sklearn.utils import check_X_y
+import numpy as np
 
-from . import HyperparameterSearchResults, IHyperparameterSearch, IHyperparameterSearchResults
-from .. import ICrossValidation
 from .... import ObtainableABC
 from ....utils import load_py_json, save_py_json
+from .. import ICrossValidation
+from . import (HyperparameterSearchResults, IHyperparameterSearch,
+               IHyperparameterSearchResults)
 
 
 class HyperparameterSearch(IHyperparameterSearch, ABC):

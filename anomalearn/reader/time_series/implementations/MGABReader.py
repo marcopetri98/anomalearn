@@ -3,8 +3,8 @@ from __future__ import annotations
 import logging
 import os
 
-from .. import TSBenchmarkReader, rts_config
 from ... import IDatasetReader
+from .. import TSBenchmarkReader, rts_config
 
 
 class MGABReader(IDatasetReader, TSBenchmarkReader):

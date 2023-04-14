@@ -1,5 +1,5 @@
-import logging
 from typing import Iterable
+import logging
 
 import numpy as np
 

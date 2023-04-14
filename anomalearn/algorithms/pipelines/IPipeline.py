@@ -1,10 +1,10 @@
-import abc
 from typing import Tuple
+import abc
 
 import numpy as np
 
+from .. import BaseModel, IParametric
 from . import AbstractPipelineSavableLayer
-from .. import IParametric, BaseModel
 
 
 class IPipeline(IParametric, AbstractPipelineSavableLayer):

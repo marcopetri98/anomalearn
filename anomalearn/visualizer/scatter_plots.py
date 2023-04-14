@@ -1,9 +1,9 @@
 from typing import Tuple
 
-import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib.axes import Axes
 from matplotlib.markers import MarkerStyle
+import numpy as np
 
 from ..input_validation import check_argument_types, is_matplotlib_color
 

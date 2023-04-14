@@ -1,5 +1,5 @@
-import numpy as np
 from numpy.random import RandomState
+import numpy as np
 
 
 def are_random_state_equal(rs1: RandomState, rs2: RandomState) -> bool:

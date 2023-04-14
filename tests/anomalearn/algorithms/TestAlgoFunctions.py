@@ -1,11 +1,11 @@
-import unittest
 from tempfile import TemporaryDirectory
+import unittest
 
-from anomalearn.algorithms import SavableModel, load_estimator, \
-    instantiate_estimator
+from anomalearn.algorithms import (SavableModel, instantiate_estimator,
+                                   load_estimator)
 from anomalearn.algorithms.pipelines import Pipeline
-from anomalearn.algorithms.postprocessing import \
-    BuilderErrorVectorsAbsDifference, BuilderErrorVectorsDifference
+from anomalearn.algorithms.postprocessing import (
+    BuilderErrorVectorsAbsDifference, BuilderErrorVectorsDifference)
 from anomalearn.algorithms.preprocessing import SlidingWindowReconstruct
 
 

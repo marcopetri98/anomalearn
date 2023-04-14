@@ -1,5 +1,5 @@
-import abc
 from typing import Tuple
+import abc
 
 import numpy as np
 

@@ -1,7 +1,7 @@
-import json
 from os import PathLike
 from os.path import exists
 from typing import Any
+import json
 
 
 def save_py_json(obj_to_save,

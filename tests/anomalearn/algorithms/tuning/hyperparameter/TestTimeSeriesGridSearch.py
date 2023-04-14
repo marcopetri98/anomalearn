@@ -1,9 +1,9 @@
-import unittest
 from tempfile import TemporaryDirectory
+import unittest
 
-import numpy as np
 from sklearn.model_selection import KFold
-from skopt.space import Integer, Categorical
+from skopt.space import Categorical, Integer
+import numpy as np
 
 from anomalearn.algorithms.tuning.hyperparameter import TimeSeriesGridSearch
 from tests.anomalearn.algorithms.tuning.hyperparameter.TestHyperparameterSearch import \

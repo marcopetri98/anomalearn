@@ -1,7 +1,7 @@
 import unittest
 
-from anomalearn.utils import true_positive_rate, true_negative_rate, \
-    binary_confusion_matrix
+from anomalearn.utils import (binary_confusion_matrix, true_negative_rate,
+                              true_positive_rate)
 
 
 class TestMetricsFunctions(unittest.TestCase):

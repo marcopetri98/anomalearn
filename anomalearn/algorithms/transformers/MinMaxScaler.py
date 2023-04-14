@@ -1,18 +1,18 @@
 from __future__ import annotations
 
-import pickle
 from copy import deepcopy
 from numbers import Number
 from pathlib import Path
 from typing import Tuple
+import pickle
 
-import numpy as np
 from sklearn.preprocessing import MinMaxScaler as scikitMinMaxScaler
+import numpy as np
 
-from .. import ITransformer, IParametric
-from ..pipelines import AbstractPipelineSavableLayer
 from ...exceptions import InvalidInputShape, NotTrainedError
-from ...utils import are_numpy_attr_equal, are_normal_attr_equal
+from ...utils import are_normal_attr_equal, are_numpy_attr_equal
+from .. import IParametric, ITransformer
+from ..pipelines import AbstractPipelineSavableLayer
 
 
 class MinMaxScaler(ITransformer, IParametric, AbstractPipelineSavableLayer):

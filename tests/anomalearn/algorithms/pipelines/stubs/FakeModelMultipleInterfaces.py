@@ -1,6 +1,6 @@
 import numpy as np
 
-from anomalearn.algorithms import IParametric, IPredictor, IClassifier
+from anomalearn.algorithms import IClassifier, IParametric, IPredictor
 from anomalearn.algorithms.pipelines import AbstractPipelineBaseLayer
 from anomalearn.exceptions import NotTrainedError
 

@@ -1,17 +1,17 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Tuple, Any
+from typing import Any, Tuple
 
 import numpy as np
 
-from . import IPipeline, IPipelineLayer
-from .. import IPredictor, SavableModel, IShapeChanger, ITransformer, BaseModel, \
-    ICluster, IClassifier, IRegressor, IParametric, load_estimator, \
-    instantiate_estimator
 from ...exceptions import InvalidInputShape
 from ...input_validation import is_var_of_type
-from ...utils import save_py_json, load_py_json
+from ...utils import load_py_json, save_py_json
+from .. import (BaseModel, IClassifier, ICluster, IParametric, IPredictor,
+                IRegressor, IShapeChanger, ITransformer, SavableModel,
+                instantiate_estimator, load_estimator)
+from . import IPipeline, IPipelineLayer
 
 
 class Pipeline(IPipeline):

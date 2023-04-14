@@ -1,9 +1,9 @@
-import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
+import unittest
 
-import numpy as np
 from scipy.spatial.distance import mahalanobis
+import numpy as np
 
 from anomalearn.algorithms.postprocessing import ScorerMahalanobis
 from anomalearn.utils import estimate_mean_covariance

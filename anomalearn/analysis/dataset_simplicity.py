@@ -1,15 +1,16 @@
+from typing import Any, Callable, Optional
 import logging
 import math
 import warnings
-from typing import Callable, Any, Optional
 
-import numpy as np
 from numba import jit, prange
 from sklearn.utils import check_array, check_X_y
+import numpy as np
 
 from ..exceptions import ClosedOpenRangeError
-from ..utils.moving_functions import _mov_avg as mov_avg, _mov_std as mov_std
-from ..utils.metrics import _true_positive_rate, _true_negative_rate
+from ..utils.metrics import _true_negative_rate, _true_positive_rate
+from ..utils.moving_functions import _mov_avg as mov_avg
+from ..utils.moving_functions import _mov_std as mov_std
 
 
 __module_logger = logging.getLogger(__name__)

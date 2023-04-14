@@ -1,9 +1,9 @@
-import os
-import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
+import os
+import unittest
 
-from anomalearn.utils import save_py_json, load_py_json
+from anomalearn.utils import load_py_json, save_py_json
 
 
 class TestJsonFunctions(unittest.TestCase):

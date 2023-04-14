@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-import abc
-from collections.abc import MutableSequence, Iterator
+from collections.abc import Iterator, MutableSequence
 from typing import Sequence
+import abc
 
 import pandas as pd
 

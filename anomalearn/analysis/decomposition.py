@@ -1,6 +1,6 @@
-import numpy as np
 from sklearn.utils import check_array
-from statsmodels.tsa.seasonal import DecomposeResult, seasonal_decompose, STL
+from statsmodels.tsa.seasonal import STL, DecomposeResult, seasonal_decompose
+import numpy as np
 
 
 def decompose_time_series(series,

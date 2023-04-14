@@ -1,8 +1,8 @@
-import logging
 from typing import Any
+import logging
 
-import numpy as np
 from sklearn.tree._tree import Tree
+import numpy as np
 
 from . import are_random_state_equal
 

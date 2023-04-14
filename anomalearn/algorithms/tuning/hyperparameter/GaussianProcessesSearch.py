@@ -1,8 +1,8 @@
 import logging
 import os
 
-import skopt
 from skopt.space import Categorical, Integer, Real
+import skopt
 
 from . import SkoptSearchABC
 

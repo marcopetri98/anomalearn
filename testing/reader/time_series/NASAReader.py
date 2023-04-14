@@ -1,8 +1,11 @@
 from pathlib import Path
-from matplotlib import pyplot as plt, gridspec
+
+from matplotlib import gridspec
+from matplotlib import pyplot as plt
 
 from anomalearn.reader.time_series import NASAReader
 from anomalearn.visualizer import line_plot
+
 
 if __name__ == "__main__":
     reader = NASAReader(Path(__file__).parent / "../../../data/anomaly_detection/nasa_msl_smap/labeled_anomalies.csv")

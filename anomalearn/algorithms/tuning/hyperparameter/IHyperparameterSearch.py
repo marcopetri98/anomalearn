@@ -1,11 +1,11 @@
-import abc
 from abc import ABC
 from typing import Callable
+import abc
 
 import numpy as np
 
-from . import IHyperparameterSearchResults
 from .. import ICrossValidation
+from . import IHyperparameterSearchResults
 
 
 class IHyperparameterSearch(ABC):

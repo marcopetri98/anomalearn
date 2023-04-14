@@ -1,18 +1,19 @@
 from __future__ import annotations
 
-import pickle
 from copy import deepcopy
 from pathlib import Path
+import pickle
 
-import numpy as np
 from sklearn.ensemble import IsolationForest as scikitIsolationForest
+import numpy as np
 
-from .. import IAnomalyScorer
-from ... import IParametric, IBoundaryClassifier
+from ....exceptions import InvalidInputShape, NotTrainedError
+from ....utils import (are_list_attr_equal, are_normal_attr_equal,
+                       are_numpy_attr_equal, are_random_state_attr_equal,
+                       are_tree_attr_equal)
+from ... import IBoundaryClassifier, IParametric
 from ...pipelines import AbstractPipelineSavableLayer
-from ....exceptions import NotTrainedError, InvalidInputShape
-from ....utils import are_numpy_attr_equal, are_normal_attr_equal, \
-    are_list_attr_equal, are_random_state_attr_equal, are_tree_attr_equal
+from .. import IAnomalyScorer
 
 
 class IsolationForest(IParametric, IBoundaryClassifier, IAnomalyScorer, AbstractPipelineSavableLayer):

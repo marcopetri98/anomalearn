@@ -1,14 +1,14 @@
 from __future__ import annotations
 
+from pathlib import Path
 import logging
 import os
-from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-from .. import TSBenchmarkReader, rts_config
 from ... import IDatasetReader
+from .. import TSBenchmarkReader, rts_config
 
 
 class KitsuneReader(IDatasetReader, TSBenchmarkReader):

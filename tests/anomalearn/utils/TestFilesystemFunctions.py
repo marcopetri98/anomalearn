@@ -1,6 +1,6 @@
-import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
+import unittest
 
 from anomalearn.utils import find_or_create_dir
 

@@ -1,7 +1,8 @@
-import os
 from pathlib import Path
+import os
 
 from anomalearn.reader.time_series import TSMultipleReader
+
 
 if __name__ == "__main__":
     multiple_reader = TSMultipleReader()

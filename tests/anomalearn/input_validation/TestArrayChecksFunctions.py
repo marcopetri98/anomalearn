@@ -2,8 +2,8 @@ import unittest
 
 import numpy as np
 
-from anomalearn.input_validation import check_array_general, check_array_1d, \
-    check_x_y_smaller_1d
+from anomalearn.input_validation import (check_array_1d, check_array_general,
+                                         check_x_y_smaller_1d)
 
 
 class TestArrayChecksFunctions(unittest.TestCase):

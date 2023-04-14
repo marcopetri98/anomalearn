@@ -1,5 +1,5 @@
-import numpy as np
 from sklearn.utils import check_array
+import numpy as np
 
 
 def get_rows_without_nan(x) -> np.ndarray:

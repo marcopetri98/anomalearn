@@ -4,11 +4,11 @@ from pathlib import Path
 
 import numpy as np
 
-from .. import ITransformer, IParametric
-from ..pipelines import AbstractPipelineSavableLayer
 from ...exceptions import NotTrainedError
 from ...input_validation import check_array_1d
-from ...utils import save_py_json, load_py_json
+from ...utils import load_py_json, save_py_json
+from .. import IParametric, ITransformer
+from ..pipelines import AbstractPipelineSavableLayer
 
 
 class ThresholdMaxOnNormal(IParametric, ITransformer, AbstractPipelineSavableLayer):

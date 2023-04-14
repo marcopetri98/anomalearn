@@ -1,11 +1,12 @@
+from tempfile import TemporaryDirectory
 import itertools
 import unittest
-from tempfile import TemporaryDirectory
 
 import numpy as np
 
 from anomalearn.algorithms.postprocessing import BuilderVectorsSlidingWindow
-from anomalearn.algorithms.preprocessing import SlidingWindowForecast, SlidingWindowReconstruct
+from anomalearn.algorithms.preprocessing import (SlidingWindowForecast,
+                                                 SlidingWindowReconstruct)
 
 
 class TestIntegrationBuilderVectorsSlidingWindow(unittest.TestCase):

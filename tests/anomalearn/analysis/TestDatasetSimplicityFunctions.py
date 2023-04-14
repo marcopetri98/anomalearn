@@ -1,12 +1,13 @@
+from pathlib import Path
 import time
 import unittest
-from pathlib import Path
 
 import numpy as np
 
-from anomalearn.analysis import analyse_constant_simplicity, \
-    analyse_mov_avg_simplicity, analyse_mov_std_simplicity, \
-    analyse_mixed_simplicity
+from anomalearn.analysis import (analyse_constant_simplicity,
+                                 analyse_mixed_simplicity,
+                                 analyse_mov_avg_simplicity,
+                                 analyse_mov_std_simplicity)
 from anomalearn.reader.time_series import SMDReader
 from anomalearn.utils import load_py_json
 

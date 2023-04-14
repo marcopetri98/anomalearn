@@ -1,7 +1,7 @@
 from typing import Tuple
 
-import numpy as np
 from sklearn.utils import check_array
+import numpy as np
 
 
 def check_array_general(x,

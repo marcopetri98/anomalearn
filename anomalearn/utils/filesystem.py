@@ -1,5 +1,5 @@
-import logging
 from pathlib import Path
+import logging
 
 
 __module_logger = logging.getLogger(__name__)

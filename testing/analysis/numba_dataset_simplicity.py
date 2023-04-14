@@ -1,7 +1,11 @@
 import numpy as np
 
-from anomalearn.analysis.dataset_simplicity import _analyse_constant_simplicity, _find_constant_score, _fast_execute_movement_simplicity, _find_best_constants, _fast_execute_mixed_score_simplicity
+from anomalearn.analysis.dataset_simplicity import (
+    _analyse_constant_simplicity, _fast_execute_mixed_score_simplicity,
+    _fast_execute_movement_simplicity, _find_best_constants,
+    _find_constant_score)
 from anomalearn.utils.moving_functions import _mov_avg
+
 
 if __name__ == "__main__":
     method = None

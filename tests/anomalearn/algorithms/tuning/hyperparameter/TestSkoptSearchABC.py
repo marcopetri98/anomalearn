@@ -1,15 +1,15 @@
-import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
+import unittest
 
-import numpy as np
 from sklearn.model_selection import KFold
-from skopt.space import Categorical, Real, Integer
+from skopt.space import Categorical, Integer, Real
+import numpy as np
 
-from tests.anomalearn.algorithms.tuning.hyperparameter.TestHyperparameterSearch import \
-    RandomScoreHolder
 from tests.anomalearn.algorithms.tuning.hyperparameter.stubs.SkoptSearchABCChild import \
     SkoptSearchABCChild
+from tests.anomalearn.algorithms.tuning.hyperparameter.TestHyperparameterSearch import \
+    RandomScoreHolder
 
 
 class TestSkoptSearchABC(unittest.TestCase):

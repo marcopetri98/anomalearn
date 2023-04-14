@@ -1,15 +1,15 @@
+from typing import Callable
 import abc
 import logging
 import os
-from typing import Callable
 
-import numpy as np
-import skopt
 from skopt.callbacks import CheckpointSaver
 from skopt.space import Categorical, Integer, Real
+import numpy as np
+import skopt
 
-from . import HyperparameterSearch, IHyperparameterSearchResults
 from .. import ICrossValidation
+from . import HyperparameterSearch, IHyperparameterSearchResults
 
 
 class SkoptSearchABC(HyperparameterSearch):

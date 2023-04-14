@@ -1,12 +1,14 @@
 import unittest
 
-import numpy as np
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.tree import ExtraTreeRegressor
+import numpy as np
 
-from anomalearn.utils import are_numpy_attr_equal, are_normal_attr_equal
-from anomalearn.utils.scikit import are_list_attr_equal, are_random_state_attr_equal, are_tree_attr_equal
+from anomalearn.utils import are_normal_attr_equal, are_numpy_attr_equal
+from anomalearn.utils.scikit import (are_list_attr_equal,
+                                     are_random_state_attr_equal,
+                                     are_tree_attr_equal)
 
 
 class TestScikitFunction(unittest.TestCase):

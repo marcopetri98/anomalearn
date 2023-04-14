@@ -1,5 +1,5 @@
-import os
 from pathlib import Path
+import os
 
 from . import TSReader
 

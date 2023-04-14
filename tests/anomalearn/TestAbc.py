@@ -1,12 +1,24 @@
 import unittest
 
 from anomalearn import EqualityABC, ObtainableABC
-from anomalearn.abc import FullyRepresentableABC, RepresentableABC, StringableABC
-from tests.anomalearn.stubs.AbstractObjects import ObjectWithEquality, ObjectWithStr, ObjectWithStrDuckTyped, ObjectWithStrRepr, ObjectWithStrReprDuckTyped, \
-    ObjectWithoutEquality, ObjectNoMoreWithEquality, ObjectWithoutEquality2, \
-    ObjectWithEqualityInherit, ObjectWithNothing, ObtainableObject, \
-    NotCompleteObtainable, FinallyObtainable, ObtainableChild, ObjectWithRepr, \
-    ObjectWithReprDuckTyped
+from anomalearn.abc import (FullyRepresentableABC, RepresentableABC,
+                            StringableABC)
+from tests.anomalearn.stubs.AbstractObjects import (FinallyObtainable,
+                                                    NotCompleteObtainable,
+                                                    ObjectNoMoreWithEquality,
+                                                    ObjectWithEquality,
+                                                    ObjectWithEqualityInherit,
+                                                    ObjectWithNothing,
+                                                    ObjectWithoutEquality,
+                                                    ObjectWithoutEquality2,
+                                                    ObjectWithRepr,
+                                                    ObjectWithReprDuckTyped,
+                                                    ObjectWithStr,
+                                                    ObjectWithStrDuckTyped,
+                                                    ObjectWithStrRepr,
+                                                    ObjectWithStrReprDuckTyped,
+                                                    ObtainableChild,
+                                                    ObtainableObject)
 
 
 class TestAbc(unittest.TestCase):

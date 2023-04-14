@@ -1,9 +1,9 @@
-import logging
 from typing import Tuple
+import logging
 
-import numpy as np
 from numpy.linalg import LinAlgError
 from sklearn.utils import check_array
+import numpy as np
 
 
 __module_logger = logging.getLogger(__name__)

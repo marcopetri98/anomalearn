@@ -1,8 +1,8 @@
-import logging
-import re
 from logging import Logger
 from pathlib import Path
 from unittest import TestCase
+import logging
+import re
 
 import numpy as np
 

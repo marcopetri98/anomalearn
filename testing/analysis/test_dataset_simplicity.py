@@ -4,6 +4,7 @@ import time
 from anomalearn.analysis import analyse_constant_simplicity
 from anomalearn.reader.time_series import SMDReader
 
+
 if __name__ == "__main__":
     reader = SMDReader(Path(__file__).parent / "../../data/anomaly_detection/smd")
     

@@ -1,10 +1,10 @@
+from pathlib import Path
 import logging
 import unittest
-from pathlib import Path
 
 from anomalearn.reader.time_series import SMDReader
-from tests.anomalearn.reader.time_series.implementations.common_tests import assert_get_item_behaviour, \
-    assert_not_equal_numpy
+from tests.anomalearn.reader.time_series.implementations.common_tests import (
+    assert_get_item_behaviour, assert_not_equal_numpy)
 
 
 class TestSMDReader(unittest.TestCase):

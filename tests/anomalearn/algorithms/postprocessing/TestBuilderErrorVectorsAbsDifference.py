@@ -2,7 +2,8 @@ import unittest
 
 import numpy as np
 
-from anomalearn.algorithms.postprocessing import BuilderErrorVectorsAbsDifference
+from anomalearn.algorithms.postprocessing import \
+    BuilderErrorVectorsAbsDifference
 
 
 class TestBuilderErrorVectorsAbsDifference(unittest.TestCase):

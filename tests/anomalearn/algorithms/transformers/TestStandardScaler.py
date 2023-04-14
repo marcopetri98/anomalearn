@@ -1,8 +1,8 @@
-import unittest
 from tempfile import TemporaryDirectory
+import unittest
 
-import numpy as np
 from sklearn.preprocessing import StandardScaler as scikitStandardScaler
+import numpy as np
 
 from anomalearn.algorithms.transformers import StandardScaler
 

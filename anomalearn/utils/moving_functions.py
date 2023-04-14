@@ -1,5 +1,5 @@
-import numpy as np
 from numba import jit, prange
+import numpy as np
 
 
 def mov_avg(x, window: int, clip: str = "right") -> np.ndarray:

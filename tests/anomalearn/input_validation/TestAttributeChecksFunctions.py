@@ -1,7 +1,9 @@
 import unittest
 
-from anomalearn.input_validation import is_var_of_type, check_attributes_exist, \
-    check_not_default_attributes, check_argument_types
+from anomalearn.input_validation import (check_argument_types,
+                                         check_attributes_exist,
+                                         check_not_default_attributes,
+                                         is_var_of_type)
 
 
 class CustomObject:

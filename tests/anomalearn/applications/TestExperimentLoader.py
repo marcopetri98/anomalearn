@@ -1,12 +1,12 @@
-import unittest
 from pathlib import Path
+import unittest
 
 import numpy as np
 import pandas as pd
 
 from anomalearn.applications import ExperimentLoader
-from anomalearn.reader.time_series import YahooS5Reader, MGABReader, NABReader, \
-    SMDReader, rts_config
+from anomalearn.reader.time_series import (MGABReader, NABReader, SMDReader,
+                                           YahooS5Reader, rts_config)
 
 
 class TestExperimentLoader(unittest.TestCase):

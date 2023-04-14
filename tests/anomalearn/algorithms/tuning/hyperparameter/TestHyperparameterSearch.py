@@ -1,10 +1,10 @@
-import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
+import unittest
 
-import numpy as np
 from sklearn.model_selection import KFold
-from skopt.space import Integer, Categorical, Real
+from skopt.space import Categorical, Integer, Real
+import numpy as np
 
 from tests.anomalearn.algorithms.tuning.hyperparameter.stubs.HyperparameterSearchChild import \
     HyperparameterSearchChild

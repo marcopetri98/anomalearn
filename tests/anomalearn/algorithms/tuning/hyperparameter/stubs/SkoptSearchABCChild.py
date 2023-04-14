@@ -1,9 +1,9 @@
 import os
 
-import numpy as np
-import scipy
 from skopt.callbacks import CheckpointSaver
 from skopt.space import Categorical, Integer, Real
+import numpy as np
+import scipy
 
 from anomalearn.algorithms.tuning.hyperparameter import SkoptSearchABC
 

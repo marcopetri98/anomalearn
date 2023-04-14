@@ -1,12 +1,12 @@
+from typing import Callable
 import logging
 import os
-from typing import Callable
 
-import numpy as np
 from skopt.space import Categorical, Integer
+import numpy as np
 
-from . import HyperparameterSearch
 from .. import ICrossValidation
+from . import HyperparameterSearch
 
 
 # TODO: rename to grid search, it is not limited to time series

@@ -1,7 +1,8 @@
 import abc
 
 from anomalearn import ObtainableABC
-from anomalearn.abc import FullyRepresentableABC, RepresentableABC, StringableABC
+from anomalearn.abc import (FullyRepresentableABC, RepresentableABC,
+                            StringableABC)
 
 
 class ObjectWithNothing(abc.ABC):

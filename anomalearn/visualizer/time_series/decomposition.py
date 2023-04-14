@@ -1,8 +1,9 @@
 from numbers import Number
 from typing import Tuple
 
+from matplotlib import gridspec
+from matplotlib import pyplot as plt
 import numpy as np
-from matplotlib import pyplot as plt, gridspec
 
 from .. import line_plot
 

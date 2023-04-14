@@ -1,7 +1,7 @@
 import unittest
 
-import numpy as np
 from statsmodels.tsa.stattools import adfuller, kpss
+import numpy as np
 
 from anomalearn.analysis import analyse_stationarity
 

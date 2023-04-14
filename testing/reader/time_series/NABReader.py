@@ -1,9 +1,12 @@
 from pathlib import Path
+
+from matplotlib import gridspec
+from matplotlib import pyplot as plt
 import numpy as np
-from matplotlib import pyplot as plt, gridspec
 
 from anomalearn.reader.time_series import NABReader
 from anomalearn.visualizer import line_plot
+
 
 if __name__ == "__main__":
     reader = NABReader(Path(__file__).parent / "../../../data/anomaly_detection/nab")

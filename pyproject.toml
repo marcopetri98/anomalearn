@@ -58,6 +58,22 @@ autopep8 = ">=2.0.2"
 isort = ">=5.12.0"
 
 
+[tool.isort]
+py_version = 310
+extend_skip = ["__init__.py"]
+skip_gitignore = true
+multi_line_output = 0
+atomic = true
+from_first = true
+lines_after_imports = 2
+lines_between_sections = 1
+lexicographical = false
+no_lines_before = ["future", "stdlib"]
+ignore_comments = true
+src_paths = ["anomalearn", "tests"]
+line_length = 79
+
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

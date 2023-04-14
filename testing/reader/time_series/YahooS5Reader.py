@@ -1,9 +1,11 @@
 from pathlib import Path
-import matplotlib.pyplot as plt
+
 from matplotlib import gridspec
+import matplotlib.pyplot as plt
 
 from anomalearn.reader.time_series import YahooS5Reader
 from anomalearn.visualizer import line_plot
+
 
 if __name__ == "__main__":
     BENCHMARK = "A4"

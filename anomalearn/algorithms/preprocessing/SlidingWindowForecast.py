@@ -3,13 +3,13 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Tuple
 
-import numpy as np
 from sklearn.utils import check_array
 from skopt.space import Integer
+import numpy as np
 
+from ...utils import load_py_json, save_py_json
 from .. import IShapeChanger
 from ..pipelines import AbstractPipelineSavableLayer
-from ...utils import save_py_json, load_py_json
 
 
 class SlidingWindowForecast(IShapeChanger, AbstractPipelineSavableLayer):

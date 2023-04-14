@@ -1,6 +1,6 @@
-import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
+import unittest
 
 import numpy as np
 import pandas as pd

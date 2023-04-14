@@ -1,5 +1,5 @@
-from . import IPipelineLayer
 from .. import SavableModel
+from . import IPipelineLayer
 
 
 class AbstractPipelineSavableLayer(IPipelineLayer, SavableModel):

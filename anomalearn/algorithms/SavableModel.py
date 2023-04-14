@@ -2,9 +2,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from . import ISavable, BaseModel
-from .. import FullyRepresentableABC, EqualityABC
-from ..utils import save_py_json, find_or_create_dir, load_py_json
+from .. import EqualityABC, FullyRepresentableABC
+from ..utils import find_or_create_dir, load_py_json, save_py_json
+from . import BaseModel, ISavable
 
 
 class SavableModel(ISavable, FullyRepresentableABC, EqualityABC, BaseModel):

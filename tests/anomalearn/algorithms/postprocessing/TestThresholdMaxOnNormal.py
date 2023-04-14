@@ -1,5 +1,5 @@
-import unittest
 from tempfile import TemporaryDirectory
+import unittest
 
 import numpy as np
 

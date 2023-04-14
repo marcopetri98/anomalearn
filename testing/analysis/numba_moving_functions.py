@@ -2,6 +2,7 @@ import numpy as np
 
 from anomalearn.utils.moving_functions import _mov_avg, _mov_std
 
+
 if __name__ == "__main__":
     method = None
     

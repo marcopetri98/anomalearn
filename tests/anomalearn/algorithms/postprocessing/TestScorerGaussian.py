@@ -1,9 +1,9 @@
-import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
+import unittest
 
-import numpy as np
 from scipy.stats import multivariate_normal
+import numpy as np
 
 from anomalearn.algorithms.postprocessing import ScorerGaussian
 from anomalearn.utils import estimate_mean_covariance

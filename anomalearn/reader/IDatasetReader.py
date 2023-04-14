@@ -1,5 +1,5 @@
-from . import IDataReader
 from .. import ObtainableABC
+from . import IDataReader
 
 
 class IDatasetReader(IDataReader, ObtainableABC):

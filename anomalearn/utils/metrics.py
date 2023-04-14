@@ -1,7 +1,7 @@
 import logging
 
-import numpy as np
 from numba import jit
+import numpy as np
 
 from ..input_validation import check_array_1d
 

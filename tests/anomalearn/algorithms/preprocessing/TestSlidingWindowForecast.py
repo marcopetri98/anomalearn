@@ -1,9 +1,9 @@
+from tempfile import TemporaryDirectory
 import itertools
 import unittest
-from tempfile import TemporaryDirectory
 
-import numpy as np
 from skopt.space import Integer
+import numpy as np
 
 from anomalearn.algorithms.preprocessing import SlidingWindowForecast
 

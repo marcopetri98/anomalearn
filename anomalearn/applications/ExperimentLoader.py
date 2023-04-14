@@ -1,16 +1,16 @@
-import logging
-import warnings
 from collections.abc import Sequence
 from copy import copy
 from numbers import Number
 from typing import Iterator
+import logging
+import warnings
 
 import pandas as pd
 
-from . import IExperimentLoader
 from .. import EqualityABC
 from ..reader import IDatasetReader
 from ..reader.time_series import rts_config
+from . import IExperimentLoader
 
 
 class ExperimentLoader(IExperimentLoader):

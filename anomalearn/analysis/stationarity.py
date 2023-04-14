@@ -1,6 +1,6 @@
-import numpy as np
 from sklearn.utils import check_array
 from statsmodels.tsa.stattools import adfuller, kpss
+import numpy as np
 
 
 def analyse_stationarity(series,

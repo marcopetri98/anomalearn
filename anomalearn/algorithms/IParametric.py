@@ -1,5 +1,5 @@
-import abc
 from abc import ABC
+import abc
 
 
 class IParametric(ABC):

@@ -1,9 +1,9 @@
 from __future__ import annotations
+
 import abc
 
-
+from ...abc import EqualityABC, FullyRepresentableABC
 from .. import ICopyable
-from ...abc import FullyRepresentableABC, EqualityABC
 
 
 class IPipelineLayer(ICopyable, FullyRepresentableABC, EqualityABC):

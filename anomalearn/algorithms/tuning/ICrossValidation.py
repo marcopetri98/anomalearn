@@ -1,5 +1,5 @@
-import abc
 from collections.abc import Iterator
+import abc
 
 import numpy as np
 

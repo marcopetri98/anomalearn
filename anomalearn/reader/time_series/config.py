@@ -1,6 +1,7 @@
 import configparser
 import os
 
+
 # get this file directory
 dir_path = os.path.dirname(os.path.realpath(__file__))
 

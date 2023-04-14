@@ -1,15 +1,17 @@
-import os
-import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
+import os
+import unittest
 
 import numpy as np
 
-from anomalearn.algorithms import ITransformer, IShapeChanger, ICluster, \
-    IParametric, IClassifier, IPredictor, IRegressor
-from anomalearn.algorithms.pipelines import Pipeline, IPipeline
-from anomalearn.algorithms.postprocessing import BuilderVectorsSlidingWindow, \
-    BuilderErrorVectorsDifference, ScorerMahalanobis, ThresholdMaxOnNormal
+from anomalearn.algorithms import (IClassifier, ICluster, IParametric,
+                                   IPredictor, IRegressor, IShapeChanger,
+                                   ITransformer)
+from anomalearn.algorithms.pipelines import IPipeline, Pipeline
+from anomalearn.algorithms.postprocessing import (
+    BuilderErrorVectorsDifference, BuilderVectorsSlidingWindow,
+    ScorerMahalanobis, ThresholdMaxOnNormal)
 from anomalearn.algorithms.preprocessing import SlidingWindowReconstruct
 from anomalearn.algorithms.transformers import MinMaxScaler, StandardScaler
 from anomalearn.exceptions import NotTrainedError
