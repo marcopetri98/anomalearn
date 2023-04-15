@@ -1,16 +1,11 @@
 # anomalearn: time series anomaly detection library
 
-![PyPI](https://img.shields.io/pypi/v/anomalearn)
-![PyPI - Status](https://img.shields.io/pypi/status/anomalearn)
-![PyPI - Format](https://img.shields.io/pypi/format/anomalearn)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/anomalearn)
-![PyPI - License](https://img.shields.io/pypi/l/anomalearn)
-![Maintenance](https://img.shields.io/maintenance/yes/2023)
-[![linting: pycodestyle](https://img.shields.io/badge/1st%20linter-pycodestyle-birghtgreen)](https://github.com/PyCQA/pycodestyle)
-[![linting: flake8](https://img.shields.io/badge/2nd%20linter-flake8-blue)](https://github.com/PyCQA/flake8)
-[![linting: pylint](https://img.shields.io/badge/3rd%20linter-pylint-yellowgreen)](https://github.com/pylint-dev/pylint)
-[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
-[![formatting: autopep8](https://img.shields.io/badge/formatter-autopep8-birghtgreen)](https://github.com/hhatto/autopep8)
+| Group      | Badges |
+|------------| ----- |
+| PyPI       | ![PyPI](https://img.shields.io/pypi/v/anomalearn) ![PyPI - Status](https://img.shields.io/pypi/status/anomalearn) ![PyPI - Format](https://img.shields.io/pypi/format/anomalearn) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/anomalearn) ![PyPI - License](https://img.shields.io/pypi/l/anomalearn) |
+| Repository | ![Maintenance](https://img.shields.io/maintenance/yes/2023) |
+| Code       | [![linting: pycodestyle](https://img.shields.io/badge/1st%20linter-pycodestyle-birghtgreen)](https://github.com/PyCQA/pycodestyle) [![linting: flake8](https://img.shields.io/badge/2nd%20linter-flake8-blue)](https://github.com/PyCQA/flake8) [![linting: pylint](https://img.shields.io/badge/3rd%20linter-pylint-yellowgreen)](https://github.com/pylint-dev/pylint) [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/) |
+| Docstrings | [![NumpyDoc](https://img.shields.io/badge/%20style-numpy-459db9.svg)](https://numpydoc.readthedocs.io/en/latest/format.html) |
 
 ## Status
 
@@ -143,7 +138,9 @@ providing feedback on the clarity of the documentation, the naming of functions,
 ease of use, and in proposing new functionalities to implement.
 
 In the future, once the first stable version will be published, a structured and
-well documented on how to contribute to the library will be written.
+well documented on how to contribute to the library will be written. For the
+moment, all the discussions related to the development, requests and proposals
+should be places in the GitHub discussion page.
 
 ## Contributing to code
 

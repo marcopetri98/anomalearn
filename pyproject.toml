@@ -54,7 +54,6 @@ optional = true
 pylint = ">=2.17.2"
 pycodestyle = ">=2.10.0"
 flake8 = ">=6.0.0"
-autopep8 = ">=2.0.2"
 isort = ">=5.12.0"
 
 
