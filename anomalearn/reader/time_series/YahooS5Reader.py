@@ -6,8 +6,8 @@ import os
 
 import pandas as pd
 
-from ... import IDatasetReader
-from .. import TSBenchmarkReader, rts_config
+from .. import IDatasetReader
+from . import TSBenchmarkReader, rts_config
 
 
 class YahooS5Reader(IDatasetReader, TSBenchmarkReader):

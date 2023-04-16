@@ -7,8 +7,8 @@ import os
 import numpy as np
 import pandas as pd
 
-from ... import IDatasetReader
-from .. import TSBenchmarkReader, rts_config
+from .. import IDatasetReader
+from . import TSBenchmarkReader, rts_config
 
 
 class ExathlonReader(IDatasetReader, TSBenchmarkReader):

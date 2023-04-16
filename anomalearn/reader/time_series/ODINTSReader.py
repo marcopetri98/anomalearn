@@ -6,7 +6,7 @@ import logging
 import numpy as np
 import pandas as pd
 
-from .. import TSReader, rts_config
+from . import TSReader, rts_config
 
 
 class ODINTSReader(TSReader):
