@@ -1,12 +1,10 @@
 import configparser
-import os
+from pathlib import Path
 
-
-# get this file directory
-dir_path = os.path.dirname(os.path.realpath(__file__))
-
-# load the package configuration file
 rts_config = configparser.ConfigParser()
-rts_config.read(os.path.join(dir_path, "time_series_config.ini"))
+"""This variable contains all the configurations present in the configuration
+file present in this package.
+"""
+rts_config.read(Path(__file__).parent / "time_series_config.ini")
 
 # TODO: add a singleton object to allow the user to change configs by commands instead of browsing files and searching for the .ini
