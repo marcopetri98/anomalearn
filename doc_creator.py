@@ -800,99 +800,78 @@ def populate_module(
             start_content += ".. currentmodule:: " + module_to_write + "\n\n"
             start_content += ".. " + autodoc + ":: " + autodoc_name + "\n"
             return start_content
+        
+        def summary_section(
+            rubric_name: str,
+            file_prefix: str,
+            list_of_elements: list[str],
+            autodoc_name: str,
+            func_to_call: Callable,
+            options_to_pass: dict
+        ) -> None:
+            nonlocal module_content
+            module_content += "\n   .. rubric:: " + rubric_name + "\n\n"
+            module_content += "   .. autosummary::\n\n"
+    
+            for elem in sorted(list_of_elements):
+                filename = file_prefix + elem + ".rst"
+                child_file = module_folder / filename
+                module_folder.mkdir(parents=True, exist_ok=True)
+                child_file.touch(exist_ok=True)
+                child_content = starting_content(elem, autodoc_name)
+                if func_to_call != populate_class:
+                    child_content += func_to_call("", options_to_pass)
+                else:
+                    child_content += populate_class(module_path,
+                                                    private,
+                                                    dunders,
+                                                    max_depth,
+                                                    class_options,
+                                                    func_options,
+                                                    attr_options,
+                                                    elem,
+                                                    module_complete_name,
+                                                    "")
+        
+                module_content += "      ~" + module_complete_name + "." + elem + "\n"
+        
+                with open(child_file, "w", encoding="utf-8") as f:
+                    f.write(child_content)
+    
+            module_content += "\n"
+            module_content += "   .. toctree::\n"
+            module_content += "      :hidden:\n"
+            module_content += "      :maxdepth: " + str(max_depth) + "\n\n"
+    
+            for elem in sorted(list_of_elements):
+                filename = file_prefix + elem + ".rst"
+                module_content += "      " + module_folder.stem + "/" + filename + "\n"
+    
+            module_content += "\n"
 
         if len(attributes) > 0:
-            module_content += "\n   .. rubric:: Attributes\n\n"
-            module_content += "   .. autosummary::\n\n"
-            
-            for elem in sorted(attributes):
-                filename = "attr_" + elem + ".rst"
-                child_file = module_folder / filename
-                module_folder.mkdir(parents=True, exist_ok=True)
-                child_file.touch(exist_ok=True)
-                child_content = starting_content(elem, "autoattribute")
-                child_content += populate_attribute("", attr_options)
-                
-                module_content += "      " + module_complete_name + "." + elem + "\n"
-
-                with open(child_file, "w", encoding="utf-8") as f:
-                    f.write(child_content)
-            
-            module_content += "\n"
-            module_content += "   .. toctree::\n"
-            module_content += "      :hidden:\n"
-            module_content += "      :maxdepth: " + str(max_depth) + "\n\n"
-            
-            for elem in sorted(attributes):
-                filename = "attr_" + elem + ".rst"
-                module_content += "      " + module_folder.stem + "/" + filename + "\n"
-            
-            module_content += "\n"
+            summary_section("Attributes",
+                            "attr_",
+                            attributes,
+                            "autoattribute",
+                            populate_attribute,
+                            attr_options)
                     
         if len(functions) > 0:
-            module_content += "\n   .. rubric:: Functions\n\n"
-            module_content += "   .. autosummary::\n\n"
-            
-            for elem in sorted(functions):
-                filename = "func_" + elem + ".rst"
-                child_file = module_folder / filename
-                module_folder.mkdir(parents=True, exist_ok=True)
-                child_file.touch(exist_ok=True)
-                child_content = starting_content(elem, "autofunction")
-                child_content += populate_function("", func_options)
-                
-                module_content += "      " + module_complete_name + "." + elem + "\n"
-
-                with open(child_file, "w", encoding="utf-8") as f:
-                    f.write(child_content)
-            
-            module_content += "\n"
-            module_content += "   .. toctree::\n"
-            module_content += "      :hidden:\n"
-            module_content += "      :maxdepth: " + str(max_depth) + "\n\n"
-            
-            for elem in sorted(functions):
-                filename = "func_" + elem + ".rst"
-                module_content += "      " + module_folder.stem + "/" + filename + "\n"
-            
-            module_content += "\n"
+            summary_section("Functions",
+                            "func_",
+                            functions,
+                            "autofunction",
+                            populate_function,
+                            func_options)
                     
         if len(classes) > 0:
-            module_content += "\n   .. rubric:: Classes\n\n"
-            module_content += "   .. autosummary::\n\n"
-            
-            for elem in sorted(classes):
-                filename = "class_" + elem + ".rst"
-                child_file = module_folder / filename
-                module_folder.mkdir(parents=True, exist_ok=True)
-                child_file.touch(exist_ok=True)
-                child_content = starting_content(elem, "autoclass")
-                child_content += populate_class(module_path,
-                                                private,
-                                                dunders,
-                                                max_depth,
-                                                class_options,
-                                                func_options,
-                                                attr_options,
-                                                elem,
-                                                module_complete_name,
-                                                "")
-                
-                module_content += "      " + module_complete_name + "." + elem + "\n"
-
-                with open(child_file, "w", encoding="utf-8") as f:
-                    f.write(child_content)
-            
-            module_content += "\n"
-            module_content += "   .. toctree::\n"
-            module_content += "      :hidden:\n"
-            module_content += "      :maxdepth: " + str(max_depth) + "\n\n"
-            
-            for elem in sorted(classes):
-                filename = "class_" + elem + ".rst"
-                module_content += "      " + module_folder.stem + "/" + filename + "\n"
-            
-            module_content += "\n"
+            summary_section("Classes",
+                            "class_",
+                            classes,
+                            "autoclass",
+                            populate_class,
+                            dict())
     else:
         add_entries(attributes, populate_attribute, "Attributes", "autodata", attr_options)
         add_entries(functions, populate_function, "Functions", "autofunction", func_options)
