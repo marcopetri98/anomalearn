@@ -670,6 +670,7 @@ def populate_class(
 
 def populate_module(
     module_path: Path,
+    api_rst_path: Path,
     private: bool,
     dunders: bool,
     max_depth: int,
@@ -685,6 +686,9 @@ def populate_module(
     ----------
     module_path : Path
         The path of the module file to populate.
+    
+    api_rst_path : Path
+        The path of the folder in which the rst files must be generated.
     
     private : bool
         Whether private members should be included in the documentation.
@@ -756,7 +760,7 @@ def populate_module(
         functions = list(filter(public_member, functions))
         classes = list(filter(public_member, classes))
 
-    module_content = "\n"
+    module_content = "\n\n"
     
     def add_entries(
         objects_names: list[str],
@@ -768,21 +772,133 @@ def populate_module(
         nonlocal module_content
         if len(objects_names) > 0:
             module_content += "   .. rubric:: " + rubric + "\n\n"
-            for name in objects_names:
+            for name in sorted(objects_names):
                 module_content += "   .. " + autodoc_directive + ":: " + name + "\n"
                 module_content += populate_func("   ", options)
             module_content += "\n"
 
+    attributes = variables
     if separate_content:
-        # TODO: implement classes separated from modules
-        pass
+        module_folder = api_rst_path / ("module_" + module_path.stem)
+        
+        def starting_content(elem_name: str, autodoc: str) -> str:
+            if "__init__" in module_complete_name:
+                module_to_write = module_complete_name.rsplit(".", maxsplit=1)[0]
+            else:
+                module_to_write = module_complete_name
+            
+            title = elem_name
+            
+            if autodoc == "autoattribute":
+                autodoc_name = module_complete_name + "." + elem_name
+            else:
+                autodoc_name = elem_name
+            
+            start_content = ".. _" + module_complete_name + "." + elem_name + ":\n\n"
+            start_content += title + "\n"
+            start_content += "=" * len(title) + "\n\n"
+            start_content += ".. currentmodule:: " + module_to_write + "\n\n"
+            start_content += ".. " + autodoc + ":: " + autodoc_name + "\n"
+            return start_content
+
+        if len(attributes) > 0:
+            module_content += "\n   .. rubric:: Attributes\n\n"
+            module_content += "   .. autosummary::\n\n"
+            
+            for elem in sorted(attributes):
+                filename = "attr_" + elem + ".rst"
+                child_file = module_folder / filename
+                module_folder.mkdir(parents=True, exist_ok=True)
+                child_file.touch(exist_ok=True)
+                child_content = starting_content(elem, "autoattribute")
+                child_content += populate_attribute("", attr_options)
+                
+                module_content += "      " + module_complete_name + "." + elem + "\n"
+
+                with open(child_file, "w", encoding="utf-8") as f:
+                    f.write(child_content)
+            
+            module_content += "\n"
+            module_content += "   .. toctree::\n"
+            module_content += "      :hidden:\n"
+            module_content += "      :maxdepth: " + str(max_depth) + "\n\n"
+            
+            for elem in sorted(attributes):
+                filename = "attr_" + elem + ".rst"
+                module_content += "      " + module_folder.stem + "/" + filename + "\n"
+            
+            module_content += "\n"
+                    
+        if len(functions) > 0:
+            module_content += "\n   .. rubric:: Functions\n\n"
+            module_content += "   .. autosummary::\n\n"
+            
+            for elem in sorted(functions):
+                filename = "func_" + elem + ".rst"
+                child_file = module_folder / filename
+                module_folder.mkdir(parents=True, exist_ok=True)
+                child_file.touch(exist_ok=True)
+                child_content = starting_content(elem, "autofunction")
+                child_content += populate_function("", func_options)
+                
+                module_content += "      " + module_complete_name + "." + elem + "\n"
+
+                with open(child_file, "w", encoding="utf-8") as f:
+                    f.write(child_content)
+            
+            module_content += "\n"
+            module_content += "   .. toctree::\n"
+            module_content += "      :hidden:\n"
+            module_content += "      :maxdepth: " + str(max_depth) + "\n\n"
+            
+            for elem in sorted(functions):
+                filename = "func_" + elem + ".rst"
+                module_content += "      " + module_folder.stem + "/" + filename + "\n"
+            
+            module_content += "\n"
+                    
+        if len(classes) > 0:
+            module_content += "\n   .. rubric:: Classes\n\n"
+            module_content += "   .. autosummary::\n\n"
+            
+            for elem in sorted(classes):
+                filename = "class_" + elem + ".rst"
+                child_file = module_folder / filename
+                module_folder.mkdir(parents=True, exist_ok=True)
+                child_file.touch(exist_ok=True)
+                child_content = starting_content(elem, "autoclass")
+                child_content += populate_class(module_path,
+                                                private,
+                                                dunders,
+                                                max_depth,
+                                                class_options,
+                                                func_options,
+                                                attr_options,
+                                                elem,
+                                                module_complete_name,
+                                                "")
+                
+                module_content += "      " + module_complete_name + "." + elem + "\n"
+
+                with open(child_file, "w", encoding="utf-8") as f:
+                    f.write(child_content)
+            
+            module_content += "\n"
+            module_content += "   .. toctree::\n"
+            module_content += "      :hidden:\n"
+            module_content += "      :maxdepth: " + str(max_depth) + "\n\n"
+            
+            for elem in sorted(classes):
+                filename = "class_" + elem + ".rst"
+                module_content += "      " + module_folder.stem + "/" + filename + "\n"
+            
+            module_content += "\n"
     else:
-        attributes = list(set(variables).difference(dunders_attr))
         add_entries(attributes, populate_attribute, "Attributes", "autodata", attr_options)
         add_entries(functions, populate_function, "Functions", "autofunction", func_options)
         
         if len(classes) > 0:
-            module_content += "\n   .. rubric:: Classes\n\n"
+            module_content += "   .. rubric:: Classes\n\n"
             for klass in sorted(classes):
                 module_content += "   .. autoclass:: " + klass + "\n"
                 module_content += populate_class(module_path,
@@ -795,7 +911,8 @@ def populate_module(
                                                  klass,
                                                  module_complete_name,
                                                  "   ")
-            module_content += "\n"
+    
+    module_content += "\n"
     
     return module_content
 
@@ -877,11 +994,13 @@ def generate_package_rst_files(
         title = package_complete_name + " package"
     else:
         title = package_name + " package"
+    content += ".. _" + package_complete_name + ":\n\n"
     content += title + "\n" + "=" * len(title) + "\n\n"
     content += ".. currentmodule:: " + package_complete_name + "\n\n"
     content += ".. automodule:: " + package_complete_name + "\n"
     module_complete_name = package_complete_name + ".__init__"
     content += populate_module(package_path / "__init__.py",
+                               api_package_path,
                                private,
                                dunders,
                                max_depth,
@@ -921,10 +1040,12 @@ def generate_package_rst_files(
             title = module_complete_name + " module"
         else:
             title = mod + " module"
+        content += ".. _" + module_complete_name + ":\n\n"
         content += title + "\n" + "=" * len(title) + "\n\n"
         content += ".. currentmodule:: " + module_complete_name + "\n\n"
         content += ".. automodule:: " + module_complete_name + "\n"
         content += populate_module(package_path / f"{mod}.py",
+                                   api_package_path,
                                    private,
                                    dunders,
                                    max_depth,
