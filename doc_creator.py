@@ -721,32 +721,38 @@ def populate_module(
     """
     separate_content = pkg_options["mod_separate"] or class_options["class_separate"]
     
-    variable_re = re.compile("^\w+ *=", re.MULTILINE)
-    function_re = re.compile("^def \w+[\\\(]", re.MULTILINE)
-    class_re = re.compile("^class \w+[\\\(:]", re.MULTILINE)
     dunder_re = re.compile("__\w+__")
-    
-    variables = []
-    functions = []
-    classes = []
-    dunders_attr = []
     
     with open(module_path, encoding="utf-8") as f:
         content = f.read()
 
-    # TODO: use AST for python grammar
-    
     def public_member(x): return not x.startswith("_")
+
+    # parse content with abstract syntax trees to get functions, variables,
+    # and classes
+    variables = []
+    functions = []
+    classes = []
+    module_tree = ast.parse(content)
+    for child in ast.iter_child_nodes(module_tree):
+        if isinstance(child, (ast.Assign, ast.AugAssign)):
+            targets = child.targets if isinstance(child, ast.Assign) else [
+                child.target]
+            for target in targets:
+                if isinstance(target, ast.Name):
+                    variables.append(target.id)
     
-    # get attributes, functions and classes of the module
-    variables = [e[0:-1 - (" " in e)] for e in variable_re.findall(content)]
-    functions = [e[4:-1] for e in function_re.findall(content)]
-    classes = [e[6:-1] for e in class_re.findall(content)]
+        if isinstance(child, ast.FunctionDef):
+            functions.append(child.name)
+    
+        if isinstance(child, ast.ClassDef):
+            classes.append(child.name)
+    # get dunders
     dunders_attr = list(filter(dunder_re.match, variables))
     
     # filter the private members
     if not private:
-        variables = list(filter(public_member, variables))
+        variables = list(filter(public_member, set(variables).difference(dunders_attr)))
         functions = list(filter(public_member, functions))
         classes = list(filter(public_member, classes))
 
