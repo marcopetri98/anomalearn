@@ -110,16 +110,6 @@ def process_arguments(argv) -> dict:
                              "different page with respect to that of the module"
                              " and will be linked. Otherwise, the content of a "
                              "module is inside the module doc.")
-    parser.add_argument("--class-separate",
-                        action="store_const",
-                        const=True,
-                        default=False,
-                        help="if given, the contents of a class will be in a "
-                             "different page with respect to that of the class"
-                             " and will be linked. Otherwise, the content of a "
-                             "class is inside the class doc. NOTE: this implies"
-                             " that --mod-separate is given, or it will be "
-                             "assumed to be implicitly passed")
     parser.add_argument("package_location",
                         metavar="PACKAGE",
                         help="it is the relative location in which the package "
@@ -412,37 +402,35 @@ def get_class_members(
     attributes = list(sorted(set(attributes)))
     docs_attributes = list(sorted(set(docs_attributes)))
     
-    def get_leftmost_id(attr) -> str | None:
-        value = None
-        if isinstance(attr, ast.Attribute):
-            # handle attribute of attribute, e.g., a.b.c.d.e.f.g
-            leftmost_attr = get_leftmost_attribute(attr)
-            value = leftmost_attr.value.id
-        if isinstance(attr, ast.Name):
-            value = attr.id
-        return value
-    
     # divide methods, class methods, properties and generally decorated methods
     for met in methods:
         property_or_class = False
+        
         if len(met.decorator_list) > 0:
             for decorator in met.decorator_list:
                 if isinstance(decorator, ast.Call):
                     decorator = decorator.func
                 
-                decorator = get_leftmost_id(decorator)
+                if isinstance(decorator, ast.Attribute):
+                    lhs_attr = get_leftmost_attribute(decorator)
+                    if lhs_attr.value.id == met.name and lhs_attr.attr == "setter":
+                        name = f"{met.name}.setter"
+                    else:
+                        name = lhs_attr.value.id
+                else:
+                    name = decorator.id
 
-                if decorator == "property" or decorator == f"{met.name}.setter":
+                if name == "property" or name == f"{met.name}.setter":
                     properties.append(met.name)
                     property_or_class = True
                     break
-                if decorator == "classmethod":
+                if name == "classmethod":
                     class_methods.append(met.name)
                     property_or_class = True
                     break
         
-        if len(met.decorator_list) > 0 and not property_or_class:
-            decorated_methods.append(met.name)
+            if not property_or_class:
+                decorated_methods.append(met.name)
     
     properties = list(sorted(set(properties)))
     class_methods = list(sorted(set(class_methods)))
@@ -519,11 +507,13 @@ def get_class_members(
     inherited_class_methods = list(filter(lambda x: not x.startswith("__"), inherited_class_methods))
     inherited_decorated_methods = list(filter(lambda x: not x.startswith("__"), inherited_decorated_methods))
     
+    this_class_methods = set(methods).union(properties).union(decorated_methods)
+    
     inherited_attributes = list(sorted(set(inherited_attributes).difference(attributes + docs_attributes)))
     inherited_methods = list(sorted(set(inherited_methods).difference(methods)))
-    inherited_properties = list(sorted(set(inherited_properties).difference(properties)))
+    inherited_properties = list(sorted(set(inherited_properties).difference(this_class_methods)))
     inherited_class_methods = list(sorted(set(inherited_class_methods).difference(class_methods)))
-    inherited_decorated_methods = list(sorted(set(inherited_decorated_methods).difference(decorated_methods)))
+    inherited_decorated_methods = list(sorted(set(inherited_decorated_methods).difference(this_class_methods)))
     
     members["inherited"] = dict()
     members["inherited"]["attributes"] = inherited_attributes
@@ -537,6 +527,7 @@ def get_class_members(
 
 def populate_class(
     class_path: Path,
+    api_rst_path: Path,
     private: bool,
     dunders: bool,
     max_depth: int,
@@ -553,6 +544,9 @@ def populate_class(
     ----------
     class_path : Path
         The path of the class file or string to populate.
+    
+    api_rst_path : Path
+        The path of the folder in which the rst files must be generated.
     
     private : bool
         Whether private members should be included in the documentation.
@@ -594,6 +588,7 @@ def populate_class(
     
     dunder_re = re.compile("__\w+__")
     private_re = re.compile("_\w*")
+    full_private_re = re.compile("__\w*")
     
     members = get_class_members(class_path, class_name, module_complete_name)
     
@@ -601,7 +596,8 @@ def populate_class(
         members["methods"].remove("__init__")
     if "__init__" in members["inherited"]["methods"]:
         members["inherited"]["methods"].remove("__init__")
-        
+    
+    # remove dunders or private members if the option is not set
     def values_to_remove(value_list: list[str]) -> list[str]:
         result = []
         for val in value_list:
@@ -633,37 +629,66 @@ def populate_class(
         if len(objects_names) > 0:
             content += spaces + "   .. rubric:: " + rubric + "\n\n"
             for name in objects_names:
-                content += spaces + "   .. " + autodoc_directive + ":: " + name + "\n"
+                if (not dunder_re.fullmatch(name) and
+                        full_private_re.fullmatch(name) and
+                        autodoc_directive == "automethod"):
+                    elem_name = "_" + class_name + name
+                else:
+                    elem_name = name
+                content += spaces + "   .. " + autodoc_directive + ":: " + elem_name + "\n"
                 content += populate_func(spaces + "   ", options)
             content += "\n"
+
+    def summary_section(rubric_name: str, list_of_elements: list[str]) -> None:
+        nonlocal content
+        if len(list_of_elements) > 0:
+            content += "\n   .. rubric:: " + rubric_name + "\n\n"
+            content += "   .. autosummary::\n\n"
+            for elem in sorted(list_of_elements):
+                if not dunder_re.fullmatch(elem) and full_private_re.fullmatch(elem):
+                    elem_name = "_" + class_name + elem
+                else:
+                    elem_name = elem
+                content += "      ~" + class_name + "." + elem_name + "\n"
     
-    if class_options["class_separate"]:
-        # TODO: add content for separate classes
-        pass
-    else:
-        if class_options["show_inheritance"]:
-            content += spaces + "   :show-inheritance:\n"
-            
-        content += "\n"
+    if class_options["show_inheritance"]:
+        content += spaces + "   :show-inheritance:\n"
+
+    content += "\n"
+    
+    add_entries(members["attributes"], populate_attribute, "Attributes", "autoattribute", attr_options)
+    if class_options["show_inherited_members"]:
+        add_entries(members["inherited"]["attributes"], populate_attribute, "Inherited attributes", "autoattribute", attr_options)
         
-        def add_inherited():
-            if class_options["show_inherited_members"]:
-                add_entries(members["inherited"]["attributes"], populate_attribute, "Inherited attributes", "autoattribute", attr_options)
-                add_entries(members["inherited"]["properties"], populate_function, "Inherited properties", "autoproperty", func_options)
-                add_entries(members["inherited"]["methods"], populate_function, "Inherited methods", "automethod", func_options)
-                add_entries(members["inherited"]["decorated_methods"], populate_function, "Inherited decorated methods", "automethod", func_options)
+
+    summary_section("List of properties", members["properties"])
+    summary_section("List of methods", members["methods"])
+    summary_section("List of decorated methods", members["decorated_methods"])
+    summary_section("List of class methods", members["class_methods"])
+    
+    if class_options["show_inherited_members"]:
+        summary_section("List of inherited properties", members["inherited"]["properties"])
+        summary_section("List of inherited methods", members["inherited"]["methods"])
+        summary_section("List of inherited decorated methods", members["inherited"]["decorated_methods"])
+
+    content += "\n"
         
-        if class_options["inherited_members_before"]:
-            add_inherited()
+    def add_inherited():
+        if class_options["show_inherited_members"]:
+            add_entries(members["inherited"]["properties"], populate_function, "Inherited properties", "autoproperty", func_options)
+            add_entries(members["inherited"]["methods"], populate_function, "Inherited methods", "automethod", func_options)
+            add_entries(members["inherited"]["decorated_methods"], populate_function, "Inherited decorated methods", "automethod", func_options)
         
-        add_entries(members["attributes"], populate_attribute, "Attributes", "autoattribute", attr_options)
-        add_entries(members["properties"], populate_function, "Properties", "autoproperty", func_options)
-        add_entries(members["methods"], populate_function, "Methods", "automethod", func_options)
-        add_entries(members["class_methods"], populate_function, "Class methods", "automethod", func_options)
-        add_entries(members["decorated_methods"], populate_function, "Decorated methods", "automethod", func_options)
+    if class_options["inherited_members_before"]:
+        add_inherited()
         
-        if not class_options["inherited_members_before"]:
-            add_inherited()
+    add_entries(members["properties"], populate_function, "Properties", "autoproperty", func_options)
+    add_entries(members["methods"], populate_function, "Methods", "automethod", func_options)
+    add_entries(members["decorated_methods"], populate_function, "Decorated methods", "automethod", func_options)
+    add_entries(members["class_methods"], populate_function, "Class methods", "automethod", func_options)
+        
+    if not class_options["inherited_members_before"]:
+        add_inherited()
     
     return content
 
@@ -723,7 +748,7 @@ def populate_module(
     rst_content_to_add : str
         The content to add to the rst for populating the module doc.
     """
-    separate_content = pkg_options["mod_separate"] or class_options["class_separate"]
+    separate_content = pkg_options["mod_separate"]
     
     dunder_re = re.compile("__\w+__")
     
@@ -753,6 +778,7 @@ def populate_module(
             classes.append(child.name)
     # get dunders
     dunders_attr = list(filter(dunder_re.match, variables))
+    variables = list(sorted(set(variables).difference(dunders_attr)))
     
     # filter the private members
     if not private:
@@ -786,8 +812,11 @@ def populate_module(
                 module_to_write = module_complete_name.rsplit(".", maxsplit=1)[0]
             else:
                 module_to_write = module_complete_name
-            
-            title = elem_name
+
+            if elem_name.startswith("_"):
+                title = "\\" + elem_name
+            else:
+                title = elem_name
             
             if autodoc == "autoattribute":
                 autodoc_name = module_complete_name + "." + elem_name
@@ -823,6 +852,7 @@ def populate_module(
                     child_content += func_to_call("", options_to_pass)
                 else:
                     child_content += populate_class(module_path,
+                                                    module_folder,
                                                     private,
                                                     dunders,
                                                     max_depth,
@@ -881,6 +911,7 @@ def populate_module(
             for klass in sorted(classes):
                 module_content += "   .. autoclass:: " + klass + "\n"
                 module_content += populate_class(module_path,
+                                                 api_rst_path,
                                                  private,
                                                  dunders,
                                                  max_depth,
@@ -1066,8 +1097,7 @@ if __name__ == "__main__":
     
     options_packages = {"complete_pkg_title": options["complete_package_title"],
                         "mod_separate": options["mod_separate"]}
-    options_classes = {"class_separate": options["class_separate"],
-                       "show_inheritance": options["show_inheritance"],
+    options_classes = {"show_inheritance": options["show_inheritance"],
                        "show_inherited_members": options["show_inherited_members"] or options["inherited_members_before"],
                        "inherited_members_before": options["inherited_members_before"]}
     options_functions = dict()
