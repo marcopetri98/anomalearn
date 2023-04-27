@@ -1,0 +1,19 @@
+.. _release_0.0.1:
+
+=======================
+Pre-alpha version 0.0.1
+=======================
+
+This has been the very first version published on
+`PyPI <https://pypi.org/project/anomalearn/>`_. Being anomalearn a project
+born in the context of a Marco Petri's Master of Science thesis, it was
+necessary to register the name before actually publishing the content of the
+thesis. Therefore, this version does not contain code since it was needed only
+to accomplish with bureaucracy.
+
+Contributors
+------------
+
+A total of 1 people contributed to this release.
+
++ Marco Petri

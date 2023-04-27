@@ -1,0 +1,43 @@
+.. _release_0.0.2:
+
+=======================
+Pre-alpha version 0.0.2
+=======================
+
+This is the very first version of anomalearn. The content of this version is
+that of the thesis that presented the library.
+
+Core packages
+-------------
+
+anomalearn version 0.0.2 contains the following packages delivering the core
+functionalities of the library: :py:mod:`~anomalearn.algorithms`,
+:py:mod:`~anomalearn.analysis`, :py:mod:`~anomalearn.applications`,
+:py:mod:`~anomalearn.reader`. These packages offer the core functionalities of
+anomalearn, from dataset reading to output production.
+
+Utility packages
+----------------
+
+anomalearn version 0.0.2 contains the following packages delivering the utility
+functionalities of the library: :py:mod:`~anomalearn.exceptions`,
+:py:mod:`~anomalearn.input_validation`, :py:mod:`~anomalearn.utils`,
+:py:mod:`~anomalearn.visualizer`. These packages offer many functionalities
+useful to develop models and methods for time series anomaly detection using
+anomalearn.
+
+Documentation
+-------------
+
+The documentation of the first pre-alpha version has been published with all
+the reference api for users, and reference api for developers which also contain
+the description of private functions and attributes. The contents of the guides
+have been designed but not completely written. For this pre-alpha version the
+first getting started page only is written.
+
+Contributors
+------------
+
+A total of 1 people contributed to this release.
+
++ Marco Petri

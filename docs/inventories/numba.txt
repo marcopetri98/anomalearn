@@ -1,0 +1,4 @@
+# Sphinx inventory version 2
+# Project: numba
+# Version: 0.56.4
+numba py:module 1 index.html -

@@ -823,8 +823,7 @@ def populate_module(
             else:
                 autodoc_name = elem_name
             
-            start_content = ".. _" + module_complete_name + "." + elem_name + ":\n\n"
-            start_content += title + "\n"
+            start_content = title + "\n"
             start_content += "=" * len(title) + "\n\n"
             start_content += ".. currentmodule:: " + module_to_write + "\n\n"
             start_content += ".. " + autodoc + ":: " + autodoc_name + "\n"
@@ -1004,7 +1003,6 @@ def generate_package_rst_files(
         title = package_complete_name + " package"
     else:
         title = package_name + " package"
-    content += ".. _" + package_complete_name + ":\n\n"
     content += title + "\n" + "=" * len(title) + "\n\n"
     content += ".. currentmodule:: " + package_complete_name + "\n\n"
     content += ".. automodule:: " + package_complete_name + "\n"
@@ -1050,7 +1048,6 @@ def generate_package_rst_files(
             title = module_complete_name + " module"
         else:
             title = mod + " module"
-        content += ".. _" + module_complete_name + ":\n\n"
         content += title + "\n" + "=" * len(title) + "\n\n"
         content += ".. currentmodule:: " + module_complete_name + "\n\n"
         content += ".. automodule:: " + module_complete_name + "\n"

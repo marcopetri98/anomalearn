@@ -1,0 +1,13 @@
+.card-title {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.card-small-title {
+    font-weight: bold;
+    font-size: medium;
+}
+
+.sidebar-primary-items__end {
+    margin-top: 20px !important;
+}
