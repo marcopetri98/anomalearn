@@ -14,9 +14,6 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
-env:
-  POETRY_HOME: ./pypoetry
-
 jobs:
   build:
     name: Build the docs
@@ -44,9 +41,9 @@ jobs:
       - name: Create developer api
         run: poetry run python ./doc_creator.py -a ./developer/api --max-depth 2 -p -P -d -i --show-inherited-members --mod-separate anomalearn
       - name: Run sphinx
-        run: poetry run sphinx-build -b html ./docs/source ./docs/stable
+        run: poetry run sphinx-build -b html ${{ vars.DOCS_SOURCE_DIR }} ${{ vars.DOCS_OUTPUT_DIR }}
       - name: Fix sphinx broken links
-        run: poetry run python ./doc_fix_dev_api.py ./docs/stable
+        run: poetry run python ./doc_fix_dev_api.py ${{ vars.DOCS_OUTPUT_DIR }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
