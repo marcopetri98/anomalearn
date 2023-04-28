@@ -40,7 +40,10 @@ jobs:
       - name: Prepare poetry environment
         run: poetry install --with dev,docs --sync
       - name: Create docs
-        run: poetry run python ./create_doc.py
+        run: poetry run python ./doc_creator.py --max-depth 2 -d -i --show-inherited-members --mod-separate anomalearn
+          poetry run python ./doc_creator.py -a ./developer/api --max-depth 2 -p -P -d -i --show-inherited-members --mod-separate anomalearn
+          poetry run sphinx-build -b html ./docs/source ./docs/stable
+          poetry run python ./doc_fix_dev_api.py ./docs/stable
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
