@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "anomalearn"
-version = "0.0.2a0"
+version = "0.0.2"
 description = "A modular and extensible end-to-end library for time series anomaly detection"
 authors = ["Marco Petri <marco.petri@mail.polimi.it>"]
 license = "European Union Public Licence 1.2 (EUPL 1.2)"
 readme = "README.md"
-homepage = "https://marcopetri98.github.io/anomalearn"
+homepage = "https://marcopetri98.github.io/anomalearn/index.html"
 repository = "https://github.com/marcopetri98/anomalearn"
-documentation = "https://marcopetri98.github.io/anomalearn/docs"
+documentation = "https://marcopetri98.github.io/anomalearn/index.html"
 keywords = ["time series", "anomaly detection", "machine learning", "development"]
 classifiers = [
 	"Development Status :: 2 - Pre-Alpha",

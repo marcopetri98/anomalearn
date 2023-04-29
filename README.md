@@ -30,7 +30,7 @@ Discussion and development section for more details.
 ## Documentation
 
 Every functionality in anomalearn is documented. The official documentation is
-hosted at [**https://marcopetri98.github.io/anomalearn/docs/stable**][documentation-url].
+hosted at [**https://marcopetri98.github.io/anomalearn/index.html**][documentation-url].
 
 [documentation-url]: https://marcopetri98.github.io/anomalearn/docs/stable
 
