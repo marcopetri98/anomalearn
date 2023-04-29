@@ -5,6 +5,7 @@ import inspect
 import os
 import re
 import sys
+from abc import ABC
 from pathlib import Path
 from typing import Callable
 
@@ -245,9 +246,12 @@ def is_stdlib_module(path: str | None) -> bool:
     is_stdlib : bool
         True if the path represent that of a stdlib object.
     """
-    stdlib_re = re.compile("[pP]ython[0-9]{2,3}/[lL]ib")
+    python_path = Path(inspect.getsourcefile(ABC)).parent.as_posix()
     
-    if path is None or stdlib_re.search(path) or path == "built-in":
+    if path is not None:
+        path = Path(path).as_posix()
+
+    if path is None or path == "built-in" or path.startswith(python_path):
         return True
     
     return False
@@ -322,7 +326,7 @@ def get_class_members(
     if is_stdlib_module(Path(spec.origin).as_posix()):
         raise ValueError("get_class_members must be called on classes that "
                          "are not part of the standard library")
-            
+
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     
