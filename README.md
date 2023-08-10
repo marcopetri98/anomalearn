@@ -178,7 +178,17 @@ design choice**.
 
 ## Citation
 
-Currently, neither the thesis has been published nor a paper presenting the
-library to a conference or in a journal has been published. I strongly ask you
-to wait till the 4th of May 2023 to get the citation (the date on which the
-dissertation will happen and the thesis will be published).
+If you find this library useful, please cite the master thesis from which it has been created.
+
+```
+@mastersthesis{Petri2023Anomalearn,
+  author = {Petri, Marco},
+  school = {Politecnico di Milano},
+  title  = {Anomalearn: a modular and extensible library for the development of time series anomaly detection models},
+  year   = {2023},
+  month  = {may},
+  type   = {mathesis},
+  doi    = {10.13140/RG.2.2.21679.10406},
+  url    = {http://dx.doi.org/10.13140/RG.2.2.21679.10406}
+}
+```
